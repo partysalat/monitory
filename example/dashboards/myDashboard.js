@@ -7,6 +7,8 @@ export default function (props) {
   return (
     <Dashboard>
       <Card />
+      <Card />
+
     </Dashboard>
   );
 }
