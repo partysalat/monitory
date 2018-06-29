@@ -7,7 +7,7 @@ Todos:
 ---------
 
 Backend:
-* Load files with glob
+* [x] Load files with glob 
 * Implement Job processing with caching
 * Add proper logging plugin
 * Implement update of data (websocket, one connection, different channels, one channel per dashboard?)
