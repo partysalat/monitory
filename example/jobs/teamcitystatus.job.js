@@ -1,7 +1,7 @@
-export const config = {
+module.exports = {
+  job() {
+    return Promise.resolve({ failedBuilds: [] });
+  },
   interval: 1000, // ms
   property: 'teamcity',
 };
-export default function () {
-  return Promise.resolve({ failedBuilds: [] });
-}
