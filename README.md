@@ -3,14 +3,11 @@ Monitory
 
 This project will be used (hopefully) as our new team monitor. It tries to use existing libraries as simple as possible. 
 
-
-
-
-
 Todos:
 ---------
 
 Backend:
+* Load files with glob
 * Implement Job processing with caching
 * Add proper logging plugin
 * Implement update of data (websocket, one connection, different channels, one channel per dashboard?)
