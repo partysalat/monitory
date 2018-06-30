@@ -7,8 +7,6 @@ export default function (props) {
   return (
     <Dashboard>
       <Card job="id" />
-      <Card job="id2" />
-      <Card job="id3" />
 
     </Dashboard>
   );
