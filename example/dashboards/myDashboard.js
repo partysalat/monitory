@@ -6,7 +6,7 @@ import Card from '../../lib/frontend/widgets/Card';
 export default function (props) {
   return (
     <Dashboard>
-      <Card job="id" />
+      <Card job="myId" />
 
     </Dashboard>
   );
