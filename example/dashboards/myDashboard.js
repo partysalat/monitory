@@ -3,7 +3,7 @@ import Dashboard from '../../lib/frontend/Dashboard';
 import Card from '../../lib/frontend/widgets/Card';
 
 
-export default function (props) {
+export default function () {
   return (
     <Dashboard>
       <Card job="example1" value={data => data.randomNumber} />
