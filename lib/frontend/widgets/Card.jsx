@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+import CountUp, { startAnimation } from 'react-countup';
 import { subscribe } from '../redux/actions';
+
+const CounterCard = styled.div`
+  color: palevioletred;
+  font-size: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
 
 class Card extends Component {
   componentWillMount() {
@@ -10,10 +20,13 @@ class Card extends Component {
   render() {
     const viewValue = this.props.value(this.props);
     return (
-      <div>{viewValue}</div>
+      <CounterCard>
+        <CountUp start={0} end={viewValue} duration={1} />
+      </CounterCard>
     );
   }
 }
+
 function mapStateToProps(state, props) {
   return { ...state.jobData[props.job] };
 }

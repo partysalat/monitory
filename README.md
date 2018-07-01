@@ -24,3 +24,5 @@ Frontend:
 * Add iframe support (for dyb) 
 * Implement start page with links to dashboard
 * Code splitting
+* Additional adding of assets (icons, ...)
+* make Previous data available in frontend

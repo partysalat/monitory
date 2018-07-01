@@ -1,10 +1,16 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import styledNormalize from 'styled-normalize';
+import { injectGlobal } from 'styled-components';
 
 import Dashboard from '<%PATH_TO_DASHBOARD%>';
-// import './main.scss';
 import getStore from './redux';
+
+
+injectGlobal`
+  ${styledNormalize}
+`;
 
 const rootElement = document.getElementById('root');
 render(
