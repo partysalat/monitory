@@ -16,9 +16,11 @@ Backend:
 Frontend:
 * [x] Implement update of data (redux and middleware (saga?))
 * [x] Implement subscription to data (as parameter of component)
-** Do not duplicate subscription
-** error handling of websocket 
+** [x] Do not duplicate subscription
+** [x] error handling of websocket 
 * Implement Showing when threshold reached (as parameter of component)
 * Style Dashboard (also possibility for nested dashboards? To )
 * Style Card (needs to be shiny!)
 * Add iframe support (for dyb) 
+* Implement start page with links to dashboard
+* Code splitting
