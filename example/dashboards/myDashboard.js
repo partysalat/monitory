@@ -6,9 +6,9 @@ import Card from '../../lib/frontend/widgets/Card';
 export default function (props) {
   return (
     <Dashboard>
-      <Card job="myId" />
-      <Card job="myId2" />
-      <Card job="myId2" />
+      <Card job="example1" value={data => data.randomNumber} />
+      <Card job="example1" value={data => data.randomNumber} />
+      <Card job="example2" value={data => data.randomNumber} />
 
     </Dashboard>
   );

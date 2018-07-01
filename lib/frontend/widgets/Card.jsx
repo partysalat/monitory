@@ -8,15 +8,14 @@ class Card extends Component {
   }
 
   render() {
-
+    const viewValue = this.props.value(this.props);
     return (
-      <div>Foooooo</div>
+      <div>{viewValue}</div>
     );
   }
 }
-function mapStateToProps(state) {
-  return {
-  };
+function mapStateToProps(state, props) {
+  return { ...state.jobData[props.job] };
 }
 function mapDispatchToProps(dispatch) {
   return {
