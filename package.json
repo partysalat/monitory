@@ -13,6 +13,7 @@
     "app-root-path": "^2.1.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
@@ -22,6 +23,7 @@
     "handlebars": "^4.0.11",
     "hapi": "^17.5.1",
     "inert": "^5.1.0",
+    "joi": "^13.4.0",
     "lodash": "^4.17.10",
     "nes": "^9.0.0",
     "react": "^16.4.1",
@@ -49,7 +51,8 @@
       "stage-2"
     ],
     "plugins": [
-      "transform-runtime"
+      "transform-runtime",
+      "transform-async-to-generator"
     ]
   }
 }

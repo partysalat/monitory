@@ -7,6 +7,7 @@ export default function (props) {
   return (
     <Dashboard>
       <Card job="myId" />
+      <Card job="myId2" />
 
     </Dashboard>
   );
