@@ -8,14 +8,14 @@ Todos:
 
 Backend:
 * [x] Load files with glob 
-* Implement Job processing with caching
+* [x] Implement Job processing with caching
 * Add proper logging plugin
-* Implement update of data (websocket, one connection, different channels, one channel per dashboard?)
+* [x] Implement update of data (websocket, one connection, different channels, one channel per dashboard?)
 * Add styling (maybe styled components? https://github.com/styled-components/styled-components)
 
 Frontend:
-* Implement update of data (redux and middleware (saga?))
-* Implement subscription to data (as parameter of component)
+* [x] Implement update of data (redux and middleware (saga?))
+* [x] Implement subscription to data (as parameter of component)
 ** Do not duplicate subscription
 ** error handling of websocket 
 * Implement Showing when threshold reached (as parameter of component)
