@@ -14,14 +14,22 @@ const CounterCard = styled.div`
 
 class Card extends Component {
   componentWillMount() {
+    this.lastValue = 0;
     this.props.subscribe(this.props.job);
   }
 
   render() {
-    const viewValue = this.props.value(this.props);
+    const viewValue = this.props.value({
+      current: this.props.current,
+      last: this.props.last,
+    });
+
+    const tmp = this.lastValue;
+    this.lastValue = viewValue;
+
     return (
       <CounterCard>
-        <CountUp start={0} end={viewValue} duration={1} />
+        <CountUp start={tmp} end={viewValue} duration={1} />
       </CounterCard>
     );
   }
