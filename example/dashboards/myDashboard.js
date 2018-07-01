@@ -8,6 +8,7 @@ export default function (props) {
     <Dashboard>
       <Card job="myId" />
       <Card job="myId2" />
+      <Card job="myId2" />
 
     </Dashboard>
   );
