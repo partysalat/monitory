@@ -10,6 +10,8 @@ import getStore from './redux';
 
 injectGlobal`
   ${styledNormalize}
+  
+  body{}
 `;
 
 const rootElement = document.getElementById('root');
