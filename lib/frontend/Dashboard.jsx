@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 class Dashboard extends Component {
   render() {
     return (
-      <div>
+      <Container>
         {this.props.children}
-      </div>
+      </Container>
     );
   }
 }

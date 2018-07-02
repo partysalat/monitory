@@ -11,7 +11,10 @@ import getStore from './redux';
 injectGlobal`
   ${styledNormalize}
   
-  body{}
+  body{
+    font-family: 'Open Sans', sans-serif;
+    background: #ccc;
+  }
 `;
 
 const rootElement = document.getElementById('root');
