@@ -19,10 +19,10 @@ Frontend:
 ** [x] Do not duplicate subscription
 ** [x] error handling of websocket 
 * [x] make Previous data available in frontend
-* [] Implement Showing when threshold reached (as parameter of component)
-* [] Style Dashboard (also possibility for nested dashboards?)
-* [] Style Card (needs to be shiny!)
-* [] Add iframe support (for dyb) 
-* [] Implement start page with links to dashboard
-* [] Code splitting
-* [] Additional adding of assets (icons, ...)
+* [ ] Implement Showing when threshold reached (as parameter of component)
+* [ ] Style Dashboard (also possibility for nested dashboards?)
+* [ ] Style Card (needs to be shiny!)
+* [ ] Add iframe support (for dyb) 
+* [ ] Implement start page with links to dashboard
+* [ ] Code splitting
+* [ ] Additional adding of assets (icons, ...)
