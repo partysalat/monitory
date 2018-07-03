@@ -1,7 +1,15 @@
 Monitory
 =============
 
-This project will be used (hopefully) as our new team monitor. It tries to use existing libraries as simple as possible. 
+This project is intended to be a small helper framework for creating dashboards to be used in teamareas.
+You as a user just need to define two things: 
+* jobs: node processes, that fetches your data and emits events to the frontend 
+* dashboards: react components, that subscribes to emitted jobs and show the data.
+ 
+Disclaimer
+------------
+This is an early version and far away from being usable. 
+
 
 Todos:
 ---------
@@ -26,3 +34,6 @@ Frontend:
 * [ ] Implement start page with links to dashboard
 * [ ] Code splitting
 * [ ] Additional adding of assets (icons, ...)
+
+
+This project is highly inspired by http://dashing.io/ which unfortunately has been no longer maintained. 

@@ -1,16 +1,20 @@
 {
   "name": "monitory",
-  "version": "1.0.0",
-  "description": "Team monitor solution ",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Team monitor",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/partysalat/monitory.git"
+  },
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .js --ext .jsx lib/",
-    "lint:fix": "npm run lint -- --fix",
-    "start": ""
+    "lint:fix": "npm run lint -- --fix"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Ben Lenser",
+  "license": "MIT",
   "dependencies": {
     "app-root-path": "^2.1.0",
     "babel-core": "^6.26.3",
