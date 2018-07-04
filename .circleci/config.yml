@@ -46,6 +46,9 @@ jobs:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
       - run:
+          name: Set git config
+          command: git config user.email "lenser.ben@gmail.com" &&  git config user.name "CircleCi"
+      - run:
           name: Patch version
           command: npm version patch
       - run:
