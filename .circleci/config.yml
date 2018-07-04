@@ -47,7 +47,10 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
       - run:
           name: Set git config
-          command: git config user.email "lenser.ben@gmail.com" &&  git config user.name "CircleCi"
+          command: git config user.name "CircleCi"
+      - run:
+          name: Set git config email
+          command: git config user.email "lenser.ben@gmail.com"
       - run:
           name: Patch version
           command: npm version patch
