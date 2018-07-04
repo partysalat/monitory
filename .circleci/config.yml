@@ -48,6 +48,7 @@ jobs:
       - run:
           name: Set git config
           command: git config user.name "CircleCi"
+
       - run:
           name: Set git config email
           command: git config user.email "lenser.ben@gmail.com"
