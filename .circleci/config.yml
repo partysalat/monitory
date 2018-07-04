@@ -54,7 +54,7 @@ jobs:
           command: git config user.email "lenser.ben@gmail.com"
       - run:
           name: Patch version
-          command: npm version patch
+          command: git checkout package-lock.json && npm version patch
       - run:
           name: push tags to git
           command: git push —-tags origin master
