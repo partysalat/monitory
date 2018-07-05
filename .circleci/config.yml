@@ -36,9 +36,6 @@ jobs:
           paths: .
   deploy:
     <<: *defaults
-    branches:
-      only:
-      - master
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -74,5 +71,9 @@ workflows:
     jobs:
       - test
       - deploy:
+          filters:
+            branches:
+              only:
+                - master
           requires:
             - test
