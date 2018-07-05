@@ -57,7 +57,7 @@ jobs:
           command: git checkout package-lock.json && npm version patch -m "%s [skip ci]"
       - run:
           name: push tags to git
-          command: git push origin —-tags master
+          command: git push origin —-tags && git push origin master
       - run:
           name: Publish package
           command: npm publish
