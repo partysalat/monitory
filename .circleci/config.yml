@@ -54,10 +54,10 @@ jobs:
           command: git config user.email "lenser.ben@gmail.com"
       - run:
           name: Patch version
-          command: git checkout package-lock.json && npm version patch
+          command: git checkout package-lock.json && npm version patch -m "%s [skip ci]"
       - run:
           name: push tags to git
-          command: git push origin —-tags master
+          command: git push —-tags origin master
       - run:
           name: Publish package
           command: npm publish
