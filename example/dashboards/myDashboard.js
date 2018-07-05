@@ -9,8 +9,14 @@ export default function () {
     <Flex>
       <Box width={1 / 2} >
         <Dashboard>
-          <Card job="example1" title="Waidmanns Heil! " threshold={200} value={({ current = {} }) => current.randomNumber} />
-          <Card job="example2" title="Example2" threshold={200} value={({ current = {} }) => current.randomNumber} />
+          <Card
+            job="example1"
+            title="Waidmanns Heil! "
+            show-when={200}
+            value={({ current = {} }) => current.randomNumber}
+          />
+          <Card job="example2" title="Example2" value={({ current = {} }) => current.randomNumber} />
+          <Card job="jobId3" title="Example3" value={({ current = {} }) => current.randomNumber} />
         </Dashboard>
       </Box>
       <Box width={1 / 2} >
