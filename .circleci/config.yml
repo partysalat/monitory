@@ -36,6 +36,9 @@ jobs:
           paths: .
   deploy:
     <<: *defaults
+    branches:
+      only:
+      - master
     steps:
       - add_ssh_keys:
           fingerprints:
