@@ -36,6 +36,7 @@
     "nes": "^9.0.0",
     "preact": "^8.2.9",
     "preact-compat": "^3.18.0",
+    "react-animations": "^1.0.0",
     "react-countup": "^3.0.3",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",

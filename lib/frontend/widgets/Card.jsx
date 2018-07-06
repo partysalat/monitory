@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import CountUp from 'react-countup';
-import { subscribe } from '../redux/actions';
 import format from 'date-fns/format';
+import { flipInX } from 'react-animations';
+import { subscribe } from '../redux/actions';
 
+const bounceAnimation = keyframes`${flipInX}`;
 const CounterCard = styled.div`
+  animation: 1s ${bounceAnimation};
   display: flex;
   flex-direction: column;
   padding: 2%;
@@ -29,6 +32,7 @@ const Title = styled.div`
   margin-bottom:auto;
   font-size:1rem;
 `;
+
 class Card extends Component {
   static formatDate(date) {
     if (!date) {
@@ -42,16 +46,19 @@ class Card extends Component {
     this.props.subscribe(this.props.job);
   }
   render() {
-    const viewValue = this.props.value({
+    const currentData = {
       current: this.props.current,
       last: this.props.last,
-    });
-    const { threshold } = this.props;
+    };
+
+    const viewValue = this.props.value(currentData);
+    const { showWhen } = this.props;
     const tmp = this.lastValue;
     this.lastValue = viewValue;
-    // if (viewValue < threshold) {
-    //   return null;
-    // }
+
+    if (showWhen && !showWhen(currentData)) {
+      return null;
+    }
     return (
       <CounterCard>
         <Title>{this.props.title}</Title>

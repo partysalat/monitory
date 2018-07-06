@@ -12,7 +12,7 @@ export default function () {
           <Card
             job="example1"
             title="Waidmanns Heil! "
-            show-when={200}
+            showWhen={({ current = {} }) => current.randomNumber > 8000}
             value={({ current = {} }) => current.randomNumber}
           />
           <Card job="example2" title="Example2" value={({ current = {} }) => current.randomNumber} />
