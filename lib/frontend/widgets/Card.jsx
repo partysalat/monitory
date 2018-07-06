@@ -59,20 +59,21 @@ class Card extends Component {
       last: this.props.last,
     };
 
-    const viewValue = value(currentData);
-
-    const tmp = this.lastValue;
-    this.lastValue = viewValue;
-
-    if (showWhen && !showWhen(currentData)) {
+    if (!showWhen(currentData)) {
       return null;
     }
+
     const finalColor = isFunction(color) ? color(currentData) : color;
+
+    const viewValue = value(currentData);
+    const lastValue = this.lastValue;
+    this.lastValue = viewValue;
+
     return (
       <CounterCard style={{ backgroundColor: finalColor, color: getColorByBgColor(finalColor) }}>
         <Title style={{ color: getColorByBgColor(finalColor, 0.7) }}>{this.props.title}</Title>
         <Number>
-          <CountUp start={tmp} end={viewValue} duration={1} />
+          <CountUp start={lastValue} end={viewValue} duration={1} />
         </Number>
         <UpdatedAt style={{ color: getColorByBgColor(finalColor, 0.7) }}>
           Last updated at: {Card.formatDate(this.props.lastUpdated)}
@@ -95,14 +96,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(Card);
 Card.defaultProps = {
   title: '',
   showWhen: () => true,
-  value: identity,
+  value: (data = {}) => data.current,
 
 };
 
 Card.propTypes = {
+  job: PropTypes.string.isRequired,
   title: PropTypes.string,
   showWhen: PropTypes.func,
-  job: PropTypes.string.isRequired,
   value: PropTypes.func,
   color: PropTypes.oneOfType([
     PropTypes.string,

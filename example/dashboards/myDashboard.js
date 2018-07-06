@@ -19,18 +19,6 @@ export default function () {
             {...sharedProps}
           />
           <Card job="example2" title="Example2" {...sharedProps} />
-          <Card job="jobId3" title="Example3" {...sharedProps} />
-          <Card job="jobId3" title="Example3" {...sharedProps} />
-          <Card job="jobId3" title="Example3" {...sharedProps} />
-          <Card job="jobId3" title="Example3" {...sharedProps} />
-          <Card job="jobId3" title="Example3" {...sharedProps} />
-          <Card job="jobId3" title="Example3" {...sharedProps} />
-          <Card job="jobId3" title="Example3" {...sharedProps} />
-          <Card job="jobId3" title="Example3" {...sharedProps} />
-          <Card job="jobId3" title="Example3" {...sharedProps} />
-          <Card job="jobId3" title="Example3" {...sharedProps} />
-          <Card job="jobId3" title="Example3" {...sharedProps} />
-          <Card job="jobId3" title="Example3" {...sharedProps} />
         </Dashboard>
       </Box>
       <Box width={1 / 2} >
@@ -41,12 +29,7 @@ export default function () {
             showWhen={({ current = {} }) => current.randomNumber > 8000}
             value={({ current = {} }) => current.randomNumber}
           />
-          <Card
-            job="example2"
-            title="Example2"
-            value={({ current = {} }) => current.randomNumber}
-            showWhen={({ current = {} }) => current.randomNumber > 8000}
-          />
+          <Card job="example3"  />
         </Dashboard>
       </Box>
     </Flex>

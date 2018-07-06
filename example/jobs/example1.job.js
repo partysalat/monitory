@@ -8,7 +8,7 @@ module.exports = [{
   interval: 5000, // ms
   job: sharedJobFunction.bind(null, 20000),
 }, {
-  id: 'jobId3',
+  id: 'example2',
   interval: 5000, // ms
   job: sharedJobFunction.bind(null, 20000),
 

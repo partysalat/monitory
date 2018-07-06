@@ -1,8 +1,8 @@
 module.exports = {
-  id: 'example2',
+  id: 'example3',
   interval: 5000, // ms
   job() {
-    return Promise.resolve({ randomNumber: Math.round(Math.random() * 20000) });
+    return Promise.resolve(Math.round(Math.random() * 20000));
   },
 
 };

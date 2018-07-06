@@ -34,6 +34,7 @@ Frontend:
 * [ ] Implement start page with links to dashboard
 * [ ] Code splitting
 * [ ] Additional adding of assets (icons, ...)
+* [ ] PropTypes
 
 
 This project is highly inspired by http://dashing.io/ which unfortunately has been no longer maintained. 
