@@ -4,6 +4,9 @@ import styled, { keyframes } from 'styled-components';
 import CountUp from 'react-countup';
 import format from 'date-fns/format';
 import { flipInX } from 'react-animations';
+import PropTypes from 'prop-types';
+import identity from 'lodash/identity';
+import isFunction from 'lodash/isFunction';
 import { subscribe } from '../redux/actions';
 
 const bounceAnimation = keyframes`${flipInX}`;
@@ -32,6 +35,10 @@ const Title = styled.div`
   margin-bottom:auto;
   font-size:1rem;
 `;
+function getColorByBgColor(bgColor, alpha = 1) {
+  if (!bgColor) { return ''; }
+  return (parseInt(bgColor.replace('#', ''), 16) > 0xffffff / 2) ? `rgba(0,0,0,${alpha})` : `rgba(255,255,255,${alpha})`;
+}
 
 class Card extends Component {
   static formatDate(date) {
@@ -46,27 +53,30 @@ class Card extends Component {
     this.props.subscribe(this.props.job);
   }
   render() {
+    const { showWhen, value, color } = this.props;
     const currentData = {
       current: this.props.current,
       last: this.props.last,
     };
 
-    const viewValue = this.props.value(currentData);
-    const { showWhen } = this.props;
+    const viewValue = value(currentData);
+
     const tmp = this.lastValue;
     this.lastValue = viewValue;
 
     if (showWhen && !showWhen(currentData)) {
       return null;
     }
+    const finalColor = isFunction(color) ? color(currentData) : color;
     return (
-      <CounterCard>
-        <Title>{this.props.title}</Title>
+      <CounterCard style={{ backgroundColor: finalColor, color: getColorByBgColor(finalColor) }}>
+        <Title style={{ color: getColorByBgColor(finalColor, 0.7) }}>{this.props.title}</Title>
         <Number>
           <CountUp start={tmp} end={viewValue} duration={1} />
-          {/* <div>{viewValue}</div> */}
         </Number>
-        <UpdatedAt>Last updated at: {Card.formatDate(this.props.lastUpdated)}</UpdatedAt>
+        <UpdatedAt style={{ color: getColorByBgColor(finalColor, 0.7) }}>
+          Last updated at: {Card.formatDate(this.props.lastUpdated)}
+        </UpdatedAt>
       </CounterCard>
     );
   }
@@ -81,3 +91,23 @@ function mapDispatchToProps(dispatch) {
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Card);
+
+Card.defaultProps = {
+  title: '',
+  showWhen: () => true,
+  value: identity,
+
+};
+
+Card.propTypes = {
+  title: PropTypes.string,
+  showWhen: PropTypes.func,
+  job: PropTypes.string.isRequired,
+  value: PropTypes.func,
+  color: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
+
+};

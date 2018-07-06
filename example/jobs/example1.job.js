@@ -5,11 +5,11 @@ function sharedJobFunction(number) {
 
 module.exports = [{
   id: 'example1',
-  interval: 4000, // ms
+  interval: 5000, // ms
   job: sharedJobFunction.bind(null, 20000),
 }, {
   id: 'jobId3',
-  interval: 4000, // ms
-  job: sharedJobFunction.bind(null, 4567897),
+  interval: 5000, // ms
+  job: sharedJobFunction.bind(null, 20000),
 
 }];
