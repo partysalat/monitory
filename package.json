@@ -25,6 +25,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "color": "^3.0.0",
     "confidence": "^3.0.2",
     "date-fns": "^1.29.0",
     "glob": "^7.1.2",

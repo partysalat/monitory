@@ -5,8 +5,9 @@ import CountUp from 'react-countup';
 import format from 'date-fns/format';
 import { flipInX } from 'react-animations';
 import PropTypes from 'prop-types';
-import identity from 'lodash/identity';
+import Color from 'color';
 import isFunction from 'lodash/isFunction';
+
 import { subscribe } from '../redux/actions';
 
 const bounceAnimation = keyframes`${flipInX}`;
@@ -35,9 +36,17 @@ const Title = styled.div`
   margin-bottom:auto;
   font-size:1rem;
 `;
-function getColorByBgColor(bgColor, alpha = 1) {
-  if (!bgColor) { return ''; }
-  return (parseInt(bgColor.replace('#', ''), 16) > 0xffffff / 2) ? `rgba(0,0,0,${alpha})` : `rgba(255,255,255,${alpha})`;
+
+function getColors(color = '#fff') {
+  const c = Color(color);
+  const isLightBackground = !!Math.round((c.red() + c.blue() + c.green()) / (255 * 3));
+  console.log((c.red() + c.blue() + c.green()) / (255 * 3));
+  return {
+    fontColor: isLightBackground ? 'rgba(0,0,0,1)' : 'rgba(255,255,255,1)',
+    fontColorLight: isLightBackground ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)',
+    backgroundColor: color,
+
+  };
 }
 
 class Card extends Component {
@@ -63,19 +72,23 @@ class Card extends Component {
       return null;
     }
 
-    const finalColor = isFunction(color) ? color(currentData) : color;
+    const {
+      backgroundColor,
+      fontColor,
+      fontColorLight,
+    } = getColors(isFunction(color) ? color(currentData) : color);
 
     const viewValue = value(currentData);
     const lastValue = this.lastValue;
     this.lastValue = viewValue;
 
     return (
-      <CounterCard style={{ backgroundColor: finalColor, color: getColorByBgColor(finalColor) }}>
-        <Title style={{ color: getColorByBgColor(finalColor, 0.7) }}>{this.props.title}</Title>
+      <CounterCard style={{ backgroundColor, color: fontColor }}>
+        <Title style={{ color: fontColorLight }}>{this.props.title}</Title>
         <Number>
           <CountUp start={lastValue} end={viewValue} duration={1} />
         </Number>
-        <UpdatedAt style={{ color: getColorByBgColor(finalColor, 0.7) }}>
+        <UpdatedAt style={{ color: fontColorLight }}>
           Last updated at: {Card.formatDate(this.props.lastUpdated)}
         </UpdatedAt>
       </CounterCard>
