@@ -136,7 +136,7 @@ Todos:
 
 Backend:
 * [ ] Add proper logging plugin
-* [ ] Job Error handling
+* [ ] Job Error handling (send error to frontend and show what happened)
 * [ ] Cron Expression
 * [ ] Provide client for ELK, graphite, teamcity
 
@@ -147,6 +147,7 @@ Frontend:
 * [ ] Implement start page with links to dashboard
 * [ ] Additional adding of assets (icons, ...)
 * [ ] New Card type: graph in background
+* [ ] Toast if error occurs
 
 
 This project is highly inspired by http://dashing.io/ which is unfortunately no longer maintained. 
