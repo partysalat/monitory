@@ -44,11 +44,11 @@ Dashboards
 ------------ 
 For now, there are some components defined which makes your life easier:
 
-###Dashboard
+### Dashboard
 
 The basic unit, used as a Wrapper for Cards.
 
-###Card
+### Card
 
 A Card shows just a number from data processed by a job.
 
