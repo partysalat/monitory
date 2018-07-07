@@ -12,6 +12,39 @@ This is an early version and far away from being usable.
 
 User Manual
 ===========
+Folder Structure
+----------------
+
+The default folder structure looks like this:
+```
+index.js
+package.json
+dashboards/
+├── dashboard1.js
+├── dashboard2.js
+└── ....
+jobs/
+├── job1.js
+├── job2.js
+└── ....
+```
+
+To start monitory, create an index.js file with the following content
+```javascript 1.8
+const monitory = require('monitory');
+
+monitory.start();
+``` 
+and let it run with `node index.js`. It can be configured as well, the properties and default values are:
+```javascript 1.8
+{
+  port: 1337,
+  assetsPort: 1338,
+  dashboards: `${__dirname}/dashboards/*`,
+  jobs: `${__dirname}/jobs/*`,
+}
+``` 
+
 
 Jobs
 ------
@@ -42,7 +75,12 @@ A function that defines the job. Do your crawling logic inside here. You can ret
 
 Dashboards
 ------------ 
-For now, there are some components defined which makes your life easier:
+For now, there are some components defined which makes your life easier. You can import them like
+```javascript 1.8
+import React from 'react';
+import { Dashboard, Card } from 'monitory/frontend';
+```
+Do not forget to import React! This is needed for jsx transpiling. 
 
 ### Dashboard
 
@@ -86,7 +124,6 @@ Backend:
 
 
 Frontend:
-* [ ] Style Dashboard (also possibility for nested dashboards?)
 * [ ] Add iframe support (for dyb) 
 * [ ] Implement start page with links to dashboard
 * [ ] Additional adding of assets (icons, ...)
