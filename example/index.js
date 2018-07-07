@@ -1,4 +1,4 @@
-const monitory = require('../lib');
+const monitory = require('../');
 
 monitory.start({
   port: 1337,

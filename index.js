@@ -1,7 +1,7 @@
-const apiServer = require('./bootstrap/server');
-const assetsServer = require('./bootstrap/assets');
+const apiServer = require('./lib/bootstrap/server');
+const assetsServer = require('./lib/bootstrap/assets');
 
-const config = require('./config');
+const config = require('./lib/config');
 
 
 module.exports.start = async function start(options) {

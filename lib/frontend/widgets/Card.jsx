@@ -13,7 +13,6 @@ import { subscribe } from '../redux/actions';
 const bounceAnimation = keyframes`${flipInX}`;
 const pulseAnimation = keyframes`${pulse}`;
 const CounterCard = styled.div`
-  
   animation: ${props => (props.alert ? css`1s ${pulseAnimation} infinite` : css`1s ${bounceAnimation}`)};
   display: flex;
   flex-direction: column;
@@ -60,7 +59,7 @@ class Card extends Component {
     return {
       fontColor: isLightBackground ? 'rgba(0,0,0,1)' : 'rgba(255,255,255,1)',
       fontColorLight: isLightBackground ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)',
-      backgroundColor: color,
+      backgroundColor: c.string(),
 
     };
   }

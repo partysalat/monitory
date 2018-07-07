@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Flex, Box } from 'grid-styled';
-import Dashboard from '../../lib/frontend/Dashboard';
-import Card from '../../lib/frontend/widgets/Card';
+import { Dashboard, Card } from './../../frontend';
 
 
 const sharedProps = {
