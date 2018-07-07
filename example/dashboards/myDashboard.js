@@ -13,11 +13,7 @@ export default function () {
     <Flex>
       <Box width={1 / 2} >
         <Dashboard>
-          <Card
-            job="example1"
-            title="Waidmanns Heil! "
-            {...sharedProps}
-          />
+          <Card job="example1" title="Waidmanns Heil! " {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
         </Dashboard>
       </Box>
@@ -29,7 +25,7 @@ export default function () {
             showWhen={({ current = {} }) => current.randomNumber > 8000}
             value={({ current = {} }) => current.randomNumber}
           />
-          <Card job="example3"  />
+          <Card job="example3" />
         </Dashboard>
       </Box>
     </Flex>
