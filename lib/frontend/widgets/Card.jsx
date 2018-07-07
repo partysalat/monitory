@@ -116,7 +116,8 @@ Card.defaultProps = {
   title: '',
   showWhen: () => true,
   value: (data = {}) => data.current,
-
+  alert: false,
+  color: '#fff',
 };
 
 Card.propTypes = {
@@ -132,6 +133,4 @@ Card.propTypes = {
     PropTypes.bool,
     PropTypes.func, // returning boolean
   ]),
-
-
 };
