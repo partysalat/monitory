@@ -1,5 +1,6 @@
 Monitory
 =============
+[![CircleCI](https://circleci.com/gh/partysalat/monitory/tree/master.svg?style=svg)](https://circleci.com/gh/partysalat/monitory/tree/master)
 
 This project is intended to be a small helper framework for creating dashboards to be used in teamareas.
 You as a user just need to define two things: 
