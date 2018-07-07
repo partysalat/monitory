@@ -40,7 +40,6 @@ const Title = styled.div`
 function getColors(color = '#fff') {
   const c = Color(color);
   const isLightBackground = !!Math.round((c.red() + c.blue() + c.green()) / (255 * 3));
-  console.log((c.red() + c.blue() + c.green()) / (255 * 3));
   return {
     fontColor: isLightBackground ? 'rgba(0,0,0,1)' : 'rgba(255,255,255,1)',
     fontColorLight: isLightBackground ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)',
