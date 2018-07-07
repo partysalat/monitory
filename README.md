@@ -38,12 +38,12 @@ monitory.start();
 ``` 
 and let it run with `node index.js`. It can be configured as well, the properties and default values are:
 ```javascript 1.8
-{
+monitory.start({
   port: 1337,
   assetsPort: 1338,
   dashboards: `${__dirname}/dashboards/*`,
   jobs: `${__dirname}/jobs/*`,
-}
+});
 ``` 
 
 
@@ -73,6 +73,24 @@ A function that defines the job. Do your crawling logic inside here. You can ret
 
 ```
 
+It is also possible to return and array of jobs in one file, e.g.:
+
+```javascript 1.8
+module.exports = [{
+  id: 'myJobId2',// 
+  interval: 5000, // ms 
+  job: function () {
+    return Math.round(Math.random() * 1000)
+  }
+}, {
+  id: 'myJobId2',// 
+  interval: 5000, // ms 
+  job: function () {
+    return Math.round(Math.random() * 1000)
+  },
+}];
+
+```
 
 Dashboards
 ------------ 
@@ -109,7 +127,7 @@ Define the background color of the card. You can either define it as a String or
 The font is calculated accordingly (either black or white). 
 
 **alert (function({current, last}) || boolean)**
-Boolean that adds a pulse animation to the card, indicating that the monitor persons should focus attention.   
+Boolean that adds a pulse animation to the card, indicating that the team should focus attention.   
 
 
 
