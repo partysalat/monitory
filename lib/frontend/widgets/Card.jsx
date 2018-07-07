@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import CountUp from 'react-countup';
 import format from 'date-fns/format';
-import { flipInX } from 'react-animations';
+import { flipInX, pulse } from 'react-animations';
 import PropTypes from 'prop-types';
 import Color from 'color';
 import isFunction from 'lodash/isFunction';
@@ -11,8 +11,10 @@ import isFunction from 'lodash/isFunction';
 import { subscribe } from '../redux/actions';
 
 const bounceAnimation = keyframes`${flipInX}`;
+const pulseAnimation = keyframes`${pulse}`;
 const CounterCard = styled.div`
-  animation: 1s ${bounceAnimation};
+  
+  animation: ${props => (props.alert ? css`1s ${pulseAnimation} infinite` : css`1s ${bounceAnimation}`)};
   display: flex;
   flex-direction: column;
   padding: 2%;
@@ -22,6 +24,7 @@ const CounterCard = styled.div`
   font-size: 2rem;
   max-width: 15vw;
 `;
+
 const UpdatedAt = styled.div`
   margin-top: auto;
   padding-top: 20px;
@@ -37,16 +40,6 @@ const Title = styled.div`
   font-size:1rem;
 `;
 
-function getColors(color = '#fff') {
-  const c = Color(color);
-  const isLightBackground = !!Math.round((c.red() + c.blue() + c.green()) / (255 * 3));
-  return {
-    fontColor: isLightBackground ? 'rgba(0,0,0,1)' : 'rgba(255,255,255,1)',
-    fontColorLight: isLightBackground ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)',
-    backgroundColor: color,
-
-  };
-}
 
 class Card extends Component {
   static formatDate(date) {
@@ -60,8 +53,23 @@ class Card extends Component {
     this.lastValue = 0;
     this.props.subscribe(this.props.job);
   }
+
+  static getColors(color = '#fff') {
+    const c = Color(color);
+    const isLightBackground = !!Math.round((c.red() + c.blue() + c.green()) / (255 * 3));
+    return {
+      fontColor: isLightBackground ? 'rgba(0,0,0,1)' : 'rgba(255,255,255,1)',
+      fontColorLight: isLightBackground ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)',
+      backgroundColor: color,
+
+    };
+  }
+
+
   render() {
-    const { showWhen, value, color } = this.props;
+    const {
+      showWhen, value, color, alert,
+    } = this.props;
     const currentData = {
       current: this.props.current,
       last: this.props.last,
@@ -75,14 +83,14 @@ class Card extends Component {
       backgroundColor,
       fontColor,
       fontColorLight,
-    } = getColors(isFunction(color) ? color(currentData) : color);
-
+    } = Card.getColors(isFunction(color) ? color(currentData) : color);
+    const isAlert = isFunction(alert) ? alert(currentData) : alert;
     const viewValue = value(currentData);
     const lastValue = this.lastValue;
     this.lastValue = viewValue;
 
     return (
-      <CounterCard style={{ backgroundColor, color: fontColor }}>
+      <CounterCard style={{ backgroundColor, color: fontColor }} alert={isAlert}>
         <Title style={{ color: fontColorLight }}>{this.props.title}</Title>
         <Number>
           <CountUp start={lastValue} end={viewValue} duration={1} />
@@ -120,6 +128,10 @@ Card.propTypes = {
   color: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
+  ]),
+  alert: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.func, // returning boolean
   ]),
 
 

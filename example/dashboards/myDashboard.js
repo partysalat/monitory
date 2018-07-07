@@ -6,14 +6,21 @@ import Card from '../../lib/frontend/widgets/Card';
 
 const sharedProps = {
   value: ({ current = {} }) => current.randomNumber,
-  color: ({ current = {} }) => (current.randomNumber > 10000 ? 'green' : 'red'),
+  color: ({ current = {} }) => {
+    if (current.randomNumber < 5000) {
+      return 'blue';
+    } else if (current.randomNumber > 15000) {
+      return 'red';
+    }
+    return 'pink';
+  },
 };
 export default function () {
   return (
     <Flex>
       <Box width={1 / 2} >
         <Dashboard>
-          <Card job="example1" title="Waidmanns Heil! " {...sharedProps} />
+          <Card alert job="example1" title="Waidmanns Heil! " {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
         </Dashboard>
       </Box>
