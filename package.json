@@ -11,7 +11,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\"",
     "lint": "eslint --ext .js --ext .jsx lib/",
-    "publish": "npm run patch && git push origin --follow-tags && git push origin master",
+    "patchAndPush": "npm run patch && git push origin --follow-tags && git push origin master",
     "patch": "npm version patch -m \"v%s\"",
     "lint:fix": "npm run lint -- --fix"
   },
