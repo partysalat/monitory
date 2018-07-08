@@ -1,0 +1,15 @@
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+<body>
+<h1>Dashboards</h1>
+<ul>
+    {{#each dashboards}}
+    <li>
+        <a href="/dashboards/{{file}}">{{file}}</a>
+    </li>
+    {{/each}}
+</ul>
+</body>
+</html>
