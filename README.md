@@ -157,5 +157,5 @@ This project is highly inspired by http://dashing.io/ which is unfortunately no 
 [npm]: https://img.shields.io/npm/v/monitory.svg
 [npm-url]: https://npmjs.com/package/monitory
 
-[circleci]: https://circleci.com/gh/partysalat/monitory/tree/master.svg?style=svg
+[circleci]: https://img.shields.io/circleci/project/github/partysalat/monitory.svg
 [circleci-url]: https://circleci.com/gh/partysalat/monitory/tree/master
