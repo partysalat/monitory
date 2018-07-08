@@ -1,6 +1,7 @@
 Monitory
 =============
-[![CircleCI](https://circleci.com/gh/partysalat/monitory/tree/master.svg?style=svg)](https://circleci.com/gh/partysalat/monitory/tree/master)
+[![CircleCI][circleci]][circleci-url]
+[![npm][npm]][npm-url]
 
 This project is intended to be a small helper framework for creating dashboards to be used in teamareas.
 You as a user just need to define two things: 
@@ -151,3 +152,10 @@ Frontend:
 
 
 This project is highly inspired by http://dashing.io/ which is unfortunately no longer maintained. 
+
+
+[npm]: https://img.shields.io/npm/v/monitory.svg
+[npm-url]: https://npmjs.com/package/monitory
+
+[circleci]: https://circleci.com/gh/partysalat/monitory/tree/master.svg?style=svg
+[circleci-url]: https://circleci.com/gh/partysalat/monitory/tree/master
