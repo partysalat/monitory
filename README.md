@@ -144,11 +144,12 @@ Backend:
 
 
 Frontend:
-* [ ] Add iframe support (for dyb) 
-* [ ] Implement start page with links to dashboard
+* [x] Implement start page with links to dashboard
+* [x] Toast if error occurs
+* [ ] New Card: Iframe (for dyb) 
+* [ ] New Card: Number in foreground, graph in background 
+* [ ] New Card: Failing Builds
 * [ ] Additional adding of assets (icons, ...)
-* [ ] New Card type: graph in background
-* [ ] Toast if error occurs
 
 
 This project is highly inspired by http://dashing.io/ which is unfortunately no longer maintained. 
