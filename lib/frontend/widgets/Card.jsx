@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled, { css, keyframes } from 'styled-components';
-import CountUp from 'react-countup';
+import CountUpto from './CountUpto';
 import format from 'date-fns/format';
 import { flipInX, pulse } from 'react-animations';
 import PropTypes from 'prop-types';
@@ -46,9 +46,6 @@ class Card extends Component {
     return format(date, 'HH:mm');
   }
 
-  componentWillMount() {
-    this.lastValue = 0;
-  }
 
   static getColors(color = '#fff') {
     const c = Color(color);
@@ -82,14 +79,12 @@ class Card extends Component {
     } = Card.getColors(isFunction(color) ? color(currentData) : color);
     const isAlert = isFunction(alert) ? alert(currentData) : alert;
     const viewValue = value(currentData);
-    const lastValue = this.lastValue;
-    this.lastValue = viewValue;
 
     return (
       <CounterCard style={{ backgroundColor, color: fontColor }} alert={isAlert}>
         <Title style={{ color: fontColorLight }}>{this.props.title}</Title>
         <Number>
-          <CountUp start={lastValue} end={viewValue} duration={1} />
+          <CountUpto value={viewValue} duration={1} />
         </Number>
         <UpdatedAt style={{ color: fontColorLight }}>
           Last updated at: {Card.formatDate(this.props.lastUpdated)}
