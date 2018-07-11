@@ -12,3 +12,4 @@ module.exports.start = async function start(options) {
   logger.info('Monitory started at:', server.info.uri);
 };
 
+module.exports.teamcityClient = require('./lib/clients/teamcity.client');
