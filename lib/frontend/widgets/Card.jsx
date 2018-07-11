@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import styled, { keyframes, css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import CountUp from 'react-countup';
 import format from 'date-fns/format';
 import { flipInX, pulse } from 'react-animations';
 import PropTypes from 'prop-types';
 import Color from 'color';
 import isFunction from 'lodash/isFunction';
-
-import { subscribe } from '../redux/actions';
+import withSubscription from '../hoc/withSubscription';
 
 const bounceAnimation = keyframes`${flipInX}`;
 const pulseAnimation = keyframes`${pulse}`;
@@ -50,7 +48,6 @@ class Card extends Component {
 
   componentWillMount() {
     this.lastValue = 0;
-    this.props.subscribe(this.props.job);
   }
 
   static getColors(color = '#fff') {
@@ -102,15 +99,7 @@ class Card extends Component {
   }
 }
 
-function mapStateToProps(state, props) {
-  return { ...state.jobData[props.job] };
-}
-function mapDispatchToProps(dispatch) {
-  return {
-    subscribe: jobId => dispatch(subscribe(jobId)),
-  };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default withSubscription(Card);
 
 Card.defaultProps = {
   title: '',
