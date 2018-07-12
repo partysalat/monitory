@@ -54,7 +54,7 @@
     "virtual-module-webpack-plugin": "^0.4.0",
     "vision": "^5.3.3",
     "webpack": "^4.12.1",
-    "webpack-serve": "^1.0.4"
+    "webpack-serve": "^2.0.2"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
