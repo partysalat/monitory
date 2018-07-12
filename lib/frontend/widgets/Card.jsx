@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import styled, { css, keyframes } from 'styled-components';
-import CountUpto from './CountUpto';
 import format from 'date-fns/format';
 import { flipInX, pulse } from 'react-animations';
 import PropTypes from 'prop-types';
-import Color from 'color';
 import isFunction from 'lodash/isFunction';
-import withSubscription from '../hoc/withSubscription';
+import { compose } from 'redux';
+import CountUpto from './CountUpto';
+import withSubscription from '../util/withSubscription';
+import withSingleViewValue from '../util/withSingleViewValue';
+import withColor from '../util/withColor';
+import withShowWhen from '../util/withShowWhen';
+
 
 const bounceAnimation = keyframes`${flipInX}`;
 const pulseAnimation = keyframes`${pulse}`;
@@ -46,40 +50,18 @@ class Card extends Component {
     return format(date, 'HH:mm');
   }
 
-
-  static getColors(color = '#fff') {
-    const c = Color(color);
-    const isLightBackground = !!Math.round((c.red() + c.blue() + c.green()) / (255 * 3));
-    return {
-      fontColor: isLightBackground ? 'rgba(0,0,0,1)' : 'rgba(255,255,255,1)',
-      fontColorLight: isLightBackground ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)',
-      backgroundColor: c.string(),
-
-    };
-  }
-
-
   render() {
     const {
-      showWhen, value, color, alert,
-    } = this.props;
-    const currentData = {
-      current: this.props.current,
-      last: this.props.last,
-    };
-
-    if (!showWhen(currentData)) {
-      return null;
-    }
-
-    const {
+      alert,
+      current,
+      last,
       backgroundColor,
-      fontColor,
       fontColorLight,
-    } = Card.getColors(isFunction(color) ? color(currentData) : color);
-    const isAlert = isFunction(alert) ? alert(currentData) : alert;
-    const viewValue = value(currentData);
+      fontColor,
+      viewValue,
+    } = this.props;
 
+    const isAlert = isFunction(alert) ? alert({ current, last }) : alert;
     return (
       <CounterCard style={{ backgroundColor, color: fontColor }} alert={isAlert}>
         <Title style={{ color: fontColorLight }}>{this.props.title}</Title>
@@ -87,14 +69,14 @@ class Card extends Component {
           <CountUpto value={viewValue} duration={1} />
         </Number>
         <UpdatedAt style={{ color: fontColorLight }}>
-          Last updated at: {Card.formatDate(this.props.lastUpdated)}
+            Last updated at: {Card.formatDate(this.props.lastUpdated)}
         </UpdatedAt>
-      </CounterCard>
-    );
+      </CounterCard>);
   }
 }
 
-export default withSubscription(Card);
+
+export default compose(withSubscription, withSingleViewValue, withColor, withShowWhen)(Card);
 
 Card.defaultProps = {
   title: '',
