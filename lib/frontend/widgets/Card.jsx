@@ -76,27 +76,34 @@ class Card extends Component {
 }
 
 
-export default compose(withSubscription, withSingleViewValue, withColor, withShowWhen)(Card);
+export default compose(
+  withSubscription,
+  withSingleViewValue,
+  withColor,
+  withShowWhen,
+)(Card);
 
 Card.defaultProps = {
   title: '',
-  showWhen: () => true,
-  value: (data = {}) => data.current,
   alert: false,
-  color: '#fff',
+  backgroundColor: '#fff',
+  fontColor: '#000',
+  fontColorLight: 'rgba(0,0,0,0.7)',
+
 };
 
 Card.propTypes = {
   job: PropTypes.string.isRequired,
+  current: PropTypes.any.isRequired,
+  last: PropTypes.any.isRequired,
   title: PropTypes.string,
-  showWhen: PropTypes.func,
-  value: PropTypes.func,
-  color: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+
+  backgroundColor: PropTypes.string,
+  fontColor: PropTypes.string,
+  fontColorLight: PropTypes.string,
   alert: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.func, // returning boolean
   ]),
+
 };

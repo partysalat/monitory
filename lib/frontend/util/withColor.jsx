@@ -1,6 +1,7 @@
 import React from 'react';
 import Color from 'color';
 import isFunction from 'lodash/isFunction';
+import PropTypes from 'prop-types';
 
 function getColors(color = '#fff') {
   const c = Color(color);
@@ -13,13 +14,29 @@ function getColors(color = '#fff') {
   };
 }
 
-export default WrappedComponent => (props) => {
-  const {
-    color,
-    current,
-    last,
-  } = props;
-  const colorValues = getColors(isFunction(color) ? color({ current, last }) : color);
+export default (WrappedComponent) => {
+  const withColor = (props) => {
+    const {
+      color,
+      current,
+      last,
+    } = props;
+    const colorValues = getColors(isFunction(color) ? color({ current, last }) : color);
 
-  return <WrappedComponent {...colorValues} {...props} />;
+    return <WrappedComponent {...colorValues} {...props} />;
+  };
+  withColor.propTypes = {
+    color: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+    current: PropTypes.any.isRequired,
+    last: PropTypes.any.isRequired,
+
+  };
+  withColor.defaultProps = {
+    color: '#fff',
+  };
+  return withColor;
 };
+

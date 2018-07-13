@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { subscribe } from '../redux/actions';
+import PropTypes from 'prop-types';
 
 export default function withSubscription(WrappedComponent) {
   function mapStateToProps(state, props) {
@@ -13,6 +14,9 @@ export default function withSubscription(WrappedComponent) {
   }
 
   const WithSubscriptionClass = class extends Component {
+    static propTypes = {
+      job: PropTypes.string.isRequired,
+    }
     componentWillMount() {
       this.props.subscribe(this.props.job);
     }
@@ -21,6 +25,6 @@ export default function withSubscription(WrappedComponent) {
       return <WrappedComponent {...this.props} />;
     }
   };
-
+  // WithSubscriptionClass.propTypes = ;
   return connect(mapStateToProps, mapDispatchToProps)(WithSubscriptionClass);
 }
