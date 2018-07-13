@@ -5,9 +5,10 @@ import styledNormalize from 'styled-normalize';
 import { injectGlobal } from 'styled-components';
 import toastCss from 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import Dashboard from '<%PATH_TO_DASHBOARD%>';
+import Dashboard from '<%PATH_TO_DASHBOARD%>'; // eslint-disable-line
 import getStore from './redux';
 
+/* eslint-disable */
 injectGlobal`
   ${styledNormalize}
   ${toastCss.toString()}
@@ -16,7 +17,7 @@ injectGlobal`
     background: #ccc;
   }
 `;
-
+/* eslint-enable */
 const rootElement = document.getElementById('root');
 render(
   <Provider store={getStore()}>

@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 
 const Container = styled.div`
@@ -7,14 +8,18 @@ const Container = styled.div`
   flex-wrap: wrap;
 `;
 
-class Dashboard extends Component {
-  render() {
-    return (
-      <Container>
-        {this.props.children}
-      </Container>
-    );
-  }
+function Dashboard(props) {
+  return (
+    <Container>
+      {props.children}
+    </Container>
+  );
 }
+Dashboard.propTypes = {
+  children: PropTypes.any,
+};
+Dashboard.defaultProps = {
+  children: '',
 
+};
 export default Dashboard;

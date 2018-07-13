@@ -11,7 +11,7 @@ class CountUpto extends Component {
 
   render() {
     const { value } = this.props;
-    const lastValue = this.lastValue;
+    const { lastValue } = this;
     this.lastValue = value;
 
     return (

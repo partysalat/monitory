@@ -59,6 +59,7 @@ class Card extends Component {
       fontColorLight,
       fontColor,
       viewValue,
+      lastUpdated,
     } = this.props;
 
     const isAlert = isFunction(alert) ? alert({ current, last }) : alert;
@@ -69,7 +70,7 @@ class Card extends Component {
           <CountUpto value={viewValue} duration={1} />
         </Number>
         <UpdatedAt style={{ color: fontColorLight }}>
-            Last updated at: {Card.formatDate(this.props.lastUpdated)}
+            Last updated at: {Card.formatDate(lastUpdated)}
         </UpdatedAt>
       </CounterCard>);
   }
@@ -93,10 +94,14 @@ Card.defaultProps = {
 };
 
 Card.propTypes = {
-  job: PropTypes.string.isRequired,
   current: PropTypes.any.isRequired,
   last: PropTypes.any.isRequired,
+  lastUpdated: PropTypes.object.isRequired,
   title: PropTypes.string,
+  viewValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
 
   backgroundColor: PropTypes.string,
   fontColor: PropTypes.string,
