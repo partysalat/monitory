@@ -1,15 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import format from 'date-fns/format';
 import PropTypes from 'prop-types';
 import isFunction from 'lodash/isFunction';
-import {compose} from 'redux';
+import { compose } from 'redux';
 import CountUpto from './CountUpto';
-import withSubscription from '../util/withSubscription';
-import withSingleViewValue from '../util/withSingleViewValue';
-import withColor from '../util/withColor';
-import withShowWhen from '../util/withShowWhen';
-import {StyledCard, Title, UpdatedAt} from '../styled';
+import {
+  withSubscription,
+  withSingleViewValue,
+  withColor,
+  withShowWhen,
+} from '../hoc';
+import { StyledCard, Title, UpdatedAt } from '../styled';
 
 
 const Number = styled.h3`

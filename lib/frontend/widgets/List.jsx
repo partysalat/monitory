@@ -1,20 +1,16 @@
-import React, {Component} from 'react';
-import styled, {css, keyframes} from 'styled-components';
+import React, { Component } from 'react';
+import styled from 'styled-components';
 import format from 'date-fns/format';
-import {flipInX, pulse} from 'react-animations';
 import isFunction from 'lodash/isFunction';
-import {compose} from 'redux';
-import withSubscription from '../util/withSubscription';
-import withSingleViewValue from '../util/withSingleViewValue';
-import withColor from '../util/withColor';
-import withShowWhen from '../util/withShowWhen';
+import { compose } from 'redux';
+import withSubscription from '../hoc/withSubscription';
+import withSingleViewValue from '../hoc/withSingleViewValue';
+import withColor from '../hoc/withColor';
+import withShowWhen from '../hoc/withShowWhen';
 import UpdatedAt from '../styled/UpdatedAt';
 import Title from '../styled/Title';
-import StyledCard from "../styled/StyledCard";
+import StyledCard from '../styled/StyledCard';
 
-
-const bounceAnimation = keyframes`${flipInX}`;
-const pulseAnimation = keyframes`${pulse}`;
 
 const FailedBuildSteps = styled.ul`
   font-size:1rem;
