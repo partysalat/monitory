@@ -4,7 +4,7 @@ import format from 'date-fns/format';
 import PropTypes from 'prop-types';
 import isFunction from 'lodash/isFunction';
 import { compose } from 'redux';
-import CountUpto from './CountUpto';
+import CountUpto from './../utils/CountUpto';
 import {
   withSubscription,
   withSingleViewValue,
