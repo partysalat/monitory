@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Box } from 'grid-styled';
-import { Dashboard, Card } from './../../frontend';
+import { Dashboard, Card, List } from './../../frontend';
 
 
 const sharedProps = {
@@ -21,6 +21,7 @@ export default function () {
         <Dashboard>
           <Card alert job="example1" title="Waidmanns Heil! " {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
+          <List job="teamcity" title="Failed Teamcity Jobs" showWhen={({ current = {} }) => current.length > 0} alert color="red" />
         </Dashboard>
       </Box>
       <Box width={1 / 2} >

@@ -1,23 +1,27 @@
 import React, {Component} from 'react';
-import styled from 'styled-components';
+import styled, {css, keyframes} from 'styled-components';
 import format from 'date-fns/format';
-import PropTypes from 'prop-types';
+import {flipInX, pulse} from 'react-animations';
 import isFunction from 'lodash/isFunction';
 import {compose} from 'redux';
-import CountUpto from './CountUpto';
 import withSubscription from '../util/withSubscription';
 import withSingleViewValue from '../util/withSingleViewValue';
 import withColor from '../util/withColor';
 import withShowWhen from '../util/withShowWhen';
-import {StyledCard, Title, UpdatedAt} from '../styled';
+import UpdatedAt from '../styled/UpdatedAt';
+import Title from '../styled/Title';
+import StyledCard from "../styled/StyledCard";
 
 
-const Number = styled.h3`
-  text-align: center;
+const bounceAnimation = keyframes`${flipInX}`;
+const pulseAnimation = keyframes`${pulse}`;
+
+const FailedBuildSteps = styled.ul`
+  font-size:1rem;
 `;
 
 
-class Card extends Component {
+class List extends Component {
   static formatDate(date) {
     if (!date) {
       return '';
@@ -33,7 +37,7 @@ class Card extends Component {
       backgroundColor,
       fontColorLight,
       fontColor,
-      viewValue,
+      viewValue = [],
       lastUpdated,
     } = this.props;
 
@@ -41,11 +45,11 @@ class Card extends Component {
     return (
       <StyledCard style={{ backgroundColor, color: fontColor }} alert={isAlert}>
         <Title style={{ color: fontColorLight }}>{this.props.title}</Title>
-        <Number>
-          <CountUpto value={viewValue} duration={1} />
-        </Number>
+        <FailedBuildSteps>
+          {viewValue.map(step => <li key={step}>{step}</li>)}
+        </FailedBuildSteps>
         <UpdatedAt style={{ color: fontColorLight }}>
-            Last updated at: {Card.formatDate(lastUpdated)}
+            Last updated at: {List.formatDate(lastUpdated)}
         </UpdatedAt>
       </StyledCard>);
   }
@@ -57,33 +61,5 @@ export default compose(
   withSingleViewValue,
   withColor,
   withShowWhen,
-)(Card);
+)(List);
 
-Card.defaultProps = {
-  title: '',
-  alert: false,
-  backgroundColor: '#fff',
-  fontColor: '#000',
-  fontColorLight: 'rgba(0,0,0,0.7)',
-
-};
-
-Card.propTypes = {
-  current: PropTypes.any.isRequired,
-  last: PropTypes.any.isRequired,
-  lastUpdated: PropTypes.object.isRequired,
-  title: PropTypes.string,
-  viewValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]).isRequired,
-
-  backgroundColor: PropTypes.string,
-  fontColor: PropTypes.string,
-  fontColorLight: PropTypes.string,
-  alert: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.func, // returning boolean
-  ]),
-
-};

@@ -146,10 +146,10 @@ Backend:
 Frontend:
 * [x] Implement start page with links to dashboard
 * [x] Toast if error occurs
+* [x] New Card: Failing Builds
 * [ ] Toast for websocket connection error 
 * [ ] New Card: Iframe (for dyb) 
 * [ ] New Card: Number in foreground, graph in background 
-* [ ] New Card: Failing Builds
 * [ ] Additional adding of assets (icons, ...)
 
 
