@@ -18,10 +18,18 @@ export default function () {
   return (
     <Flex>
       <Box width={1 / 2} >
-        <Dashboard>
+        <Dashboard cols={3}>
           <Card alert job="example1" title="Waidmanns Heil! " {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
-          <List job="teamcity" title="Failed Teamcity Jobs" showWhen={({ current = {} }) => current.length > 0} alert color="red" />
+          <List job="teamcity" title="Failed Teamcity Jobs" showWhen={({ current = {} }) => current.length > 0} rows={2} cols={1} />
+          <Card job="example2" title="Example2" {...sharedProps} />
+          <Card job="example2" title="Example2" {...sharedProps} />
+          <Card job="example2" title="Example2" {...sharedProps} />
+          <Card job="example2" title="Example2" {...sharedProps} />
+          <Card job="example2" title="Example2" {...sharedProps} />
+          <Card job="example2" title="Example2" {...sharedProps} />
+          <Card job="example2" title="Example2" {...sharedProps} />
+          <Card job="example2" title="Example2" {...sharedProps} />
         </Dashboard>
       </Box>
       <Box width={1 / 2} >

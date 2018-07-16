@@ -37,11 +37,13 @@ class Card extends Component {
       fontColor,
       viewValue,
       lastUpdated,
+      rows,
+      cols,
     } = this.props;
 
     const isAlert = isFunction(alert) ? alert({ current, last }) : alert;
     return (
-      <StyledCard style={{ backgroundColor, color: fontColor }} alert={isAlert}>
+      <StyledCard style={{ backgroundColor, color: fontColor }} alert={isAlert} rows={rows} cols={cols}>
         <Title style={{ color: fontColorLight }}>{this.props.title}</Title>
         <Number>
           <CountUpto value={viewValue} duration={1} />
@@ -67,7 +69,8 @@ Card.defaultProps = {
   backgroundColor: '#fff',
   fontColor: '#000',
   fontColorLight: 'rgba(0,0,0,0.7)',
-
+  cols: 1,
+  rows: 1,
 };
 
 Card.propTypes = {
@@ -75,6 +78,8 @@ Card.propTypes = {
   last: PropTypes.any.isRequired,
   lastUpdated: PropTypes.object.isRequired,
   title: PropTypes.string,
+  cols: PropTypes.number,
+  rows: PropTypes.number,
   viewValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,

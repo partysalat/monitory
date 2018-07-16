@@ -35,11 +35,13 @@ class List extends Component {
       fontColor,
       viewValue = [],
       lastUpdated,
+      cols,
+      rows,
     } = this.props;
 
     const isAlert = isFunction(alert) ? alert({ current, last }) : alert;
     return (
-      <StyledCard style={{ backgroundColor, color: fontColor }} alert={isAlert}>
+      <StyledCard style={{ backgroundColor, color: fontColor }} alert={isAlert} cols={cols} rows={rows}>
         <Title style={{ color: fontColorLight }}>{this.props.title}</Title>
         <FailedBuildSteps>
           {viewValue.map(step => <li key={step}>{step}</li>)}
