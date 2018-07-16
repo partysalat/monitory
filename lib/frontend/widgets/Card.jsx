@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import format from 'date-fns/format';
 import PropTypes from 'prop-types';
-import isFunction from 'lodash/isFunction';
 import { compose } from 'redux';
 import CountUpto from './../utils/CountUpto';
-import {
-  withSubscription,
-  withSingleViewValue,
-  withColor,
-  withShowWhen,
-} from '../hoc';
-import { StyledCard, Title, UpdatedAt } from '../styled';
+import { withColor, withShowWhen, withSingleViewValue, withSubscription } from '../hoc';
+import Base from '../utils/Base';
 
 
 const Number = styled.h3`
@@ -20,38 +13,17 @@ const Number = styled.h3`
 
 
 class Card extends Component {
-  static formatDate(date) {
-    if (!date) {
-      return '';
-    }
-    return format(date, 'HH:mm');
-  }
-
   render() {
     const {
-      alert,
-      current,
-      last,
-      backgroundColor,
-      fontColorLight,
-      fontColor,
       viewValue,
-      lastUpdated,
-      rows,
-      cols,
     } = this.props;
 
-    const isAlert = isFunction(alert) ? alert({ current, last }) : alert;
     return (
-      <StyledCard style={{ backgroundColor, color: fontColor }} alert={isAlert} rows={rows} cols={cols}>
-        <Title style={{ color: fontColorLight }}>{this.props.title}</Title>
+      <Base {...this.props} >
         <Number>
           <CountUpto value={viewValue} duration={1} />
         </Number>
-        <UpdatedAt style={{ color: fontColorLight }}>
-            Last updated at: {Card.formatDate(lastUpdated)}
-        </UpdatedAt>
-      </StyledCard>);
+      </Base>);
   }
 }
 
