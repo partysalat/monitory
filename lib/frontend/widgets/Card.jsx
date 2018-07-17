@@ -10,6 +10,7 @@ import withAlert from '../hoc/withAlert';
 
 const Number = styled.h3`
   text-align: center;
+  margin:0;
 `;
 
 
