@@ -6,7 +6,7 @@ export default (WrappedComponent) => {
   const withSingleViewValue = (props) => {
     const { value, current, last } = props;
     const viewValue = value({ current, last });
-    return <WrappedComponent viewValue={viewValue}{...props} />;
+    return <WrappedComponent viewValue={viewValue} {...props} />;
   };
 
   withSingleViewValue.propTypes = {

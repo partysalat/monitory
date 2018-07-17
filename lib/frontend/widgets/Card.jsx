@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import CountUpto from './../utils/CountUpto';
 import { withColor, withShowWhen, withSingleViewValue, withSubscription } from '../hoc';
 import Base from '../utils/Base';
+import withAlert from '../hoc/withAlert';
 
 
 const Number = styled.h3`
@@ -31,6 +32,7 @@ export default compose(
   withSingleViewValue,
   withColor,
   withShowWhen,
+  withAlert,
 )(Card);
 
 Card.defaultProps = {

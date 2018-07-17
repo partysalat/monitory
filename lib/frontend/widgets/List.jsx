@@ -6,6 +6,7 @@ import withSingleViewValue from '../hoc/withSingleViewValue';
 import withColor from '../hoc/withColor';
 import withShowWhen from '../hoc/withShowWhen';
 import Base from '../utils/Base';
+import withAlert from '../hoc/withAlert';
 
 
 const FailedBuildSteps = styled.ul`
@@ -32,5 +33,6 @@ export default compose(
   withSingleViewValue,
   withColor,
   withShowWhen,
+  withAlert,
 )(List);
 

@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import format from 'date-fns/format';
 import PropTypes from 'prop-types';
 import isFunction from 'lodash/isFunction';
-import {compose} from 'redux';
-import {withColor, withShowWhen, withSingleViewValue, withSubscription,} from '../hoc';
-import {StyledCard, Title, UpdatedAt} from '../styled';
-import Content from "../styled/Content";
+import { compose } from 'redux';
+import { withColor, withShowWhen, withSingleViewValue, withSubscription } from '../hoc';
+import { StyledCard, Title, UpdatedAt } from '../styled';
+import Content from '../styled/Content';
 
 
 class Base extends Component {
@@ -19,9 +19,7 @@ class Base extends Component {
   render() {
     const {
       title,
-      alert,
-      current,
-      last,
+      isAlert,
       backgroundColor,
       fontColorLight,
       fontColor,
@@ -31,7 +29,6 @@ class Base extends Component {
       children,
     } = this.props;
 
-    const isAlert = isFunction(alert) ? alert({ current, last }) : alert;
     return (
       <StyledCard
         style={{ backgroundColor, color: fontColor }}
@@ -60,7 +57,7 @@ export default compose(
 
 Base.defaultProps = {
   title: '',
-  alert: false,
+  isAlert: false,
   backgroundColor: '#fff',
   fontColor: '#000',
   fontColorLight: 'rgba(0,0,0,0.7)',
@@ -69,8 +66,6 @@ Base.defaultProps = {
 };
 
 Base.propTypes = {
-  current: PropTypes.any.isRequired,
-  last: PropTypes.any.isRequired,
   lastUpdated: PropTypes.object.isRequired,
   title: PropTypes.string,
   cols: PropTypes.number,
@@ -78,10 +73,6 @@ Base.propTypes = {
   backgroundColor: PropTypes.string,
   fontColor: PropTypes.string,
   fontColorLight: PropTypes.string,
-
-  alert: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.func, // returning boolean
-  ]),
+  isAlert: PropTypes.bool,
 
 };
