@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { compose } from 'redux';
 import { withColor, withShowWhen, withViewValue, withSubscription, withAlert } from '../hoc';
 import Base from '../utils/Base';
+import PropTypes from 'prop-types';
 
 
 const FailedBuildSteps = styled.ul`
@@ -32,3 +33,9 @@ export default compose(
   withAlert,
 )(List);
 
+List.propTypes = {
+  viewValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+};

@@ -35,34 +35,9 @@ export default compose(
   withAlert,
 )(Card);
 
-Card.defaultProps = {
-  title: '',
-  alert: false,
-  backgroundColor: '#fff',
-  fontColor: '#000',
-  fontColorLight: 'rgba(0,0,0,0.7)',
-  cols: 1,
-  rows: 1,
-};
-
 Card.propTypes = {
-  current: PropTypes.any.isRequired,
-  last: PropTypes.any.isRequired,
-  lastUpdated: PropTypes.object.isRequired,
-  title: PropTypes.string,
-  cols: PropTypes.number,
-  rows: PropTypes.number,
   viewValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]).isRequired,
-
-  backgroundColor: PropTypes.string,
-  fontColor: PropTypes.string,
-  fontColorLight: PropTypes.string,
-  alert: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.func, // returning boolean
-  ]),
-
 };
