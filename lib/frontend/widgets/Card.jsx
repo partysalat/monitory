@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
@@ -12,20 +12,18 @@ const Number = styled.h3`
 `;
 
 
-class Card extends Component {
-  render() {
-    const {
-      viewValue,
-    } = this.props;
+const Card = (props) => {
+  const {
+    viewValue,
+  } = props;
 
-    return (
-      <Base {...this.props} >
-        <Number>
-          <CountUpto value={viewValue} duration={1} />
-        </Number>
-      </Base>);
-  }
-}
+  return (
+    <Base {...props} >
+      <Number>
+        <CountUpto value={viewValue} duration={1} />
+      </Number>
+    </Base>);
+};
 
 
 export default compose(

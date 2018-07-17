@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import {compose} from 'redux';
+import { compose } from 'redux';
 import withSubscription from '../hoc/withSubscription';
 import withSingleViewValue from '../hoc/withSingleViewValue';
 import withColor from '../hoc/withColor';
@@ -13,20 +13,18 @@ const FailedBuildSteps = styled.ul`
 `;
 
 
-class List extends Component {
-  render() {
-    const {
-      viewValue = [],
-    } = this.props;
+const List = (props) => {
+  const {
+    viewValue = [],
+  } = props;
 
-    return (
-      <Base {...this.props}>
-        <FailedBuildSteps>
-          {viewValue.map(step => <li key={step}>{step}</li>)}
-        </FailedBuildSteps>
-      </Base>);
-  }
-}
+  return (
+    <Base {...props}>
+      <FailedBuildSteps>
+        {viewValue.map(step => <li key={step}>{step}</li>)}
+      </FailedBuildSteps>
+    </Base>);
+};
 
 
 export default compose(
