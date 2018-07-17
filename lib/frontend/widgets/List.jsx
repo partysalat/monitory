@@ -1,12 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { compose } from 'redux';
-import withSubscription from '../hoc/withSubscription';
-import withSingleViewValue from '../hoc/withSingleViewValue';
-import withColor from '../hoc/withColor';
-import withShowWhen from '../hoc/withShowWhen';
+import { withColor, withShowWhen, withViewValue, withSubscription, withAlert } from '../hoc';
 import Base from '../utils/Base';
-import withAlert from '../hoc/withAlert';
 
 
 const FailedBuildSteps = styled.ul`
@@ -30,7 +26,7 @@ const List = (props) => {
 
 export default compose(
   withSubscription,
-  withSingleViewValue,
+  withViewValue,
   withColor,
   withShowWhen,
   withAlert,

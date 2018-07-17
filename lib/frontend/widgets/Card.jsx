@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import CountUpto from './../utils/CountUpto';
-import { withColor, withShowWhen, withSingleViewValue, withSubscription } from '../hoc';
+import { withColor, withShowWhen, withViewValue, withSubscription } from '../hoc';
 import Base from '../utils/Base';
 import withAlert from '../hoc/withAlert';
 
@@ -29,7 +29,7 @@ const Card = (props) => {
 
 export default compose(
   withSubscription,
-  withSingleViewValue,
+  withViewValue,
   withColor,
   withShowWhen,
   withAlert,

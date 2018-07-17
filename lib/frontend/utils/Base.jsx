@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import format from 'date-fns/format';
 import PropTypes from 'prop-types';
-import isFunction from 'lodash/isFunction';
 import { compose } from 'redux';
-import { withColor, withShowWhen, withSingleViewValue, withSubscription } from '../hoc';
+import { withColor, withShowWhen, withSubscription, withViewValue } from '../hoc';
 import { StyledCard, Title, UpdatedAt } from '../styled';
 import Content from '../styled/Content';
 
@@ -50,7 +49,7 @@ class Base extends Component {
 
 export default compose(
   withSubscription,
-  withSingleViewValue,
+  withViewValue,
   withColor,
   withShowWhen,
 )(Base);
