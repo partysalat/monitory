@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import format from 'date-fns/format';
 import PropTypes from 'prop-types';
-import { compose } from 'redux';
-import { withColor, withShowWhen, withSubscription, withViewValue } from '../hoc';
 import { StyledCard, Title, UpdatedAt } from '../styled';
-import Content from '../styled/Content';
 
 
 class Base extends Component {
@@ -45,12 +42,7 @@ class Base extends Component {
 }
 
 
-export default compose(
-  withSubscription,
-  withViewValue,
-  withColor,
-  withShowWhen,
-)(Base);
+export default Base;
 
 Base.defaultProps = {
   title: '',
@@ -64,7 +56,7 @@ Base.defaultProps = {
 };
 
 Base.propTypes = {
-  lastUpdated: PropTypes.object.isRequired,
+  lastUpdated: PropTypes.object.required,
   title: PropTypes.string,
   cols: PropTypes.number,
   rows: PropTypes.number,
