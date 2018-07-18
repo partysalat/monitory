@@ -98,26 +98,30 @@ Dashboards
 For now, there are some components defined which makes your life easier. You can import them like
 ```javascript 1.8
 import React from 'react';
-import { Dashboard, Card } from 'monitory/frontend';
+import { Dashboard, Card, List } from 'monitory/frontend';
 ```
 Do not forget to import React! This is needed for jsx transpiling. 
 
 ### Dashboard
 
-The basic unit, used as a Wrapper for Cards.
+The basic unit, used as a Wrapper for Cards. It has some layout options:
 
-### Card
+**cols (number) = 4**
+Number that indicates how many columns you want to have in your dashboard. 
 
-A Card shows just a number from data processed by a job.
+**rowHeight (number) = 200px**
+Define the height of the rows, internally it will set the `grid-auto-rows` options, so you can provide a space separated list 
+to set the height of rows individually. (e.g. `rowHeight="200px 100px 350px"`)
+
+### Base
+
+All widgets have these properties 
 
 **job (string)**
 Job name, to which this component should subscribe. 
 
 **title (string)**
 Title to show on the card
-
-**value (function({current, last}))**
-Function to map the view value from the job data. When the job emits the data, you should here reduce it to a single value.  
 
 **showWhen (function({current, last}))**
 When you only want to show the component when some conditions are met, you can use this hook.
@@ -130,24 +134,41 @@ The font is calculated accordingly (either black or white).
 **alert (function({current, last}) || boolean)**
 Boolean that adds a pulse animation to the card, indicating that the team should focus attention.   
 
+**rows (number)**
+Define the row span of the card
 
+**cols (number)**
+Define the column span of the card
+    
+
+### Card
+
+A Card that shows just a number from data processed by a job.
+
+**value (function({current, last})):Number**
+Function to map the view value from the job data. When the job emits the data, you should here reduce it to a single value which has to be a number.  
+
+### List
+
+A list widget. 
+
+**value (function({current, last})):Array[String|Number]**
+Function to map the view value from the job data. When the job emits the data, you should here reduce it to an array of strings/numbers.  
+
+
+See `Card` for properties. The job has to return an array of strings/numbers 
 
 Todos:
 ---------
 
 Backend:
 * [ ] Add proper logging plugin
-* [ ] Job Error handling (send error to frontend and show what happened)
 * [ ] Cron Expression
-* [ ] Provide client for ELK, graphite, teamcity
+* [ ] Provide client for ELK, graphite
 
 
 
 Frontend:
-* [x] Implement start page with links to dashboard
-* [x] Toast if error occurs
-* [x] New Card: Failing Builds
-* [ ] Toast for websocket connection error 
 * [ ] New Card: Iframe (for dyb) 
 * [ ] New Card: Number in foreground, graph in background 
 * [ ] Additional adding of assets (icons, ...)
