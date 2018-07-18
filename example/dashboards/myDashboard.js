@@ -1,6 +1,7 @@
 import React from 'react';
 import { Flex, Box } from 'grid-styled';
 import { Dashboard, Card, List } from './../../frontend';
+import IFrame from '../../lib/frontend/widgets/IFrame';
 
 
 const sharedProps = {
@@ -26,18 +27,15 @@ export default function () {
           <Card job="example2" title="Example2" {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
-          <Card job="example2" title="Example2" {...sharedProps} />
-          <Card job="example2" title="Example2" {...sharedProps} />
-          <Card job="example2" title="Example2" {...sharedProps} />
-          <Card job="example2" title="Example2" {...sharedProps} />
+
         </Dashboard>
       </Box>
       <Box width={1 / 2} >
         <Dashboard>
+          <IFrame src="http://thecatapi.com/api/images/get?size=med" title="IFrame shiet" cols={3} rows={1} />
           <Card
             job="example1"
             title="Waidmanns Heil! Die Luder festnageln die hanebüchen Das hochnäsig "
-            showWhen={({ current = {} }) => current.randomNumber > 8000}
             value={({ current = {} }) => current.randomNumber}
           />
           <Card job="example3" />
