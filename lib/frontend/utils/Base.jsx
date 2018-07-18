@@ -36,9 +36,7 @@ class Base extends Component {
         cols={cols}
       >
         <Title style={{ color: fontColorLight }}>{title}</Title>
-        <Content>
-          {children}
-        </Content>
+        {children}
         <UpdatedAt style={{ color: fontColorLight }}>
           Last updated at: {Base.formatDate(lastUpdated)}
         </UpdatedAt>
@@ -62,6 +60,7 @@ Base.defaultProps = {
   fontColorLight: 'rgba(0,0,0,0.7)',
   cols: 1,
   rows: 1,
+  alignItems: 'center',
 };
 
 Base.propTypes = {
@@ -73,5 +72,4 @@ Base.propTypes = {
   fontColor: PropTypes.string,
   fontColorLight: PropTypes.string,
   isAlert: PropTypes.bool,
-
 };

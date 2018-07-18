@@ -6,6 +6,7 @@ import CountUpto from './../utils/CountUpto';
 import { withColor, withShowWhen, withViewValue, withSubscription } from '../hoc';
 import Base from '../utils/Base';
 import withAlert from '../hoc/withAlert';
+import Content from '../styled/Content';
 
 
 const Number = styled.h3`
@@ -21,9 +22,11 @@ const Card = (props) => {
 
   return (
     <Base {...props} >
-      <Number>
-        <CountUpto value={viewValue} duration={1} />
-      </Number>
+      <Content>
+        <Number>
+          <CountUpto value={viewValue} duration={1} />
+        </Number>
+      </Content>
     </Base>);
 };
 
