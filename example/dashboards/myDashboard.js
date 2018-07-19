@@ -31,7 +31,7 @@ export default function () {
       </Box>
       <Box width={1 / 2} >
         <Dashboard cols={3}>
-          <ReloadableImg src="http://thecatapi.com/api/images/get?size=med" title="The Cat API" cols={2} rows={2} interval={10000} />
+          <ReloadableImg src="http://thecatapi.com/api/images/get?size=med" title="The Cat API" cols={2} rows={2} interval={60000} />
           <ReloadableIframe src="http://localhost:1337" title="Dashboards" cols={1} rows={2} interval={10000} />
           <Card
             job="example1"
