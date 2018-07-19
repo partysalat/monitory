@@ -5,7 +5,7 @@ module.exports = {
   job() {
     counter += 1;
     if (counter % 2) {
-      return Promise.reject(new Error('FOOFOFOOF'));
+      // return Promise.reject(new Error('FOOFOFOOF'));
     }
     return Promise.resolve(Math.round(Math.random() * 1000000));
   },
