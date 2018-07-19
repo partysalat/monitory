@@ -1,7 +1,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import { css } from 'styled-components';
 import { withAlert, withColor, withReloadableSrc } from '../hoc';
 import Base from '../utils/Base';
 import Content from '../styled/Content';
