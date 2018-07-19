@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { withAlert, withColor } from '../hoc';
 import Base from '../utils/Base';
 import Content from '../styled/Content';
+import withReloadableSrc from '../hoc/withReloadableSrc';
 
 
 const StyledIframe = styled.iframe`
@@ -12,11 +13,10 @@ const StyledIframe = styled.iframe`
   height:100%;
 `;
 
-//<StyledIframe src={props.src} border={0} allowfullscreen />
-const IFrame = props => (
+const ReloadableIframe = props => (
   <Base {...props} >
     <Content>
-      <StyledIframe src={props.src} border={0} allowfullscreen />
+      <StyledIframe src={props.src} border={0} allowfullscreen width={100} height={100} />
     </Content>
   </Base>);
 
@@ -24,8 +24,9 @@ const IFrame = props => (
 export default compose(
   withColor,
   withAlert,
-)(IFrame);
+  withReloadableSrc,
+)(ReloadableIframe);
 
-IFrame.propTypes = {
+ReloadableIframe.propTypes = {
   src: PropTypes.string.isRequired,
 };

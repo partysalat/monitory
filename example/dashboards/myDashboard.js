@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Flex } from 'grid-styled';
-import { Card, Dashboard, List } from './../../frontend';
-import ReloadableImg from '../../lib/frontend/widgets/ReloadableImg';
+import { Card, Dashboard, List, ReloadableImg, ReloadableIframe } from './../../frontend';
 
 
 const sharedProps = {
@@ -33,6 +32,7 @@ export default function () {
       <Box width={1 / 2} >
         <Dashboard cols={3}>
           <ReloadableImg src="http://thecatapi.com/api/images/get?size=med" title="The Cat API" cols={2} rows={2} interval={10000} />
+          <ReloadableIframe src="http://localhost:1337" title="Dashboards" cols={1} rows={2} interval={10000} />
           <Card
             job="example1"
             title="Waidmanns Heil! Die Luder festnageln die hanebüchen Das hochnäsig "
