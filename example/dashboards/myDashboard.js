@@ -1,7 +1,7 @@
 import React from 'react';
-import { Flex, Box } from 'grid-styled';
-import { Dashboard, Card, List } from './../../frontend';
-import IFrame from '../../lib/frontend/widgets/IFrame';
+import { Box, Flex } from 'grid-styled';
+import { Card, Dashboard, List } from './../../frontend';
+import ReloadableImg from '../../lib/frontend/widgets/ReloadableImg';
 
 
 const sharedProps = {
@@ -31,8 +31,8 @@ export default function () {
         </Dashboard>
       </Box>
       <Box width={1 / 2} >
-        <Dashboard>
-          <IFrame src="http://thecatapi.com/api/images/get?size=med" title="IFrame shiet" cols={3} rows={1} />
+        <Dashboard cols={3}>
+          <ReloadableImg src="http://thecatapi.com/api/images/get?size=med" title="The Cat API" cols={2} rows={2} interval={10000} />
           <Card
             job="example1"
             title="Waidmanns Heil! Die Luder festnageln die hanebüchen Das hochnäsig "
