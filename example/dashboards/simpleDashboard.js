@@ -8,7 +8,7 @@ export default function () {
       <List job="teamcity" title="Failed Teamcity Jobs" showWhen={({ current = {} }) => current.length > 0} rows={2} cols={1} />
       <Card job="example3" title="Fooo" />
 
-      <Card job="series1" title="Fooo" value={({ current = [] }) => last(current)} graph={({ current = [] }) => current} cols={3} color="red" />
+      <Card job="series1" title="Fooo" value={({ current = [] }) => last(current)} graph={({ current = [] }) => current} cols={3} color="white" />
     </Dashboard>
   );
 }

@@ -2,19 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ChartistGraph from 'react-chartist';
+import isFunction from 'lodash/isFunction';
 
-
+const getGraphColorFromProps = ({ graphColor }) => graphColor;
 const AbsoluteContainer = styled.div`
   position: absolute;
   height: 100%;
   width: 100%;
   z-index:0;
-  opacity: 0.5;
   .ct-series-a .ct-area{
-    fill: blue;
+    fill: ${getGraphColorFromProps};
   }
   .ct-series-a .ct-line {
-    stroke: blue;
+    stroke: ${getGraphColorFromProps};
   }
   
 `;
@@ -25,10 +25,12 @@ const BackgroundChart = (props) => {
     current,
     last,
     graph,
+    graphColor,
   } = props;
   if (!graph) {
     return null;
   }
+  const graphColorValue = isFunction(graphColor) ? graphColor({ current, last }) : graphColor;
   const data = graph && graph({ current, last });
   const series = {
     series: [data],
@@ -51,7 +53,7 @@ const BackgroundChart = (props) => {
     },
   };
   return (
-    <AbsoluteContainer>
+    <AbsoluteContainer graphColor={graphColorValue}>
       <ChartistGraph data={series} type="Line" options={options} style={{ height: '100%' }} />
     </AbsoluteContainer>);
 };
@@ -60,8 +62,14 @@ const BackgroundChart = (props) => {
 export default BackgroundChart;
 
 BackgroundChart.propTypes = {
-  viewValue: PropTypes.oneOfType([
+  graph: PropTypes.func,
+  graphColor: PropTypes.oneOf([
+    PropTypes.func,
     PropTypes.string,
-    PropTypes.number,
-  ]).isRequired,
+  ]),
+  current: PropTypes.any,
+  last: PropTypes.any,
+};
+BackgroundChart.defaultProps = {
+  graphColor: 'rgba(0,0,0,0.3)',
 };
