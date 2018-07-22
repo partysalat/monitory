@@ -21,7 +21,7 @@ export default function () {
         <Dashboard cols={3}>
           <Card alert job="example1" title="Waidmanns Heil! " {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
-          <List job="teamcity" title="Failed Teamcity Jobs" showWhen={({ current = {} }) => current.length > 0} rows={2} cols={1} />
+          <List job="teamcity" title="Failed Teamcity Jobs" showWhen={({ current = {} }) => current.length > 5} rows={2} cols={1} />
           <Card job="example2" title="Example2" {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
@@ -32,7 +32,7 @@ export default function () {
       <Box width={1 / 2} >
         <Dashboard cols={3}>
           <ReloadableImg src="http://thecatapi.com/api/images/get?size=med" title="The Cat API" cols={2} rows={2} interval={60000} />
-          <ReloadableIframe src="http://localhost:1337" title="Dashboards" cols={1} rows={2} interval={10000} />
+          <ReloadableIframe src="http://localhost:1337" title="Dashboards (Iframe Example)" cols={1} rows={2} interval={10000} />
           <Card
             job="example1"
             title="Waidmanns Heil! Die Luder festnageln die hanebüchen Das hochnäsig "

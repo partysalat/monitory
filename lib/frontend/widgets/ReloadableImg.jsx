@@ -23,8 +23,6 @@ const IFrame = props => (
 
 
 export default compose(
-  withColor,
-  withAlert,
   withReloadableSrc,
 )(IFrame);
 

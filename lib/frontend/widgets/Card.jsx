@@ -5,7 +5,6 @@ import { compose } from 'redux';
 import CountUpto from './../utils/CountUpto';
 import { withColor, withShowWhen, withSubscription, withViewValue } from '../hoc';
 import Base from '../utils/Base';
-import withAlert from '../hoc/withAlert';
 import Content from '../styled/Content';
 import BackgroundChart from '../utils/BackgroundChart';
 
@@ -37,9 +36,6 @@ const Card = (props) => {
 export default compose(
   withSubscription,
   withViewValue,
-  withColor,
-  withShowWhen,
-  withAlert,
 )(Card);
 
 Card.propTypes = {

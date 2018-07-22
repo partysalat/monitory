@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import format from 'date-fns/format';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 import { StyledCard, Title, UpdatedAt } from '../styled';
+import { withColor, withShowWhen } from '../hoc';
+import withAlert from '../hoc/withAlert';
 
 
 class Base extends Component {
@@ -41,8 +44,11 @@ class Base extends Component {
   }
 }
 
-
-export default Base;
+export default compose(
+  withColor,
+  withShowWhen,
+  withAlert,
+)(Base);
 
 Base.defaultProps = {
   title: '',
@@ -52,7 +58,6 @@ Base.defaultProps = {
   fontColorLight: 'rgba(0,0,0,0.7)',
   cols: 1,
   rows: 1,
-  alignItems: 'center',
 };
 
 Base.propTypes = {

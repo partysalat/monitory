@@ -34,9 +34,6 @@ const List = (props) => {
 export default compose(
   withSubscription,
   withViewValue,
-  withColor,
-  withShowWhen,
-  withAlert,
 )(List);
 
 List.propTypes = {

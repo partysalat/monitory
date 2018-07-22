@@ -22,8 +22,6 @@ const ReloadableIframe = props => (
 
 
 export default compose(
-  withColor,
-  withAlert,
   withReloadableSrc,
 )(ReloadableIframe);
 
