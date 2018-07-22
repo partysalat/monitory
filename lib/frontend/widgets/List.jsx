@@ -63,8 +63,8 @@ const ListItem = (props) => {
     build,
   } = props;
   build = isObject(build) ? build : { name: build };
-  //
   const { name, assignee } = build;
+
   const assigneeName = assignee || 'Nobody';
   const Icon = assignee ? <StyledSearch /> : <StyledBolt />;
   return (
