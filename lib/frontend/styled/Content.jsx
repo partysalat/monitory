@@ -7,6 +7,7 @@ export default styled.div`
   overflow: auto;
   justify-content: center;
   display: flex;
-  align-items: center
+  align-items: center;
+  position:relative;
 `;
 

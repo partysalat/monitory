@@ -7,11 +7,13 @@ import { withColor, withShowWhen, withViewValue, withSubscription } from '../hoc
 import Base from '../utils/Base';
 import withAlert from '../hoc/withAlert';
 import Content from '../styled/Content';
+import BackgroundChart from '../styled/BackgroundChart';
 
 
 const Number = styled.h3`
   text-align: center;
   margin:0;
+  z-index:1;
 `;
 
 
@@ -23,6 +25,7 @@ const Card = (props) => {
   return (
     <Base {...props} >
       <Content>
+        <BackgroundChart {...props} />
         <Number>
           <CountUpto value={viewValue} duration={1} />
         </Number>

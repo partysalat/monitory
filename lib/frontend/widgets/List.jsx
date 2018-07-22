@@ -10,7 +10,10 @@ import Content from '../styled/Content';
 const FailedBuildSteps = styled.ul`
   font-size:1rem;
 `;
-
+const BaselineContent = Content.extend`
+  align-items: baseline;
+  justify-content: flex-start;
+`;
 
 const List = (props) => {
   const {
@@ -19,11 +22,11 @@ const List = (props) => {
 
   return (
     <Base {...props} >
-      <Content style={{ alignItems: 'baseline', justifyContent: 'flex-start' }}>
+      <BaselineContent>
         <FailedBuildSteps>
           {viewValue.map(step => <li key={step}>{step}</li>)}
         </FailedBuildSteps>
-      </Content>
+      </BaselineContent>
     </Base>);
 };
 
