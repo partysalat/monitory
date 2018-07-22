@@ -145,18 +145,54 @@ Define the column span of the card
 
 A Card that shows just a number from data processed by a job.
 
+Inherits from `Base`. 
+
 **value (function({current, last})):Number**
 Function to map the view value from the job data. When the job emits the data, you should here reduce it to a single value which has to be a number.  
 
+**graph (function({current, last})):Array[Number]**
+Function that maps the job data to an array of numbers to be shown as a line chart in the background. 
+
+**graphColor (function({current, last}))|string**
+Define a color for the line chart as a function or directly as a string.
+
+
 ### List
 
-A list widget. 
+A list widget for failed build jobs. 
 
 **value (function({current, last})):Array[String|Number]**
 Function to map the view value from the job data. When the job emits the data, you should here reduce it to an array of strings/numbers.  
+Takes an array of strings as parameter, but can also be an object with an assignee, e.g.
+```json
+["TeamcityBuildJob","TeamcityBuildJob2", "TeamcityBuildJob3"]
+or
+[
+  {name: "TeamcityBuildJob", assignee:"Luke Skywalker"},
+  {name: "TeamcityBuildJob2"},
+  {name: "TeamcityBuildJob3"},
+]
+```
 
+Inherits from `Base`. 
 
-See `Card` for properties. The job has to return an array of strings/numbers 
+### ReloadableIframe
+Just an Iframe component which reloads itself after an amount of time. 
+
+**src (String)**
+The src for the Iframe.
+
+**interval (Number)**
+Define the interval to refresh the iframe.
+
+### ReloadableIframe
+An Img component which reloads itself after an amount of time. For example for giffy.
+
+**src (String)**
+The src for the Iframe.
+
+**interval (Number)**
+Define the interval to refresh the iframe.
 
 Todos:
 ---------
