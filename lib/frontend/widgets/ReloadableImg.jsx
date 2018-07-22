@@ -2,7 +2,7 @@ import React from 'react';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { css } from 'styled-components';
-import { withAlert, withColor, withReloadableSrc } from '../hoc';
+import { withReloadableSrc } from '../hoc';
 import Base from '../utils/Base';
 import Content from '../styled/Content';
 
@@ -22,9 +22,7 @@ const IFrame = props => (
   </Base>);
 
 
-export default compose(
-  withReloadableSrc,
-)(IFrame);
+export default compose(withReloadableSrc)(IFrame);
 
 IFrame.propTypes = {
   src: PropTypes.string.isRequired,

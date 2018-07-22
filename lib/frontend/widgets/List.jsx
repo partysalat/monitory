@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
-import { withColor, withShowWhen, withViewValue, withSubscription, withAlert } from '../hoc';
+import { withSubscription, withViewValue } from '../hoc';
 import Base from '../utils/Base';
 import Content from '../styled/Content';
 

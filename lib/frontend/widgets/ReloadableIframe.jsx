@@ -2,7 +2,6 @@ import React from 'react';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { withAlert, withColor } from '../hoc';
 import Base from '../utils/Base';
 import Content from '../styled/Content';
 import withReloadableSrc from '../hoc/withReloadableSrc';
@@ -21,9 +20,7 @@ const ReloadableIframe = props => (
   </Base>);
 
 
-export default compose(
-  withReloadableSrc,
-)(ReloadableIframe);
+export default compose(withReloadableSrc)(ReloadableIframe);
 
 ReloadableIframe.propTypes = {
   src: PropTypes.string.isRequired,
