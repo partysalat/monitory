@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { flipInX } from 'react-animations';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { Bolt } from 'styled-icons/fa-solid/Bolt';
@@ -8,6 +9,10 @@ import isObject from 'lodash/isObject';
 import { withSubscription, withViewValue } from '../hoc';
 import Base from '../utils/Base';
 import Content from '../styled/Content';
+
+
+const bounceAnimation = keyframes`${flipInX}`;
+
 
 const FailedBuildSteps = styled.ul`
   font-size:1rem;
@@ -21,6 +26,7 @@ const BaselineContent = Content.extend`
 `;
 
 const StyledLi = styled.li`
+  animation: 1s ${bounceAnimation};
   list-style: none;
   padding: 5px 10px;
   display: flex;
