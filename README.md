@@ -205,8 +205,7 @@ Backend:
 
 
 Frontend:
-* [ ] New Card: Iframe (for dyb) 
-* [ ] New Card: Number in foreground, graph in background 
+* [ ] Add tendency to Card 
 * [ ] Additional adding of assets (icons, ...)
 
 
