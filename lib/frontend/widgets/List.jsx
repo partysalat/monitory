@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
+import { Bolt } from 'styled-icons/fa-solid/Bolt';
+import { Search } from 'styled-icons/fa-solid/Search';
+import isObject from 'lodash/isObject';
 import { withSubscription, withViewValue } from '../hoc';
 import Base from '../utils/Base';
 import Content from '../styled/Content';
-import { Bolt } from 'styled-icons/fa-solid/Bolt';
 
 const FailedBuildSteps = styled.ul`
   font-size:1rem;
@@ -31,8 +33,7 @@ const Status = styled.div`
   border-radius: 50%;
   height: 30px;
   width: 30px;
-  color: white;
-  background: red;
+  color:white;
   display:flex;
   align-items: center;
   justify-content:center;
@@ -42,6 +43,9 @@ const Status = styled.div`
 const StyledBolt = Bolt.extend`
   height: 15px;
 `;
+const StyledSearch = Search.extend`
+  height: 15px;
+`;
 const Build = styled.div`
   flex: 1 1 auto;
 `;
@@ -49,18 +53,22 @@ const Assignee = styled.div`
   font-size: 0.7rem;
 `;
 const ListItem = (props) => {
-  const {
+  let {
     build,
   } = props;
-
+  build = isObject(build) ? build : { name: build };
+  //
+  const { name, assignee } = build;
+  const assigneeName = assignee || 'Nobody';
+  const Icon = assignee ? <StyledSearch /> : <StyledBolt />;
   return (
     <StyledLi>
-      <Status >
-        <StyledBolt />
+      <Status style={{ background: assignee ? '#efd700' : 'red' }}>
+        {Icon}
       </Status>
       <Build>
-        <div>{build}</div>
-        <Assignee>Nobody assigned</Assignee>
+        <div>{name}</div>
+        <Assignee>{assigneeName} assigned</Assignee>
       </Build>
     </StyledLi>);
 };
