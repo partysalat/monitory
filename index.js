@@ -13,3 +13,5 @@ module.exports.start = async function start(options) {
 };
 
 module.exports.teamcityClient = require('./lib/clients/teamcity.client');
+module.exports.elkClient = require('./lib/clients/elk.client');
+module.exports.graphiteClient = require('./lib/clients/graphite.client');
