@@ -2,15 +2,16 @@ import React from 'react';
 import Color from 'color';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
+import { ThemeConsumer } from '../utils/Theme';
 
-function getColors(color = '#fff') {
-  const c = Color(color);
+
+function getColors(color, theme) {
+  const c = Color(color || theme.cardBackgroundColor);
   const isLightBackground = !!Math.round((c.red() + c.blue() + c.green()) / (255 * 3));
   return {
-    fontColor: isLightBackground ? 'rgba(0,0,0,1)' : 'rgba(255,255,255,1)',
-    fontColorLight: isLightBackground ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)',
+    fontColor: isLightBackground ? theme.cardFontColorDark : theme.cardFontColorBright,
+    fontColorLight: isLightBackground ? theme.cardFontColorLightDark : theme.cardFontColorBrightLight,
     backgroundColor: c.string(),
-
   };
 }
 
@@ -21,9 +22,13 @@ export default (WrappedComponent) => {
       current,
       last,
     } = props;
-    const colorValues = getColors(isFunction(color) ? color({ current, last }) : color);
+    const calculatedColor = isFunction(color) ? color({ current, last }) : color;
 
-    return <WrappedComponent {...colorValues} {...props} />;
+    return (
+      <ThemeConsumer>
+        {theme => (
+          <WrappedComponent {...getColors(calculatedColor, theme)} {...props} />)}
+      </ThemeConsumer>);
   };
   withColor.propTypes = {
     color: PropTypes.oneOfType([
@@ -33,9 +38,6 @@ export default (WrappedComponent) => {
     current: PropTypes.any.isRequired,
     last: PropTypes.any.isRequired,
 
-  };
-  withColor.defaultProps = {
-    color: '#fff',
   };
   return withColor;
 };

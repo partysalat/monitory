@@ -53,9 +53,6 @@ export default compose(
 Base.defaultProps = {
   title: '',
   isAlert: false,
-  backgroundColor: '#fff',
-  fontColor: '#000',
-  fontColorLight: 'rgba(0,0,0,0.7)',
   cols: 1,
   rows: 1,
 };
