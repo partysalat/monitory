@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import { ThemeConsumer } from './utils/Theme';
 
 const Container = styled.div`
       display: grid;
@@ -13,18 +14,35 @@ const Container = styled.div`
     return (css`${str}`);
   }};
 `;
+const Title = styled.h3`
+  color: ${({ headlineColor }) => css`${headlineColor}`};
+  background-color: ${({ headlineBackground }) => css`${headlineBackground}`};
+  text-align:center;
+  margin: 10px;
+  padding: 10px 0;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.25);
+`;
 
 function Dashboard(props) {
   return (
-    <Container {...props}>
-      {props.children}
-    </Container>
+    <ThemeConsumer>
+      {theme => (
+        <div>
+          <Title {...theme}>{props.title}</Title>
+          <Container {...props}>
+            {props.children}
+          </Container>
+        </div>
+      )
+    }
+    </ThemeConsumer>
   );
 }
 Dashboard.propTypes = {
   children: PropTypes.any,
   cols: PropTypes.number,
   rowHeight: PropTypes.string,
+  title: PropTypes.string,
 };
 Dashboard.defaultProps = {
   children: '',

@@ -27,7 +27,8 @@ export default (WrappedComponent) => {
     return (
       <ThemeConsumer>
         {theme => (
-          <WrappedComponent {...getColors(calculatedColor, theme)} {...props} />)}
+          <WrappedComponent {...getColors(calculatedColor, theme)} {...props} />)
+        }
       </ThemeConsumer>);
   };
   withColor.propTypes = {

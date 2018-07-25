@@ -17,7 +17,8 @@ export default styled.div`
   flex-direction: column;
   justify-content:space-between;
   
-  box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.25);
+  margin:1px;
   font-size: 1.5rem;
+  
 `;
 

@@ -10,6 +10,8 @@ export const themes = {
     cardFontColorDark: 'rgba(0,0,0,1)',
     cardFontColorLightDark: 'rgba(0,0,0,0.7)',
     graphColor: 'rgba(0,0,0,0.3)',
+    headlineColor: 'black',
+    headlineBackground: '#eee',
   },
   dark: {
     background: '#222',
@@ -18,8 +20,9 @@ export const themes = {
     cardFontColorBrightLight: 'rgba(255,255,255,0.7)',
     cardFontColorDark: 'rgba(0,0,0,1)',
     cardFontColorLightDark: 'rgba(0,0,0,0.7)',
-
     graphColor: 'rgba(255,255,255,0.3)',
+    headlineColor: 'white',
+    headlineBackground: '#777',
   },
 };
 const ThemeContext = React.createContext(themes.light);

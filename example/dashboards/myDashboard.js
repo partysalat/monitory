@@ -18,7 +18,7 @@ export default function () {
   return (
     <Flex>
       <Box width={1 / 2} >
-        <Dashboard cols={3}>
+        <Dashboard cols={3} title="MEIN DASHBOAR">
           <Card alert job="example1" title="Waidmanns Heil! " {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
           <List job="teamcity" title="Failed Teamcity Jobs" showWhen={({ current = {} }) => current.length > 5} rows={2} cols={1} />
