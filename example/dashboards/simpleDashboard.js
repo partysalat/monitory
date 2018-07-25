@@ -5,7 +5,7 @@ import { ThemeProvider, themes } from '../../lib/frontend/utils/Theme';
 
 export default function () {
   return (
-    <ThemeProvider value={themes.light}>
+    <ThemeProvider value={themes.dark}>
       <Dashboard cols={7}>
         <List job="teamcity" title="Failed Teamcity Jobs" showWhen={({ current = {} }) => current.length > 0} rows={2} cols={2} />
         <Card job="example3" title="Fooo" />
@@ -15,7 +15,7 @@ export default function () {
           value={({ current = [] }) => last(current)}
           graph={({ current = [] }) => current}
           cols={3}
-          graphColor="blue"
+
         />
       </Dashboard>
     </ThemeProvider>

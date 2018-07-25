@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ChartistGraph from 'react-chartist';
 import isFunction from 'lodash/isFunction';
+import { ThemeConsumer } from './Theme';
 
 const getGraphColorFromProps = ({ graphColor }) => graphColor;
 const AbsoluteContainer = styled.div`
@@ -53,9 +54,12 @@ const BackgroundChart = (props) => {
     },
   };
   return (
-    <AbsoluteContainer graphColor={graphColorValue}>
-      <ChartistGraph data={series} type="Line" options={options} style={{ height: '100%' }} />
-    </AbsoluteContainer>);
+    <ThemeConsumer>
+      {theme => (
+        <AbsoluteContainer graphColor={graphColorValue || theme.graphColor }>
+          <ChartistGraph data={series} type="Line" options={options} style={{ height: '100%' }} />
+        </AbsoluteContainer>)}
+    </ThemeConsumer>);
 };
 
 
@@ -71,5 +75,4 @@ BackgroundChart.propTypes = {
   last: PropTypes.any,
 };
 BackgroundChart.defaultProps = {
-  graphColor: 'rgba(0,0,0,0.3)',
 };

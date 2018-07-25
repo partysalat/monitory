@@ -1,5 +1,5 @@
 import React from 'react';
-import { injectGlobal, css } from 'styled-components';
+import { injectGlobal } from 'styled-components';
 
 export const themes = {
   light: {
@@ -9,15 +9,17 @@ export const themes = {
     cardFontColorBrightLight: 'rgba(255,255,255,0.7)',
     cardFontColorDark: 'rgba(0,0,0,1)',
     cardFontColorLightDark: 'rgba(0,0,0,0.7)',
-
+    graphColor: 'rgba(0,0,0,0.3)',
   },
   dark: {
     background: '#222',
-    cardBackgroundColor: 'black',
+    cardBackgroundColor: '#444',
     cardFontColorBright: 'rgba(255,255,255,1)',
     cardFontColorBrightLight: 'rgba(255,255,255,0.7)',
     cardFontColorDark: 'rgba(0,0,0,1)',
     cardFontColorLightDark: 'rgba(0,0,0,0.7)',
+
+    graphColor: 'rgba(255,255,255,0.3)',
   },
 };
 const ThemeContext = React.createContext(themes.light);
