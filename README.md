@@ -200,7 +200,6 @@ Todos:
 Backend:
 * [ ] Add proper logging plugin
 * [ ] Cron Expression
-* [ ] Provide client for ELK, graphite
 
 
 
