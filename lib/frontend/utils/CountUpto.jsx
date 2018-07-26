@@ -14,7 +14,7 @@ class CountUpto extends Component {
     const { lastValue } = this;
     this.lastValue = value;
     if (!isNumber(lastValue) || !isNumber(value)) {
-      return <span>value</span>;
+      return <span>{value}</span>;
     }
     return (
       <CountUp start={lastValue} end={value} {...this.props} />
