@@ -6,13 +6,10 @@ export default (WrappedComponent) => {
   const withShowWhen = (props) => {
     const {
       showWhen,
+      current,
     } = props;
-    const currentData = {
-      current: props.current,
-      last: props.last,
-    };
 
-    if (!showWhen(currentData)) {
+    if (!showWhen(current)) {
       return null;
     }
 
@@ -22,7 +19,6 @@ export default (WrappedComponent) => {
   withShowWhen.propTypes = {
     showWhen: PropTypes.func,
     current: PropTypes.any.isRequired,
-    last: PropTypes.any.isRequired,
 
   };
   withShowWhen.defaultProps = {

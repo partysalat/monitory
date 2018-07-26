@@ -58,7 +58,7 @@ Base.defaultProps = {
 };
 
 Base.propTypes = {
-  lastUpdated: PropTypes.object.required,
+  lastUpdated: PropTypes.object.isRequired,
   title: PropTypes.string,
   cols: PropTypes.number,
   rows: PropTypes.number,

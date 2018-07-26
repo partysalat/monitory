@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import isFunction from 'lodash/isFunction';
 
 
 export default WrappedComponent => class extends Component {
     static propTypes = {
-      src: PropTypes.string.required,
+      src: PropTypes.string.isRequired,
       interval: PropTypes.number,
     }
     static defaultProps = {

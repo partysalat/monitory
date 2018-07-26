@@ -12,15 +12,15 @@ export default function () {
         <Card
           job="series1"
           title="Fooo"
-          value={({ current = [] }) => last(current)}
-          graph={({ current = [] }) => current}
+          value={(current = []) => last(current)}
+          graph={(current = []) => current}
           cols={3}
 
         />
       </Dashboard>
       <Dashboard cols={6} title="MEIN zweites Dashboard">
-        <Card job="example1" title="Fooo" value={({ current = {} }) => current.randomNumber} />
-        <Card job="example2" title="Fooo" value={({ current = {} }) => current.randomNumber} />
+        <Card job="example1" title="Fooo" value={(current = {}) => current.randomNumber} />
+        <Card job="example2" title="Fooo" value={(current = {}) => current.randomNumber} />
       </Dashboard>
     </ThemeProvider>
   );

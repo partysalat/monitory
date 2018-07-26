@@ -5,8 +5,8 @@ import isFunction from 'lodash/isFunction';
 
 export default (WrappedComponent) => {
   const withAlert = (props) => {
-    const { alert, current, last } = props;
-    const isAlert = isFunction(alert) ? alert({ current, last }) : alert;
+    const { alert, current } = props;
+    const isAlert = isFunction(alert) ? alert(current) : alert;
     return <WrappedComponent isAlert={isAlert} {...props} />;
   };
 
@@ -16,7 +16,6 @@ export default (WrappedComponent) => {
       PropTypes.bool,
     ]).isRequired,
     current: PropTypes.any.isRequired,
-    last: PropTypes.any.isRequired,
 
   };
   return withAlert;

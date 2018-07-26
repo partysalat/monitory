@@ -24,15 +24,14 @@ const AbsoluteContainer = styled.div`
 const BackgroundChart = (props) => {
   const {
     current,
-    last,
     graph,
     graphColor,
   } = props;
   if (!graph) {
     return null;
   }
-  const graphColorValue = isFunction(graphColor) ? graphColor({ current, last }) : graphColor;
-  const data = graph && graph({ current, last });
+  const graphColorValue = isFunction(graphColor) ? graphColor(current) : graphColor;
+  const data = graph && graph(current);
   const series = {
     series: [data],
 
@@ -56,7 +55,7 @@ const BackgroundChart = (props) => {
   return (
     <ThemeConsumer>
       {theme => (
-        <AbsoluteContainer graphColor={graphColorValue || theme.graphColor }>
+        <AbsoluteContainer graphColor={graphColorValue || theme.graphColor}>
           <ChartistGraph data={series} type="Line" options={options} style={{ height: '100%' }} />
         </AbsoluteContainer>)}
     </ThemeConsumer>);
@@ -72,7 +71,6 @@ BackgroundChart.propTypes = {
     PropTypes.string,
   ]),
   current: PropTypes.any,
-  last: PropTypes.any,
 };
 BackgroundChart.defaultProps = {
 };

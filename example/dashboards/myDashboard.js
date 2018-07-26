@@ -4,8 +4,8 @@ import { Card, Dashboard, List, ReloadableImg, ReloadableIframe } from './../../
 
 
 const sharedProps = {
-  value: ({ current = {} }) => current.randomNumber,
-  color: ({ current = {} }) => {
+  value: (current = {}) => current.randomNumber,
+  color: (current = {}) => {
     if (current.randomNumber < 5000) {
       return 'blue';
     } else if (current.randomNumber > 15000) {
@@ -21,7 +21,7 @@ export default function () {
         <Dashboard cols={3} title="MEIN DASHBOAR">
           <Card alert job="example1" title="Waidmanns Heil! " {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
-          <List job="teamcity" title="Failed Teamcity Jobs" showWhen={({ current = {} }) => current.length > 5} rows={2} cols={1} />
+          <List job="teamcity" title="Failed Teamcity Jobs" showWhen={(current = {}) => current.length > 5} rows={2} cols={1} />
           <Card job="example2" title="Example2" {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
@@ -36,7 +36,7 @@ export default function () {
           <Card
             job="example1"
             title="Waidmanns Heil! Die Luder festnageln die hanebüchen Das hochnäsig "
-            value={({ current = {} }) => current.randomNumber}
+            value={(current = {}) => current.randomNumber}
           />
           <Card job="example3" />
         </Dashboard>

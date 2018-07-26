@@ -30,10 +30,11 @@ const ThemeContext = React.createContext(themes.light);
 
 class GlobalThemeComponent extends React.Component {
   componentDidMount() {
+    /* eslint-disable-next-line */
     injectGlobal`
-      body{
-        background: ${this.props.theme.background};
-      }
+    body{
+      background: ${this.props.theme.background};
+    }
     `;
   }
 

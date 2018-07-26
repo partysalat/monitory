@@ -8,9 +8,15 @@ import { ThemeConsumer } from '../utils/Theme';
 function getColors(color, theme) {
   const c = Color(color || theme.cardBackgroundColor);
   const isLightBackground = !!Math.round((c.red() + c.blue() + c.green()) / (255 * 3));
+  const {
+    cardFontColorDark,
+    cardFontColorBright,
+    cardFontColorLightDark,
+    cardFontColorBrightLight,
+  } = theme;
   return {
-    fontColor: isLightBackground ? theme.cardFontColorDark : theme.cardFontColorBright,
-    fontColorLight: isLightBackground ? theme.cardFontColorLightDark : theme.cardFontColorBrightLight,
+    fontColor: isLightBackground ? cardFontColorDark : cardFontColorBright,
+    fontColorLight: isLightBackground ? cardFontColorLightDark : cardFontColorBrightLight,
     backgroundColor: c.string(),
   };
 }
@@ -20,9 +26,8 @@ export default (WrappedComponent) => {
     const {
       color,
       current,
-      last,
     } = props;
-    const calculatedColor = isFunction(color) ? color({ current, last }) : color;
+    const calculatedColor = isFunction(color) ? color(current) : color;
 
     return (
       <ThemeConsumer>
@@ -37,7 +42,6 @@ export default (WrappedComponent) => {
       PropTypes.func,
     ]),
     current: PropTypes.any.isRequired,
-    last: PropTypes.any.isRequired,
 
   };
   return withColor;
