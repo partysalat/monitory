@@ -39,8 +39,24 @@ export default compose(
 )(Card);
 
 Card.propTypes = {
-  viewValue: PropTypes.oneOfType([
+  job: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  showWhen: PropTypes.func,
+  color: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.func,
+  ]),
+  alert: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.bool,
   ]).isRequired,
+  cols: PropTypes.number,
+  rows: PropTypes.number,
+  value: PropTypes.func,
+
+  graph: PropTypes.func,
+  graphColor: PropTypes.oneOf([
+    PropTypes.func,
+    PropTypes.string,
+  ]),
 };

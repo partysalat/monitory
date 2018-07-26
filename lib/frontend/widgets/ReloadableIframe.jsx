@@ -24,5 +24,20 @@ const ReloadableIframe = props => (
 export default compose(withReloadableSrc)(ReloadableIframe);
 
 ReloadableIframe.propTypes = {
+  job: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  showWhen: PropTypes.func,
+  color: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+  alert: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.bool,
+  ]).isRequired,
+  cols: PropTypes.number,
+  rows: PropTypes.number,
+  value: PropTypes.func,
+
   src: PropTypes.string.isRequired,
 };
