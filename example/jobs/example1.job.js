@@ -8,7 +8,7 @@ function sharedJobFunction(number) {
 
 module.exports = [{
   id: 'example1',
-  interval: 5000, // ms
+  cron: '*/2 * * * * *', // ms
   job: sharedJobFunction.bind(null, 20000),
 }, {
   id: 'example2',
