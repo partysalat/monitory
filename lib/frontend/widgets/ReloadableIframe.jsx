@@ -10,6 +10,7 @@ import withReloadableSrc from '../hoc/withReloadableSrc';
 const StyledIframe = styled.iframe`
   width:100%;
   height:100%;
+  border: 0;
 `;
 
 const ReloadableIframe = props => (
