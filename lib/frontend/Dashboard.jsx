@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { ThemeConsumer } from './utils/Theme';
 
 const Container = styled.div`
+      margin: 0 10px; 
       display: grid;
       
       grid-auto-flow: row dense;
@@ -28,7 +29,7 @@ function Dashboard(props) {
     <ThemeConsumer>
       {theme => (
         <div>
-          <Title {...theme}>{props.title}</Title>
+          {props.title && (<Title {...theme}>{props.title}</Title>)}
           <Container {...props}>
             {props.children}
           </Container>
