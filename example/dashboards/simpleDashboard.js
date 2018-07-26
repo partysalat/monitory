@@ -15,7 +15,7 @@ export default function () {
           value={(current = []) => last(current)}
           graph={(current = []) => current}
           cols={3}
-
+          withTendency
         />
       </Dashboard>
       <Dashboard cols={6} title="MEIN zweites Dashboard">

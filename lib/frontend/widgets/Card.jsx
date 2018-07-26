@@ -7,20 +7,22 @@ import { withSubscription, withViewValue } from '../hoc';
 import Base from '../utils/Base';
 import Content from '../styled/Content';
 import BackgroundChart from '../utils/BackgroundChart';
+import Tendency from '../utils/Tendency';
 
 
 const Number = styled.h3`
   text-align: center;
-  margin:0;
-  z-index:1;
+  margin: 0;
+  z-index: 1;
+  flex: 0 0 auto;
 `;
 
-
+let counter = 0;
 const Card = (props) => {
   const {
     viewValue,
   } = props;
-
+  counter += 1;
   return (
     <Base {...props} >
       <Content>
@@ -28,6 +30,7 @@ const Card = (props) => {
         <Number>
           <CountUpto value={viewValue} duration={1} />
         </Number>
+        <Tendency {...props} />
       </Content>
     </Base>);
 };
