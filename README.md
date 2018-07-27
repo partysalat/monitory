@@ -29,6 +29,10 @@ jobs/
 ├── job1.js
 ├── job2.js
 └── ....
+assets/
+├── icon.svg
+├── foo.jpg
+└── ....
 ```
 
 To start monitory, create an index.js file with the following content
@@ -44,6 +48,7 @@ monitory.start({
   assetsPort: 1338,
   dashboards: `${__dirname}/dashboards/*`,
   jobs: `${__dirname}/jobs/*`,
+  additionalAssetsDir: `${__dirname}/assets`,
 });
 ``` 
 
@@ -56,7 +61,10 @@ Jobs are the main processing unit for your data crawling. A job file just export
 The id of the job to which frontend components can subscribe to. 
 
 **interval (number)**
-Define the interval, at which the job will be executed.
+Define the interval, at which the job will be executed. (cannot be applied at the same time with `cron`)
+
+**cron (string)**
+Define a cron job at which the job will be executed (cannot be applied at the same time with `interval`)
 
 **job (func)**
 A function that defines the job. Do your crawling logic inside here. You can return a value, a promise or even use an async function.
@@ -67,6 +75,16 @@ A function that defines the job. Do your crawling logic inside here. You can ret
  module.exports = {
   id: 'myJobId2',// 
   interval: 5000, // ms 
+  job: function(){
+    return Math.round(Math.random() * 1000)
+  }
+}
+
+```
+```javascript 1.8
+ module.exports = {
+  id: 'myJobId2',// 
+  cron: '0/30 * * * * *', //every 30 seconds
   job: function(){
     return Math.round(Math.random() * 1000)
   }
@@ -241,14 +259,10 @@ Todos:
 ---------
 
 Backend:
-* [ ] Add proper logging plugin
-* [ ] Cron Expression
 
 
 
 Frontend:
-* [ ] Add tendency to Card 
-* [ ] Additional adding of assets (icons, ...)
 
 
 This project is highly inspired by http://dashing.io/ which is unfortunately no longer maintained. 
