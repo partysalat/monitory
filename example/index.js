@@ -5,5 +5,6 @@ monitory.start({
   assetsPort: 1338,
   dashboards: `${__dirname}/dashboards/*`,
   jobs: `${__dirname}/jobs/*`,
+  additionalAssetsDir: `${__dirname}/assets`,
 });
 
