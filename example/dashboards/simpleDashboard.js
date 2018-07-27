@@ -1,7 +1,6 @@
 import React from 'react';
 import last from 'lodash/last';
-import { Card, Dashboard, List } from './../../frontend';
-import { ThemeProvider, themes } from '../../lib/frontend/utils/Theme';
+import { ThemeProvider, themes, Card, Dashboard, List } from './../../frontend';
 
 export default function () {
   return (

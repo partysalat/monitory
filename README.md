@@ -113,6 +113,9 @@ Number that indicates how many columns you want to have in your dashboard.
 Define the height of the rows, internally it will set the `grid-auto-rows` options, so you can provide a space separated list 
 to set the height of rows individually. (e.g. `rowHeight="200px 100px 350px"`)
 
+**title (String)**
+If you want to group your dashboards, you can add a title to them.
+
 ### Base
 
 All widgets have these properties 
@@ -196,6 +199,43 @@ The src for the Iframe.
 
 **interval (Number)**
 Define the interval to refresh the iframe.
+
+
+
+Themeing:
+---------
+You can choose between two themes: light and dark. 
+Or you can create your own theme by providing a map with the following properties:
+```json
+{
+    background: '#ccc',
+    fontSize: '100%',
+    cardBackgroundColor: 'white',
+    cardFontColorBright: 'rgba(255,255,255,1)',
+    cardFontColorBrightLight: 'rgba(255,255,255,0.7)',
+    cardFontColorDark: 'rgba(0,0,0,1)',
+    cardFontColorLightDark: 'rgba(0,0,0,0.7)',
+    graphColor: 'rgba(0,0,0,0.3)',
+    headlineColor: 'black',
+    headlineBackground: '#eee',
+  }
+
+```
+and then use it with the theme provider:
+```jsx harmony
+import { ThemeProvider, themes } from 'monitory/frontend';
+export default function () {
+  return (
+    <ThemeProvider value={themes.dark}>
+     ...
+    </ThemeProvider>
+  );
+}
+
+
+
+```
+
 
 Todos:
 ---------
