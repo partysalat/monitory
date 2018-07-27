@@ -150,12 +150,15 @@ Inherits from `Base`.
 **value (function({current, last})):Number**
 Function to map the view value from the job data. When the job emits the data, you should here reduce it to a single value which has to be a number.  
 
+
 **graph (function({current, last})):Array[Number]**
 Function that maps the job data to an array of numbers to be shown as a line chart in the background. 
 
 **graphColor (function({current, last}))|string**
 Define a color for the line chart as a function or directly as a string.
 
+**withTendency (boolean)**
+Boolean that indicates if there should be a small arrow shown underneath the value showing the direction compared to the last value.  
 
 ### List
 
