@@ -3,8 +3,8 @@ import styled, { keyframes } from 'styled-components';
 import { flipInX } from 'react-animations';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
-import { Bolt } from 'styled-icons/fa-solid/Bolt';
-import { Search } from 'styled-icons/fa-solid/Search';
+import { Bolt as ErrorIcon } from 'styled-icons/fa-solid/Bolt';
+import { Search as InvestigateIcon} from 'styled-icons/fa-solid/Search';
 import isObject from 'lodash/isObject';
 import { withSubscription, withViewValue } from '../hoc';
 import Base from '../utils/Base';
@@ -37,8 +37,8 @@ const StyledLi = styled.li`
 
 const Status = styled.div`
   border-radius: 50%;
-  height: 30px;
-  width: 30px;
+  height: 1.875rem;
+  width: 1.875rem;
   color:white;
   display:flex;
   align-items: center;
@@ -46,11 +46,11 @@ const Status = styled.div`
   flex: 0 0 auto;
   margin-right: 5px;  
 `;
-const StyledBolt = Bolt.extend`
-  height: 15px;
+const StyledErrorIcon = ErrorIcon.extend`
+  height: 0.9375rem;
 `;
-const StyledSearch = Search.extend`
-  height: 15px;
+const StyledInvestigeIcon = InvestigateIcon.extend`
+  height: 0.9375rem;
 `;
 const Build = styled.div`
   flex: 1 1 auto;
@@ -66,7 +66,7 @@ const ListItem = (props) => {
   const { name, assignee } = build;
 
   const assigneeName = assignee || 'Nobody';
-  const Icon = assignee ? <StyledSearch /> : <StyledBolt />;
+  const Icon = assignee ? <StyledInvestigeIcon /> : <StyledErrorIcon />;
   return (
     <StyledLi>
       <Status style={{ background: assignee ? '#efd700' : 'red' }}>

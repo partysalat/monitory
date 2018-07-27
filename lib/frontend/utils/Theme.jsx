@@ -4,6 +4,7 @@ import { injectGlobal } from 'styled-components';
 export const themes = {
   light: {
     background: '#ccc',
+    fontSize: '100%',
     cardBackgroundColor: 'white',
     cardFontColorBright: 'rgba(255,255,255,1)',
     cardFontColorBrightLight: 'rgba(255,255,255,0.7)',
@@ -15,6 +16,7 @@ export const themes = {
   },
   dark: {
     background: '#222',
+    fontSize: '100%',
     cardBackgroundColor: '#444',
     cardFontColorBright: 'rgba(255,255,255,1)',
     cardFontColorBrightLight: 'rgba(255,255,255,0.7)',
@@ -32,6 +34,9 @@ class GlobalThemeComponent extends React.Component {
   componentDidMount() {
     /* eslint-disable-next-line */
     injectGlobal`
+    html {
+      font-size: ${this.props.theme.fontSize};
+    }
     body{
       background: ${this.props.theme.background};
     }
