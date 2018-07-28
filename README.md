@@ -223,7 +223,7 @@ Define the interval to refresh the iframe.
 Themeing:
 ---------
 You can choose between two themes: light and dark. 
-Or you can create your own theme by providing a map with the following properties:
+Or you can create your own theme by providing an object with the following properties:
 ```json
 {
     background: '#ccc',
@@ -241,18 +241,27 @@ Or you can create your own theme by providing a map with the following propertie
 ```
 and then use it with the theme provider:
 ```jsx harmony
-import { ThemeProvider, themes } from 'monitory/frontend';
+import { ThemeProvider, themes, Dashboard } from 'monitory/frontend';
 export default function () {
   return (
     <ThemeProvider value={themes.dark}>
-     ...
+     <Dashboard> 
+        ...
+     </Dashboard>
     </ThemeProvider>
   );
 }
 
-
-
 ```
+
+Defining the dimensions of the dashboard
+----------------------------------------
+To control the size of the dashboard, you have basically three dimensions to set:
+* **Card height**: Define the `rowHeight` property of the dashboard  
+* **Card width**: Using `cols` property of the dashboard 
+* **Font Size**: Using `fontSize` property of the theme. Every font is set with the `rem` relative property 
+and this will set the root font size (100% = 16px)
+
 
 
 Todos:
