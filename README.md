@@ -144,15 +144,15 @@ Job name, to which this component should subscribe.
 **title (string)**
 Title to show on the card
 
-**showWhen (function({current, last}))**
+**showWhen (function(data))**
 When you only want to show the component when some conditions are met, you can use this hook.
 It is called with the current and the last value emitted by the job.   
 
-**color (function({current, last}) || string)**
+**color (function(data) || string)**
 Define the background color of the card. You can either define it as a String or as a function to return a fitting color.
 The font is calculated accordingly (either black or white). 
 
-**alert (function({current, last}) || boolean)**
+**alert (function(data) || boolean)**
 Boolean that adds a pulse animation to the card, indicating that the team should focus attention.   
 
 **rows (number)**
@@ -168,24 +168,25 @@ A Card that shows just a number from data processed by a job.
 
 Inherits from `Base`. 
 
-**value (function({current, last})):Number**
+**value (function(data)):Number**
 Function to map the view value from the job data. When the job emits the data, you should here reduce it to a single value which has to be a number.  
 
 
-**graph (function({current, last})):Array[Number]**
+**graph (function(data)):Array[Number]**
 Function that maps the job data to an array of numbers to be shown as a line chart in the background. 
 
-**graphColor (function({current, last}))|string**
+**graphColor (function(data))|string**
 Define a color for the line chart as a function or directly as a string.
 
-**withTendency (boolean)**
-Boolean that indicates if there should be a small arrow shown underneath the value showing the direction compared to the last value.  
+**withTendency (boolean|function(current, last))**
+Boolean that indicates if there should be a small arrow shown underneath the value showing the direction compared to the last value.
+If you provide a function, you have to return a css rotation attribute, e.g. `45deg` or `0.567rad`, depending on the data you retrieve.   
 
 ### List
 
 A list widget for failed build jobs. 
 
-**value (function({current, last})):Array[String|Number]**
+**value (function(data)):Array[String|Number]**
 Function to map the view value from the job data. When the job emits the data, you should here reduce it to an array of strings/numbers.  
 Takes an array of strings as parameter, but can also be an object with an assignee, e.g.
 ```json
@@ -234,6 +235,8 @@ Or you can create your own theme by providing an object with the following prope
     cardFontColorDark: 'rgba(0,0,0,1)',
     cardFontColorLightDark: 'rgba(0,0,0,0.7)',
     graphColor: 'rgba(0,0,0,0.3)',
+    listAssigneeColor: '#efd700',
+    listFailedColor: 'red',
     headlineColor: 'black',
     headlineBackground: '#eee',
   }
