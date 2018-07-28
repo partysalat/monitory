@@ -62,4 +62,8 @@ Card.propTypes = {
     PropTypes.func,
     PropTypes.string,
   ]),
+  withTendency: PropTypes.oneOf([
+    PropTypes.func,
+    PropTypes.bool,
+  ]),
 };

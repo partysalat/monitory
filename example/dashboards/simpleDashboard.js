@@ -7,7 +7,11 @@ export default function () {
     <ThemeProvider value={themes.dark}>
       <Dashboard cols={6} title="MEIN Dashboard">
         <List job="teamcity" title="Failed Teamcity Jobs" rows={1} cols={2} />
-        <Card job="example3" title="Fooo" />
+        <Card
+          job="example3"
+          title="Fooo"
+          withTendency={(current, last) => `${0.5 * Math.PI * (last - current) / (last + current)}rad`}
+        />
         <Card
           job="series1"
           title="Fooo"
