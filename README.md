@@ -267,16 +267,6 @@ and this will set the root font size (100% = 16px)
 
 
 
-Todos:
----------
-
-Backend:
-
-
-
-Frontend:
-
-
 This project is highly inspired by http://dashing.io/ which is unfortunately no longer maintained. 
 
 
