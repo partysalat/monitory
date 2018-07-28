@@ -27,6 +27,5 @@ export default function withSubscription(WrappedComponent) {
       return <WrappedComponent {...this.props} />;
     }
   };
-  // WithSubscriptionClass.propTypes = ;
   return connect(mapStateToProps, mapDispatchToProps)(WithSubscriptionClass);
 }

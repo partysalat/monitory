@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import format from 'date-fns/format';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import { StyledCard, Title, UpdatedAt } from '../styled';
-import { withColor, withShowWhen } from '../hoc';
-import withAlert from '../hoc/withAlert';
+import { StyledCard, Title, UpdatedAt } from './styled';
+import { withColor, withShowWhen, withAlert } from '../../hoc';
 
 
 class Base extends Component {

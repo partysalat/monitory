@@ -1,29 +1,30 @@
 import React from 'react';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Base from '../utils/Base';
-import Content from '../styled/Content';
-import withReloadableSrc from '../hoc/withReloadableSrc';
+import { css } from 'styled-components';
+import { withReloadableSrc } from '../../hoc';
+import Base from '../../utils/Base';
+import Content from '../../utils/Content';
 
 
-const StyledIframe = styled.iframe`
-  width:100%;
+const StyledImg = Content.extend`
   height:100%;
-  border: 0;
+  width:100%;
+  background-image: url(${({ src }) => css`${src}`});
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 `;
 
-const ReloadableIframe = props => (
+const IFrame = props => (
   <Base {...props} >
-    <Content>
-      <StyledIframe src={props.src} border={0} allowfullscreen width={100} height={100} />
-    </Content>
+    <StyledImg src={props.src} />
   </Base>);
 
 
-export default compose(withReloadableSrc)(ReloadableIframe);
+export default compose(withReloadableSrc)(IFrame);
 
-ReloadableIframe.propTypes = {
+IFrame.propTypes = {
   job: PropTypes.string.isRequired,
   title: PropTypes.string,
   showWhen: PropTypes.func,

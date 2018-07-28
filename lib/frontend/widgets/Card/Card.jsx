@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import CountUpto from './../utils/CountUpto';
-import { withSubscription, withViewValue } from '../hoc';
-import Base from '../utils/Base';
-import Content from '../styled/Content';
-import BackgroundChart from '../utils/BackgroundChart';
-import Tendency from '../utils/Tendency';
+import CountUpto from './../../utils/CountUpto';
+import { withSubscription, withViewValue } from '../../hoc';
+import Base from '../../utils/Base';
+import Content from '../../utils/Content';
+import BackgroundChart from '../../utils/BackgroundChart';
+import Tendency from '../../utils/Tendency';
 
 
 const Number = styled.h3`
