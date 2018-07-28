@@ -1,24 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ChartistGraph from 'react-chartist';
 import isFunction from 'lodash/isFunction';
-import { ThemeConsumer } from './Theme';
-
-const getGraphColorFromProps = ({ graphColor }) => graphColor;
-const AbsoluteContainer = styled.div`
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  z-index:0;
-  .ct-series-a .ct-area{
-    fill: ${getGraphColorFromProps};
-  }
-  .ct-series-a .ct-line {
-    stroke: ${getGraphColorFromProps};
-  }
-  
-`;
+import { ThemeConsumer } from './../Theme';
+import AbsoluteContainer from './styled/AbsoluteContainer';
 
 
 const BackgroundChart = (props) => {
