@@ -4,11 +4,11 @@ import { flipInX } from 'react-animations';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { Bolt as ErrorIcon } from 'styled-icons/fa-solid/Bolt';
-import { Search as InvestigateIcon} from 'styled-icons/fa-solid/Search';
+import { Search as InvestigateIcon } from 'styled-icons/fa-solid/Search';
 import isObject from 'lodash/isObject';
-import { withSubscription, withViewValue } from '../../hoc';
-import Base from '../../utils/Base';
-import Content from '../../utils/Content';
+import { withSubscription, withViewValue } from '../hoc';
+import Base from '../utils/Base';
+import Content from '../utils/Content';
 
 
 const bounceAnimation = keyframes`${flipInX}`;

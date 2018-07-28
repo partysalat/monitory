@@ -2,9 +2,9 @@ import React from 'react';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Base from '../../utils/Base';
-import Content from '../../utils/Content';
-import withReloadableSrc from '../../hoc/withReloadableSrc';
+import Base from '../utils/Base';
+import Content from '../utils/Content';
+import withReloadableSrc from '../hoc/withReloadableSrc';
 
 
 const StyledIframe = styled.iframe`

@@ -2,9 +2,9 @@ import React from 'react';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { css } from 'styled-components';
-import { withReloadableSrc } from '../../hoc';
-import Base from '../../utils/Base';
-import Content from '../../utils/Content';
+import { withReloadableSrc } from '../hoc';
+import Base from '../utils/Base';
+import Content from '../utils/Content';
 
 
 const StyledImg = Content.extend`
