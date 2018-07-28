@@ -9,6 +9,7 @@ import isObject from 'lodash/isObject';
 import { withSubscription, withViewValue } from '../hoc';
 import Base from '../utils/Base';
 import Content from '../utils/Content';
+import { ThemeConsumer } from '../utils/Theme';
 
 
 const bounceAnimation = keyframes`${flipInX}`;
@@ -69,9 +70,13 @@ const ListItem = (props) => {
   const Icon = assignee ? <StyledInvestigeIcon /> : <StyledErrorIcon />;
   return (
     <StyledLi>
-      <Status style={{ background: assignee ? '#efd700' : 'red' }}>
-        {Icon}
-      </Status>
+      <ThemeConsumer>{
+        ({ listAssigneeColor, listFailedColor }) => (
+          <Status style={{ background: assignee ? listAssigneeColor : listFailedColor }}>
+            {Icon}
+          </Status>)
+      }
+      </ThemeConsumer>
       <Build>
         <div>{name}</div>
         <Assignee>{assigneeName} assigned</Assignee>
