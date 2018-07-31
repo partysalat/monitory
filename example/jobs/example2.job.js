@@ -7,7 +7,7 @@ module.exports = {
     if (counter % 2) {
       // return Promise.reject(new Error('FOOFOFOOF'));
     }
-    return Promise.resolve(Math.round(Math.random() * 1000000));
+    return Promise.resolve(Math.round(Math.random() * 10000));
   },
 
 };

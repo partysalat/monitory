@@ -9,13 +9,15 @@ import AbsoluteContainer from './styled/AbsoluteContainer';
 const BackgroundChart = (props) => {
   const {
     current,
+    viewValue,
     graph,
     graphColor,
   } = props;
   if (!graph) {
     return null;
   }
-  const graphColorValue = isFunction(graphColor) ? graphColor(current) : graphColor;
+  // TODO: Move this into HOC or another function
+  const graphColorValue = isFunction(graphColor) ? graphColor(current, viewValue) : graphColor;
   const data = graph && graph(current);
   const series = {
     series: [data],

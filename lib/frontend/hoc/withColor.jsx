@@ -26,8 +26,9 @@ export default (WrappedComponent) => {
     const {
       color,
       current,
+      viewValue,
     } = props;
-    const calculatedColor = isFunction(color) ? color(current) : color;
+    const calculatedColor = isFunction(color) ? color(current, viewValue) : color;
 
     return (
       <ThemeConsumer>

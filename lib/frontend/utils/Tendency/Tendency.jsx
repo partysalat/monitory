@@ -15,13 +15,19 @@ class Tendency extends Component {
     return viewValue - last > 0 ? '-45deg' : '45deg';
   }
 
-  componentWillReceiveProps() {
-    this.setState(({ last }, { viewValue, current, withTendency }) => {
+  componentWillReceiveProps({ withTendency }) {
+    if (!withTendency) {
+      return;
+    }
+    this.setState(({ last, lastViewValue }, { viewValue, current }) => {
       const isTendencyCalculationProvided = isFunction(withTendency);
+      console.log(isTendencyCalculationProvided ?
+        withTendency(current, viewValue, last, lastViewValue) : Tendency.defaultRotation(viewValue, lastViewValue));
       return {
         rotation: isTendencyCalculationProvided ?
-          withTendency(current, last) : Tendency.defaultRotation(viewValue, last),
-        last: isTendencyCalculationProvided ? current : viewValue,
+          withTendency(current, viewValue, last, lastViewValue) : Tendency.defaultRotation(viewValue, lastViewValue),
+        last: current,
+        lastViewValue: viewValue,
 
       };
     });

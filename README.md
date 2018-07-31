@@ -144,15 +144,15 @@ Job name, to which this component should subscribe.
 **title (string)**
 Title to show on the card
 
-**showWhen (function(data))**
+**showWhen (function(data, viewValue))**
 When you only want to show the component when some conditions are met, you can use this hook.
-It is called with the current and the last value emitted by the job.   
+It is called with the current value provided by the job and the derived one provided by value prop.   
 
-**color (function(data) || string)**
+**color (function(data, viewValue) || string)**
 Define the background color of the card. You can either define it as a String or as a function to return a fitting color.
 The font is calculated accordingly (either black or white). 
 
-**alert (function(data) || boolean)**
+**alert (function(data, viewValue) || boolean)**
 Boolean that adds a pulse animation to the card, indicating that the team should focus attention.   
 
 **rows (number)**
@@ -168,17 +168,17 @@ A Card that shows just a number from data processed by a job.
 
 Inherits from `Base`. 
 
-**value (function(data)):Number**
+**value (function(data, viewValue)):Number**
 Function to map the view value from the job data. When the job emits the data, you should here reduce it to a single value which has to be a number.  
 
 
-**graph (function(data)):Array[Number]**
+**graph (function(data, viewValue)):Array[Number]**
 Function that maps the job data to an array of numbers to be shown as a line chart in the background. 
 
-**graphColor (function(data))|string**
+**graphColor (function(data, viewValue))|string**
 Define a color for the line chart as a function or directly as a string.
 
-**withTendency (boolean|function(current, last))**
+**withTendency (boolean|function(current, viewValue, last, lastViewValue))**
 Boolean that indicates if there should be a small arrow shown underneath the value showing the direction compared to the last value.
 If you provide a function, you have to return a css rotation attribute, e.g. `45deg` or `0.567rad`, depending on the data you retrieve.   
 
@@ -189,7 +189,7 @@ A list widget for failed build jobs.
 **value (function(data)):Array[String|Number]**
 Function to map the view value from the job data. When the job emits the data, you should here reduce it to an array of strings/numbers.  
 Takes an array of strings as parameter, but can also be an object with an assignee, e.g.
-```json
+```javascript
 ["TeamcityBuildJob","TeamcityBuildJob2", "TeamcityBuildJob3"]
 or
 [
@@ -225,7 +225,7 @@ Themeing:
 ---------
 You can choose between two themes: light and dark. 
 Or you can create your own theme by providing an object with the following properties:
-```json
+```javascript
 {
     background: '#ccc',
     fontSize: '100%',
@@ -269,9 +269,37 @@ and this will set the root font size (100% = 16px)
 
 This project is highly inspired by http://dashing.io/ which is unfortunately no longer maintained. 
 
+Useful Utility methods
+----------------------
+### Moving Window for tendency
+Calculates the moving average of the last `n` values. 
+```javascript
+import { helpers } from 'monitory/frontend';
+const lastElementConsidered = 5
+const movingAverage = helpers.movingAverage(lastElementConsidered);
+...
+<Card job="example3" withTendency={movingAverage} />
+...
+```
+### Range method for colors
+Use this small helper to easily define ranges to show colors. 
+Examples:
+```javascript
+import { helpers } from 'monitory/frontend';
+const colorRange = helpers.colorRange([
+  'red', 3000, 'blue', 6000, 'yellow',
+]);
+...
+<Card job="example3" color={colorRange} />
+...
+```
+Shows red, when the value is below 3000, blue when the value is between 3000 and 6000 and yellow when it is above 6000.
+ 
 
 [npm]: https://img.shields.io/npm/v/monitory.svg
 [npm-url]: https://npmjs.com/package/monitory
 
 [circleci]: https://img.shields.io/circleci/project/github/partysalat/monitory.svg
 [circleci-url]: https://circleci.com/gh/partysalat/monitory/tree/master
+
+

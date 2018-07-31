@@ -7,9 +7,10 @@ export default (WrappedComponent) => {
     const {
       showWhen,
       current,
+      viewValue,
     } = props;
 
-    if (!showWhen(current)) {
+    if (!showWhen(current, viewValue)) {
       return null;
     }
 
