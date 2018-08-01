@@ -6,13 +6,16 @@ import StyledArrow from './styled/StyledArrow';
 
 
 class Tendency extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { rotation: 0, last: 0 };
-  }
-
   static defaultRotation(viewValue, last) {
     return viewValue - last > 0 ? '-45deg' : '45deg';
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      rotation: 0,
+      last: 0, //eslint-disable-line
+    };
   }
 
   componentWillReceiveProps({ withTendency }) {

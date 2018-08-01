@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-import { flipInX as normalAnimation, pulse as alertAnimation} from 'react-animations';
+import { flipInX as normalAnimation, pulse as alertAnimation } from 'react-animations';
 
 
 const normalKeyframe = keyframes`${normalAnimation}`;

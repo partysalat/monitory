@@ -17,12 +17,10 @@ const Number = styled.h3`
   flex: 0 0 auto;
 `;
 
-let counter = 0;
 const Card = (props) => {
   const {
     viewValue,
   } = props;
-  counter += 1;
   return (
     <Base {...props} >
       <Content>
