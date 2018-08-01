@@ -10,7 +10,7 @@ You as a user just need to define two things:
 
 ![Sample 1](docs/screen1.png?raw=true)
 
-![Sample 2](docs/screen2.jpg?raw=true)
+![Sample 2](docs/screen2.png?raw=true)
 
 Disclaimer
 ------------
