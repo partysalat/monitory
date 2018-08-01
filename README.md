@@ -8,6 +8,10 @@ You as a user just need to define two things:
 * jobs: node processes, that fetches your data and emits events to the frontend 
 * dashboards: react components, that subscribes to emitted jobs and show the data.
 
+![Sample 1](docs/screen1.png?raw=true)
+
+![Sample 2](docs/screen2.jpg?raw=true)
+
 Disclaimer
 ------------
 This is an early version and far away from being usable. 
