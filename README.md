@@ -210,14 +210,14 @@ The src for the Iframe.
 **interval (Number)**
 Define the interval to refresh the iframe.
 
-### ReloadableIframe
+### ReloadableImg
 An Img component which reloads itself after an amount of time. For example for giffy.
 
 **src (String)**
-The src for the Iframe.
+The src for the Img.
 
 **interval (Number)**
-Define the interval to refresh the iframe.
+Define the interval to refresh the img.
 
 
 
