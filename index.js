@@ -1,7 +1,7 @@
-const apiServer = require('./lib/bootstrap/server');
-const assetsServer = require('./lib/bootstrap/assets');
-const logger = require('./lib/utils/logger');
-const config = require('./lib/config');
+const apiServer = require('./lib/backend/bootstrap/server');
+const assetsServer = require('./lib/backend/bootstrap/assets');
+const logger = require('./lib/backend/utils/logger');
+const config = require('./lib/backend/config');
 
 
 module.exports.start = async function start(options) {
@@ -12,6 +12,6 @@ module.exports.start = async function start(options) {
   logger.info('Monitory started at:', server.info.uri);
 };
 
-module.exports.teamcityClient = require('./lib/clients/teamcity.client');
-module.exports.elkClient = require('./lib/clients/elk.client');
-module.exports.graphiteClient = require('./lib/clients/graphite.client');
+module.exports.teamcityClient = require('./lib/backend/clients/teamcity.client');
+module.exports.elkClient = require('./lib/backend/clients/elk.client');
+module.exports.graphiteClient = require('./lib/backend/clients/graphite.client');

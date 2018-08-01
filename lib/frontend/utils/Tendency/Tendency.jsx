@@ -21,11 +21,10 @@ class Tendency extends Component {
     }
     this.setState(({ last, lastViewValue }, { viewValue, current }) => {
       const isTendencyCalculationProvided = isFunction(withTendency);
-      console.log(isTendencyCalculationProvided ?
-        withTendency(current, viewValue, last, lastViewValue) : Tendency.defaultRotation(viewValue, lastViewValue));
       return {
         rotation: isTendencyCalculationProvided ?
-          withTendency(current, viewValue, last, lastViewValue) : Tendency.defaultRotation(viewValue, lastViewValue),
+          withTendency(current, viewValue, last, lastViewValue) :
+          Tendency.defaultRotation(viewValue, lastViewValue),
         last: current,
         lastViewValue: viewValue,
 

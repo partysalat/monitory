@@ -9,10 +9,12 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
     "lint": "eslint --ext .js --ext .jsx lib/",
     "release": "npm run patch && git push origin --follow-tags && git push origin master",
     "patch": "npm version patch -m \"v%s\"",
+    "test:backend": "jest lib",
+    "test:frontend": "jest lib",
+    "coverage": "jest --collectCoverageFrom=lib/**/*.js --coverage target/coverage",
     "lint:fix": "npm run lint -- --fix"
   },
   "author": "Ben Lenser",
