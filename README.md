@@ -3,7 +3,7 @@ Monitory
 [![CircleCI][circleci]][circleci-url]
 [![npm][npm]][npm-url]
 
-This project is intended to be a small helper framework for creating dashboards to be used in teamareas.
+This project is intended to be a small helper framework for creating dashboards to be used in team areas.
 You as a user just need to define two things: 
 * jobs: node processes, that fetches your data and emits events to the frontend 
 * dashboards: react components, that subscribes to emitted jobs and show the data.
@@ -12,9 +12,10 @@ You as a user just need to define two things:
 
 ![Sample 2](docs/screen2.png?raw=true)
 
+
 Disclaimer
 ------------
-This is an early version and far away from being usable. 
+This is an early version, not so far away from being usable but breaking changes can still occur. 
 
 User Manual
 ===========
@@ -286,10 +287,10 @@ Or you can create your own theme by providing an object with the following prope
     background: '#ccc',
     fontSize: '100%',
     cardBackgroundColor: 'white',
-    cardFontColorBright: 'rgba(255,255,255,1)',
-    cardFontColorBrightLight: 'rgba(255,255,255,0.7)',
-    cardFontColorDark: 'rgba(0,0,0,1)',
-    cardFontColorLightDark: 'rgba(0,0,0,0.7)',
+    cardFontColorBright: 'rgba(255,255,255,1)', // Defines font color, when the background is bright
+    cardFontColorBrightLight: 'rgba(255,255,255,0.7)', // Defines title font color, when the background is bright
+    cardFontColorDark: 'rgba(0,0,0,1)', // Defines font color, when the background is dark
+    cardFontColorLightDark: 'rgba(0,0,0,0.7)', // Defines title font color, when the background is dark
     graphColor: 'rgba(0,0,0,0.3)',
     listAssigneeColor: '#efd700',
     listFailedColor: 'red',
@@ -310,8 +311,9 @@ export default function () {
     </ThemeProvider>
   );
 }
-
 ```
+
+
 
 Defining the dimensions of the dashboard
 ----------------------------------------
@@ -321,9 +323,6 @@ To control the size of the dashboard, you have basically three dimensions to set
 * **Font Size**: Using `fontSize` property of the theme. Every font is set with the `rem` relative property 
 and this will set the root font size (100% = 16px)
 
-
-
-This project is highly inspired by http://dashing.io/ which is unfortunately no longer maintained. 
 
 Useful Utility methods
 ----------------------
@@ -348,6 +347,46 @@ const {colorRange} = helpers;
 ...
 ```
 Shows red, when the value is below 3000, blue when the view value is between 3000 and 6000 and yellow when it is above 6000.
+
+
+
+Used Technologies
+==========
+Frontend
+--------
+* React - frontend component rendering
+* Redux/ Redux Saga - subscribe to websocket events and broadcasting to the dashboards/widgets
+* styled components / styled icons - css styling of react components 
+* react toastify - for showing errors / warnings
+* Chartist/React Chartist - responsive background charts
+* color - color calculations
+
+
+Backend
+-------
+* Hapi ecosystem - HTTP framework, still the best I know for node!
+* Nes - websocket handling 
+* cron - takes care of cron jobs
+* webpack serve - compile frontend assets on the fly
+* glob - file handling
+  
+
+Motivation
+==========
+In our team at work, we use a team monitor so if we get asked: does our system has a problem right now? We can soundly say: No, everything is fine. 
+This monitor had some metrics on the left and some rotating dashboards on the right. 
+Because we could easily oversee issues with rotating dashboards, we decided to search for alternatives to have a unified view.
+
+Main criteria were:
+* Be able to give an overview about business KPIs.
+* Be minimalistic; meaning showing only numbers instead of fine grained graphs, so that you can immediately see if errors occur. No need for interpret graphs or thinking too much. 
+The idea is not to have a highly dynamic dashboard with filters etc.
+* Show when errors occur in our application / nightly jobs / pipelines but hide when everything is fine.
+
+We searched for solutions, but for most of them, you have to pay and/or they provide too much functionality and thus complexity.
+So I have written something which should be easy to use. 
+
+This project is highly inspired by http://dashing.io/ which unfortunately is no longer maintained. 
 
 
 [npm]: https://img.shields.io/npm/v/monitory.svg
