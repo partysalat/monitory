@@ -50,8 +50,8 @@ and let it run with `node index.js`. It can be configured as well, the propertie
 monitory.start({
   port: 1337,
   assetsPort: 1338,
-  dashboards: `${__dirname}/dashboards/*`,
-  jobs: `${__dirname}/jobs/*`,
+  dashboards: `${__dirname}/dashboards/*`, //glob
+  jobs: `${__dirname}/jobs/*`, //glob
   additionalAssetsDir: `${__dirname}/assets`,
 });
 ``` 
@@ -114,6 +114,48 @@ module.exports = [{
 }];
 
 ```
+### Clients
+There are some clients provided, that helps you fetching data from common sources such as:
+
+
+#### Teamcity Client
+```javascript
+const { teamcityClient } = require('monitory')
+const client = teamcityClient.create({ url: 'https://teamcity.jetbrains.com' });
+```
+Provdes a method for retrieving failed jobs.
+* `client.getFailedJobsFor(<Array of Teamcity Project Ids>)`: Returns an array of the format
+  * `name` Job Name with parent project information separated by '/'
+  * `assignee`If somebody clicks assign in teamcity, the buildstep will be marked as assigned on the monitor. 
+ ```
+ [{name: <build name>, assignee:<Name of the teamcity user>},...]
+ ```
+
+#### ELK Client
+```javascript
+const { elkClient } = require('monitory');
+const client = elkClient.create({ url: 'https://elk.url', alias:'foo' });
+```
+With the methods:
+* `client.getCountFor(queryString,timeSpan)`: Returns the number of hits
+  * `queryString` The ElasticSearch querystring you want to count  
+  * `timespan=now-1h` Date math timespan (see https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#date-math)  
+* `client.getHistogramFor(queryString,timeSpan=now-1h, interval=30s)`: Returns a series of hits 
+  * `queryString` The ElasticSearch querystring you want to count  
+  * `timespan` Date math timespan (see https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#date-math)  
+  * `interval` duration of "one step" in the time series.   
+
+#### Graphite Client
+```javascript
+const { graphiteClient } = require('monitory');
+const client = graphiteClient.create({ url: 'https://elk.url', alias:'foo' });
+```
+With the methods:
+* `client.getHistogramFor(target,from=2h,until=now)`: Returns series of hits
+  * `target` graphite target   
+  * `from` At which point in time it should start  
+  * `until` At which point in time it should stop  
+
 
 Dashboards
 ------------ 
@@ -142,9 +184,6 @@ If you want to group your dashboards, you can add a title to them.
 
 All widgets have these properties 
 
-**job (string)**
-Job name, to which this component should subscribe. 
-
 **title (string)**
 Title to show on the card
 
@@ -172,12 +211,16 @@ A Card that shows just a number from data processed by a job.
 
 Inherits from `Base`. 
 
+**job (string)**
+Job name, to which this component should subscribe. 
+
 **value (function(data, viewValue)):Number**
 Function to map the view value from the job data. When the job emits the data, you should here reduce it to a single value which has to be a number.  
 
 
 **graph (function(data, viewValue)):Array[Number]**
-Function that maps the job data to an array of numbers to be shown as a line chart in the background. 
+Function that maps the job data to an array of numbers to be shown as a line chart in the background.
+An Array of `{x,y}` pairs are allowed as well.
 
 **graphColor (function(data, viewValue))|string**
 Define a color for the line chart as a function or directly as a string.
@@ -189,6 +232,11 @@ If you provide a function, you have to return a css rotation attribute, e.g. `45
 ### List
 
 A list widget for failed build jobs. 
+
+Inherits from `Base`. 
+
+**job (string)**
+Job name, to which this component should subscribe. 
 
 **value (function(data)):Array[String|Number]**
 Function to map the view value from the job data. When the job emits the data, you should here reduce it to an array of strings/numbers.  
@@ -203,10 +251,12 @@ or
 ]
 ```
 
-Inherits from `Base`. 
+
 
 ### ReloadableIframe
 Just an Iframe component which reloads itself after an amount of time. 
+
+Inherits from `Base`. 
 
 **src (String)**
 The src for the Iframe.
@@ -216,6 +266,8 @@ Define the interval to refresh the iframe.
 
 ### ReloadableImg
 An Img component which reloads itself after an amount of time. For example for giffy.
+
+Inherits from `Base`. 
 
 **src (String)**
 The src for the Img.
@@ -276,7 +328,7 @@ This project is highly inspired by http://dashing.io/ which is unfortunately no 
 Useful Utility methods
 ----------------------
 ### Moving Window for tendency
-Calculates the moving average of the last `n` values. 
+Calculates the moving average of the last `n` values. Because this components has state, you have to initialize it outside of the render method.
 ```javascript
 import { helpers } from 'monitory/frontend';
 const lastElementConsidered = 5
@@ -290,15 +342,13 @@ Use this small helper to easily define ranges to show colors.
 Examples:
 ```javascript
 import { helpers } from 'monitory/frontend';
-const colorRange = helpers.colorRange([
-  'red', 3000, 'blue', 6000, 'yellow',
-]);
+const {colorRange} = helpers;
 ...
-<Card job="example3" color={colorRange} />
+<Card job="example3" color={colorRange(['red', 3000, 'blue', 6000, 'yellow'])} />
 ...
 ```
-Shows red, when the value is below 3000, blue when the value is between 3000 and 6000 and yellow when it is above 6000.
- 
+Shows red, when the value is below 3000, blue when the view value is between 3000 and 6000 and yellow when it is above 6000.
+
 
 [npm]: https://img.shields.io/npm/v/monitory.svg
 [npm-url]: https://npmjs.com/package/monitory
