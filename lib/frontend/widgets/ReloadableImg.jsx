@@ -22,10 +22,11 @@ const IFrame = props => (
   </Base>);
 
 
-export default compose(withReloadableSrc)(IFrame);
+export default compose(
+  withReloadableSrc
+)(IFrame);
 
 IFrame.propTypes = {
-  job: PropTypes.string.isRequired,
   title: PropTypes.string,
   showWhen: PropTypes.func,
   color: PropTypes.oneOfType([
@@ -38,7 +39,6 @@ IFrame.propTypes = {
   ]).isRequired,
   cols: PropTypes.number,
   rows: PropTypes.number,
-  value: PropTypes.func,
 
   src: PropTypes.string.isRequired,
 };
