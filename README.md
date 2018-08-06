@@ -219,9 +219,9 @@ Job name, to which this component should subscribe.
 Function to map the view value from the job data. When the job emits the data, you should here reduce it to a single value which has to be a number.  
 
 
-**graph (function(data, viewValue)):Array[Number]**
-Function that maps the job data to an array of numbers to be shown as a line chart in the background.
-An Array of `{x,y}` pairs are allowed as well.
+**graph (boolean|function(data, viewValue)):Array[Number]**
+Function that maps the job data to an array of numbers to be shown as a line chart in the background. 
+An Array of `{x,y}` pairs are allowed as well. When providing a boolean, the data is just taken as it is.
 
 **graphColor (function(data, viewValue))|string**
 Define a color for the line chart as a function or directly as a string.

@@ -13,12 +13,13 @@ const BackgroundChart = (props) => {
     graph,
     graphColor,
   } = props;
-  if (!graph) {
+  if (!graph || !current) {
     return null;
   }
   // TODO: Move this into HOC or another function
   const graphColorValue = isFunction(graphColor) ? graphColor(current, viewValue) : graphColor;
-  const data = graph && graph(current);
+
+  const data = isFunction(graph) ? graph(current) : current;
   const series = {
     series: [data],
 
