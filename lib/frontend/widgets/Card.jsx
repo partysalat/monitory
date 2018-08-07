@@ -59,6 +59,7 @@ Card.propTypes = {
     PropTypes.func,
     PropTypes.bool,
   ]),
+  graphOptions: PropTypes.object,
   graphColor: PropTypes.oneOf([
     PropTypes.func,
     PropTypes.string,

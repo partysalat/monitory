@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ChartistGraph from 'react-chartist';
+import { merge } from 'lodash';
 import isFunction from 'lodash/isFunction';
 import { ThemeConsumer } from './../Theme';
 import AbsoluteContainer from './styled/AbsoluteContainer';
@@ -11,6 +12,7 @@ const BackgroundChart = (props) => {
     current,
     viewValue,
     graph,
+    graphOptions,
     graphColor,
   } = props;
   if (!graph || !current) {
@@ -24,11 +26,12 @@ const BackgroundChart = (props) => {
     series: [data],
 
   };
-  const options = {
+  const defaultOptions = {
     fullWidth: true,
     showArea: true,
     showPoint: false,
     lineSmooth: false,
+    low: 0,
     axisX: {
       offset: 0,
       showLabel: false,
@@ -44,7 +47,7 @@ const BackgroundChart = (props) => {
     <ThemeConsumer>
       {theme => (
         <AbsoluteContainer graphColor={graphColorValue || theme.graphColor}>
-          <ChartistGraph data={series} type="Line" options={options} style={{ height: '100%' }} />
+          <ChartistGraph data={series} type="Line" options={merge(defaultOptions, graphOptions)} style={{ height: '100%' }} />
         </AbsoluteContainer>)}
     </ThemeConsumer>);
 };
@@ -54,6 +57,7 @@ export default BackgroundChart;
 
 BackgroundChart.propTypes = {
   graph: PropTypes.func,
+  graphOptions: PropTypes.object,
   graphColor: PropTypes.oneOf([
     PropTypes.func,
     PropTypes.string,
@@ -61,4 +65,5 @@ BackgroundChart.propTypes = {
   current: PropTypes.any,
 };
 BackgroundChart.defaultProps = {
+  graphOptions: {},
 };

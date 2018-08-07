@@ -188,15 +188,15 @@ All widgets have these properties
 **title (string)**
 Title to show on the card
 
-**showWhen (function(data, viewValue))**
+**showWhen (function(data, viewValue):Boolean)**
 When you only want to show the component when some conditions are met, you can use this hook.
 It is called with the current value provided by the job and the derived one provided by value prop.   
 
-**color (function(data, viewValue) || string)**
+**color (function(data, viewValue):string | string)**
 Define the background color of the card. You can either define it as a String or as a function to return a fitting color.
 The font is calculated accordingly (either black or white). 
 
-**alert (function(data, viewValue) || boolean)**
+**alert (function(data, viewValue):boolean | boolean)**
 Boolean that adds a pulse animation to the card, indicating that the team should focus attention.   
 
 **rows (number)**
@@ -215,15 +215,18 @@ Inherits from `Base`.
 **job (string)**
 Job name, to which this component should subscribe. 
 
-**value (function(data, viewValue)):Number**
+**value (function(data, viewValue):Number)**
 Function to map the view value from the job data. When the job emits the data, you should here reduce it to a single value which has to be a number.  
 
 
-**graph (boolean|function(data, viewValue)):Array[Number]**
+**graph (boolean | function(data, viewValue):Array[Number])**
 Function that maps the job data to an array of numbers to be shown as a line chart in the background. 
 An Array of `{x,y}` pairs are allowed as well. When providing a boolean, the data is just taken as it is.
 
-**graphColor (function(data, viewValue))|string**
+**graphOptions (object))**
+Options to the line graph object (see https://gionkunz.github.io/chartist-js/api-documentation.html for details)
+
+**graphColor (function(data, viewValue):String)|string**
 Define a color for the line chart as a function or directly as a string.
 
 **withTendency (boolean|function(current, viewValue, last, lastViewValue))**
@@ -239,7 +242,7 @@ Inherits from `Base`.
 **job (string)**
 Job name, to which this component should subscribe. 
 
-**value (function(data)):Array[String|Number]**
+**value (function(data):Array[String|Number])**
 Function to map the view value from the job data. When the job emits the data, you should here reduce it to an array of strings/numbers.  
 Takes an array of strings as parameter, but can also be an object with an assignee, e.g.
 ```javascript
