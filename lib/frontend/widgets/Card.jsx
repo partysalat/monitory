@@ -37,7 +37,6 @@ const Card = (props) => {
 export default compose(
   withSubscription,
   withViewValue,
-  withAudio,
 )(Card);
 
 Card.propTypes = {

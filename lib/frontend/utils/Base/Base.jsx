@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { StyledCard, Title, UpdatedAt } from './styled';
 import { withColor, withShowWhen, withAlert } from '../../hoc';
+import withAudio from '../../hoc/withAudio';
 
 
 class Base extends Component {
@@ -44,6 +45,7 @@ class Base extends Component {
 }
 
 export default compose(
+  withAudio,
   withColor,
   withShowWhen,
   withAlert,
