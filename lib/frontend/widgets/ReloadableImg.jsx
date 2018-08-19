@@ -22,9 +22,7 @@ const IFrame = props => (
   </Base>);
 
 
-export default compose(
-  withReloadableSrc
-)(IFrame);
+export default compose(withReloadableSrc)(IFrame);
 
 IFrame.propTypes = {
   title: PropTypes.string,
