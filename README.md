@@ -199,6 +199,14 @@ The font is calculated accordingly (either black or white).
 **alert (function(data, viewValue):boolean | boolean)**
 Boolean that adds a pulse animation to the card, indicating that the team should focus attention.   
 
+**playAudioWhen (function(data, viewValue):string)**
+Define a function, which calculates on the current data, if a sound should be played. The logic behaves like this: 
+
+You have to return a path, which points to a soundfile. The function is called maybe multiple times but the sound file is only played once. 
+If the path to the sound file changes and you return another sound file path (or null), then it will play the returned other sound file (or nothing).
+When you return the first sound file again, the logic starts over.    
+Pro-Tip: You can place the sound file in the assets folder.   
+
 **rows (number)**
 Define the row span of the card
 

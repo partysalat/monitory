@@ -50,7 +50,7 @@ export default function withAudio(WrappedComponent) {
   };
 
   WithAudio.propTypes = {
-    playAudioWhen: PropTypes.func.isRequired,
+    playAudioWhen: PropTypes.func,
   };
   return connect(mapStateToProps, mapDispatchToProps)(WithAudio);
 }

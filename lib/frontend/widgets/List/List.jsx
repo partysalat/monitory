@@ -56,4 +56,5 @@ List.propTypes = {
   cols: PropTypes.number,
   rows: PropTypes.number,
   value: PropTypes.func,
+  playAudioWhen: PropTypes.func,
 };

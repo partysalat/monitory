@@ -67,4 +67,5 @@ Base.propTypes = {
   fontColor: PropTypes.string,
   fontColorLight: PropTypes.string,
   isAlert: PropTypes.bool,
+  playAudioWhen: PropTypes.func,
 };

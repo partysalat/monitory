@@ -68,4 +68,5 @@ Card.propTypes = {
     PropTypes.func,
     PropTypes.bool,
   ]),
+  playAudioWhen: PropTypes.func,
 };
