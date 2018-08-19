@@ -15,7 +15,7 @@ export default function () {
         <Card
           job="example3"
           title="Fooo"
-          playAudioWhen={(current, viewValue) => (viewValue > 50 ? EXPLOSION : null)}
+          playAudioWhen={(current, viewValue) => (viewValue > 2000 ? EXPLOSION : null)}
           withTendency={(current, viewValue, last) => `${0.5 * Math.PI * (last - current) / (last + current)}rad`}
           color={colorRange}
         />

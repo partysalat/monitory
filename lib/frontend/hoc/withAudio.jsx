@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import isFunction from 'lodash/isFunction';
@@ -14,20 +14,40 @@ export default function withAudio(WrappedComponent) {
     };
   }
 
-  const WithAudio = (props) => {
-    const {
-      playAudioWhen,
-      current,
-      viewValue,
-    } = props;
-
-    const sound = isFunction(playAudioWhen) ? playAudioWhen(current, viewValue) : false;
-
-    if (sound) {
-      props.playSound(sound);
+  const WithAudio = class extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        audioPlayed: false,
+      };
     }
 
-    return <WrappedComponent {...props} />;
+
+    componentWillReceiveProps(props) {
+      const {
+        playAudioWhen,
+        current,
+        viewValue,
+        playSound,
+      } = props;
+
+      const sound = isFunction(playAudioWhen) ? playAudioWhen(current, viewValue) : false;
+
+      if (sound && this.state.audioPlayed) {
+        return;
+      }
+
+      if (sound) {
+        playSound(sound);
+        this.setState({ audioPlayed: true });
+      } else {
+        this.setState({ audioPlayed: false });
+      }
+    }
+
+    render() {
+      return <WrappedComponent {...this.props} />;
+    }
   };
 
   WithAudio.propTypes = {
