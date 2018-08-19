@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import isFunction from 'lodash/isFunction';
+import isString from 'lodash/isString';
 import { playAudio } from '../redux/actions';
 
 export default function withAudio(WrappedComponent) {
@@ -18,7 +19,7 @@ export default function withAudio(WrappedComponent) {
     constructor(props) {
       super(props);
       this.state = {
-        audioPlayed: false,
+        lastSound: false,
       };
     }
 
@@ -33,16 +34,14 @@ export default function withAudio(WrappedComponent) {
 
       const sound = isFunction(playAudioWhen) ? playAudioWhen(current, viewValue) : false;
 
-      if (sound && this.state.audioPlayed) {
+      if (sound === this.state.lastSound) {
         return;
       }
 
-      if (sound) {
+      if (isString(sound)) {
         playSound(sound);
-        this.setState({ audioPlayed: true });
-      } else {
-        this.setState({ audioPlayed: false });
       }
+      this.setState({ lastSound: sound });
     }
 
     render() {
