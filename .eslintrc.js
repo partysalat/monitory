@@ -26,7 +26,8 @@ module.exports = {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/forbid-prop-types": [1, {'forbid':[]}],
     "react/require-default-props": [0],
-    "react/prop-types": [0]
+    "react/prop-types": [0],
+    "react/no-unused-prop-types": [0]
   }
 
 

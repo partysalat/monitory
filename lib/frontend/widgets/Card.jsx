@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import CountUpto from './../utils/CountUpto';
-import { withSubscription, withViewValue, withAudio } from '../hoc';
+import { withSubscription, withViewValue } from '../hoc';
 import Base from '../utils/Base';
 import Content from '../utils/Content';
 import BackgroundChart from '../utils/BackgroundChart';
