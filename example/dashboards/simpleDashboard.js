@@ -6,7 +6,7 @@ const movingAverage = helpers.movingAverage(5);
 const colorRange = helpers.colorRange([
   'red', 3000, 'blue', 6000, 'white', 9000, 'yellow',
 ]);
-
+const EXPLOSION = '/assets/explosion.mp3';
 export default function () {
   return (
     <ThemeProvider value={themes.dark}>
@@ -15,6 +15,7 @@ export default function () {
         <Card
           job="example3"
           title="Fooo"
+          playAudioWhen={(current, viewValue) => (viewValue > 50 ? EXPLOSION : null)}
           withTendency={(current, viewValue, last) => `${0.5 * Math.PI * (last - current) / (last + current)}rad`}
           color={colorRange}
         />
