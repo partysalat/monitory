@@ -20,6 +20,9 @@ export default WrappedComponent => class extends Component {
     }
 
     componentWillMount() {
+      if (!this.props.interval) {
+        return;
+      }
       this.interval = setInterval(() => {
         this.setState({
           newSrc: `${this.props.src}?r=${new Date().getTime()}`,
