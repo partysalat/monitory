@@ -11,12 +11,14 @@ const StyledIframe = styled.iframe`
   width:100%;
   height:100%;
   border: 0;
+  transform: scale(${props => props.zoom || 1});
+  transform-origin: 0 0;
 `;
 
 const ReloadableIframe = props => (
   <Base {...props} >
     <Content>
-      <StyledIframe src={props.src} border={0} allowfullscreen width={100} height={100} />
+      <StyledIframe src={props.src} border={0} allowfullscreen width={100} height={100} zoom={props.zoom}/>
     </Content>
   </Base>);
 
@@ -36,6 +38,7 @@ ReloadableIframe.propTypes = {
   ]).isRequired,
   cols: PropTypes.number,
   rows: PropTypes.number,
+  zoom: PropTypes.number,
 
   src: PropTypes.string.isRequired,
 };
