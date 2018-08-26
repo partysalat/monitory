@@ -11,20 +11,22 @@ const StyledIframe = styled.iframe`
   width:100%;
   height:100%;
   border: 0;
-  transform: scale(${props => props.zoom || 1});
+  transform: scale(${props => props.zoom});
   transform-origin: 0 0;
 `;
 
 const ReloadableIframe = props => (
   <Base {...props} >
     <Content>
-      <StyledIframe src={props.src} border={0} allowfullscreen width={100} height={100} zoom={props.zoom}/>
+      <StyledIframe src={props.src} border={0} allowfullscreen width={100} height={100} zoom={props.zoom} />
     </Content>
   </Base>);
 
 
 export default compose(withReloadableSrc)(ReloadableIframe);
-
+ReloadableIframe.defaultProps = {
+  zoom: 1,
+};
 ReloadableIframe.propTypes = {
   title: PropTypes.string,
   showWhen: PropTypes.func,
