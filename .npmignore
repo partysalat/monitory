@@ -1,0 +1,7 @@
+test/
+**/*.spec.js
+.circleci
+.idea/
+**/node_modules
+.eslintrc.js
+tmp/
