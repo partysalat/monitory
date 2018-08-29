@@ -12,9 +12,13 @@
     "lint": "eslint --ext .js --ext .jsx lib/",
     "release": "npm run patch && git push origin --follow-tags && git push origin master",
     "patch": "npm version patch -m \"v%s\"",
-    "test:backend": "jest lib",
-    "test:frontend": "jest lib",
-    "coverage": "jest --collectCoverageFrom=lib/**/*.js --coverage target/coverage",
+    "test:backend": "jest lib/backend --config test/config/jest.config.backend.js",
+    "test:backend-coverage": "npm run test:backend -- --coverage",
+    "test:backend-watch": "npm run test:backend -- --watch",
+    "test:frontend": "jest lib/frontend --config test/config/jest.config.frontend.js",
+    "test:frontend-watch": "npm run test:frontend -- --watch",
+    "test:frontend-coverage": "npm run test:frontend -- --coverage",
+    "test": "npm run test:backend && npm run test:frontend",
     "lint:fix": "npm run lint -- --fix"
   },
   "author": "Ben Lenser",
@@ -68,7 +72,10 @@
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jest": "^21.22.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.9.1"
+    "eslint-plugin-react": "^7.9.1",
+    "jest": "^23.5.0",
+    "mockdate": "^2.0.2"
   }
 }

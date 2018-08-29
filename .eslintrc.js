@@ -1,10 +1,11 @@
 module.exports = {
-  "extends": "airbnb",
+  "extends": ["airbnb", "plugin:jest/recommended"],
   "plugins": [
     "react",
-    "import"
+    "import",
+    "jest"
   ],
-  "parser":'babel-eslint',
+  "parser": 'babel-eslint',
   "parserOptions": {
     "ecmaVersion": 7,
     "sourceType": "module",
@@ -21,10 +22,11 @@ module.exports = {
   "globals": {
     "document": true,
     "window": true,
+    "jest/globals": true
   },
-  rules:{
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/forbid-prop-types": [1, {'forbid':[]}],
+  rules: {
+    "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
+    "react/forbid-prop-types": [1, {'forbid': []}],
     "react/require-default-props": [0],
     "react/prop-types": [0],
     "react/no-unused-prop-types": [0]
