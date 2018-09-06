@@ -6,7 +6,10 @@ const config = require('./lib/backend/config');
 
 module.exports.start = async function start(options) {
   config.load(options);
-  await assetsServer.compileAssetsAndStartServer();
+  await assetsServer.compileAssetsAndStartServer(
+    config.get('/dashboards'),
+    config.get('/assetsPort'),
+  );
   const server = await apiServer.startServer();
 
   logger.info('Monitory started at:', server.info.uri);
