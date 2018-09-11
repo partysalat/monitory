@@ -57,6 +57,7 @@ monitory.start({
 });
 ``` 
 
+If you want to see a full example, go to the example folder in this project.
 
 Jobs
 ------
@@ -115,6 +116,8 @@ module.exports = [{
 }];
 
 ```
+
+
 ### Clients
 There are some clients provided, that helps you fetching data from common sources such as:
 
