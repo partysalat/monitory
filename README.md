@@ -127,7 +127,7 @@ There are some clients provided, that helps you fetching data from common source
 const { teamcityClient } = require('monitory')
 const client = teamcityClient.create({ url: 'https://teamcity.jetbrains.com' });
 ```
-Provdes a method for retrieving failed jobs.
+Provides a method for retrieving failed jobs.
 * `client.getFailedJobsFor(<Array of Teamcity Project Ids>)`: Returns an array of the format
   * `name` Job Name with parent project information separated by '/'
   * `assignee`If somebody clicks assign in teamcity, the buildstep will be marked as assigned on the monitor. 
@@ -163,12 +163,27 @@ With the methods:
 
 Dashboards
 ------------ 
-For now, there are some components defined which makes your life easier. You can import them like
-```javascript 1.8
-import React from 'react';
-import { Dashboard, Card, List } from 'monitory/frontend';
-```
+For now, there are some components defined which makes your life easier. You can import them from `monitory/frontend`/
 Do not forget to import React! This is needed for jsx transpiling. 
+
+An example dashboard with an empty card could look like this:
+```javascript 1.7
+import React from 'react';
+import { Card, Dashboard } from 'monitory/frontend';
+
+export default function () {
+  return (
+    <Dashboard cols={2} title="Basic Dashboard">
+      <Card
+        job="myJobId2"
+        title="Basic Tile"
+      />
+
+    </Dashboard>
+  );
+}
+
+```
 
 ### Dashboard
 
@@ -208,7 +223,7 @@ Define a function, which calculates on the current data, if a sound should be pl
 You have to return a path, which points to a soundfile. The function is called maybe multiple times but the sound file is only played once. 
 If the path to the sound file changes and you return another sound file path (or null), then it will play the returned other sound file (or nothing).
 When you return the first sound file again, the logic starts over.    
-Pro-Tip: You can place the sound file in the assets folder.   
+Pro-Tip: You can place the sound file in the assets folder that is reachable under `/assets/<your file>`
 
 **rows (number)**
 Define the row span of the card
