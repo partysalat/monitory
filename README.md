@@ -185,6 +185,13 @@ export default function () {
 
 ```
 
+### Developing
+When you develop locally, consider setting this enviroment variable:  
+```bash
+export MONITORY_DEBUG=true
+```
+This will start webpack in debug mode and dramatically decrease compile time and development speed. 
+
 ### Dashboard
 
 The basic unit, used as a Wrapper for Cards. It has some layout options:
