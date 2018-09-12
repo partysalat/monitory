@@ -19,7 +19,8 @@ export default (WrappedComponent) => {
   };
   withShowWhen.propTypes = {
     showWhen: PropTypes.func,
-    current: PropTypes.any.isRequired,
+    current: PropTypes.any,
+    viewValue: PropTypes.any,
 
   };
   withShowWhen.defaultProps = {

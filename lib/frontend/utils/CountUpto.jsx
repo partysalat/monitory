@@ -28,6 +28,6 @@ class CountUpto extends Component {
 
 
 CountUpto.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.any,
 };
 export default CountUpto;

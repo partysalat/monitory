@@ -11,7 +11,7 @@ export default (WrappedComponent) => {
 
   withViewValue.propTypes = {
     value: PropTypes.func,
-    current: PropTypes.any.isRequired,
+    current: PropTypes.any,
 
   };
   withViewValue.defaultProps = {

@@ -42,8 +42,8 @@ export default (WrappedComponent) => {
       PropTypes.string,
       PropTypes.func,
     ]),
-    current: PropTypes.any.isRequired,
-
+    current: PropTypes.any,
+    viewValue: PropTypes.any,
   };
   return withColor;
 };

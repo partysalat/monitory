@@ -14,8 +14,9 @@ export default (WrappedComponent) => {
     alert: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.bool,
-    ]).isRequired,
-    current: PropTypes.any.isRequired,
+    ]),
+    current: PropTypes.any,
+    viewValue: PropTypes.any,
 
   };
   return withAlert;

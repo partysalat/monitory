@@ -37,7 +37,7 @@ class Base extends Component {
       >
         <Title style={{ color: fontColorLight }}>{title}</Title>
         {children}
-        <UpdatedAt style={{ color: fontColorLight }}>
+        lastUpdated && <UpdatedAt style={{ color: fontColorLight }}>
           Last updated at: {Base.formatDate(lastUpdated)}
         </UpdatedAt>
       </StyledCard>);
@@ -59,7 +59,7 @@ Base.defaultProps = {
 };
 
 Base.propTypes = {
-  lastUpdated: PropTypes.object.isRequired,
+  lastUpdated: PropTypes.object,
   title: PropTypes.string,
   cols: PropTypes.number,
   rows: PropTypes.number,
