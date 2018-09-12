@@ -178,7 +178,6 @@ export default function () {
         job="myJobId2"
         title="Basic Tile"
       />
-
     </Dashboard>
   );
 }
@@ -186,11 +185,11 @@ export default function () {
 ```
 
 ### Developing
-When you develop locally, consider setting this enviroment variable:  
+When you develop locally, consider setting this environment variable:  
 ```bash
 export MONITORY_DEBUG=true
 ```
-This will start webpack in debug mode and dramatically decrease compile time and development speed. 
+This will start webpack in debug mode and dramatically decrease compile time and increase development speed. 
 
 ### Dashboard
 
