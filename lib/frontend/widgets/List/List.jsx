@@ -52,7 +52,7 @@ List.propTypes = {
   alert: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.bool,
-  ]).isRequired,
+  ]),
   cols: PropTypes.number,
   rows: PropTypes.number,
   value: PropTypes.func,
