@@ -7,9 +7,6 @@ export default WrappedComponent => class extends Component {
       src: PropTypes.string.isRequired,
       interval: PropTypes.number,
     }
-    static defaultProps = {
-      interval: 20000,
-    }
     constructor(props) {
       super(props);
       this.state = {
