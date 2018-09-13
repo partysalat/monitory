@@ -8,17 +8,17 @@ import withReloadableSrc from '../hoc/withReloadableSrc';
 
 
 const StyledIframe = styled.iframe`
-  width:100%;
-  height:100%;
+  width:${props => 100 / props.zoom}%;
+  height:${props => 100 / props.zoom}%;
+  position:absolute;
   border: 0;
   transform: scale(${props => props.zoom});
-  transform-origin: 0 0;
 `;
 
 const ReloadableIframe = props => (
   <Base {...props} >
     <Content>
-      <StyledIframe src={props.src} border={0} allowfullscreen width={100} height={100} zoom={props.zoom} />
+      <StyledIframe src={props.src} border={0} allowfullscreen zoom={props.zoom} />
     </Content>
   </Base>);
 
