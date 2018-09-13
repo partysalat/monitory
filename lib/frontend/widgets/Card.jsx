@@ -55,16 +55,16 @@ Card.propTypes = {
   rows: PropTypes.number,
   value: PropTypes.func,
 
-  graph: PropTypes.oneOf([
+  graph: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.bool,
   ]),
   graphOptions: PropTypes.object,
-  graphColor: PropTypes.oneOf([
+  graphColor: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.string,
   ]),
-  withTendency: PropTypes.oneOf([
+  withTendency: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.bool,
   ]),

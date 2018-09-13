@@ -56,9 +56,12 @@ const BackgroundChart = (props) => {
 export default BackgroundChart;
 
 BackgroundChart.propTypes = {
-  graph: PropTypes.func,
+  graph: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.bool,
+  ]),
   graphOptions: PropTypes.object,
-  graphColor: PropTypes.oneOf([
+  graphColor: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.string,
   ]),
