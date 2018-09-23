@@ -64,10 +64,10 @@
     "redux-saga": "^0.16.0",
     "regenerator-runtime": "^0.12.1",
     "require-dir": "^1.0.0",
-    "style-loader": "^0.23.0",
     "styled-components": "^3.3.3",
     "styled-icons": "^2.3.1",
     "styled-normalize": "^8.0.0",
+    "to-string-loader": "^1.1.5",
     "virtual-module-webpack-plugin": "^0.4.0",
     "vision": "^5.3.3",
     "webpack": "^4.12.1",
@@ -87,7 +87,6 @@
     "jest": "^23.5.0",
     "mockdate": "^2.0.2",
     "source-map-loader": "^0.2.4",
-    "typescript": "^3.0.3",
-    "typings-for-css-modules-loader": "^1.7.0"
+    "typescript": "^3.0.3"
   }
 }
