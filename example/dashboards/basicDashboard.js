@@ -8,7 +8,7 @@ export default function () {
       <Card
         job="example3"
         title="Basic Tile"
-        alert={() => "foo"}
+        alert={() => 'foo'}
       />
 
     </Dashboard>

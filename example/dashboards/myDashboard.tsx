@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Box, Flex } from 'grid-styled';
 import { Card, Dashboard, List, ReloadableImg, ReloadableIframe } from './../../frontend';
 
