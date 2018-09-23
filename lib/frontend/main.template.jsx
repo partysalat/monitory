@@ -12,7 +12,7 @@ import getStore from './redux';
 /* eslint-disable */
 injectGlobal`
   ${styledNormalize}
-  ${toastCss.toString()}
+  ${toastCss}
   ${css`${chartistCss}`}
   body{
     font-family: 'Open Sans', sans-serif;

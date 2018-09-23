@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@types/react-redux": "^6.0.9"
+  },
   "devDependencies": {
     "grid-styled": "^4.3.1"
   },

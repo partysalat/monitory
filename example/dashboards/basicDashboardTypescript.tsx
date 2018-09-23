@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, Dashboard } from './../../frontend';
+import * as React from 'react';
+import {Card, Dashboard} from './../../frontend';
 
 
 export default function () {
