@@ -1,11 +1,15 @@
 import React from 'react';
 import Color from 'color';
 import isFunction from 'lodash/isFunction';
-import PropTypes from 'prop-types';
-import { ThemeConsumer } from '../utils/Theme';
+import {ThemeConsumer, Theme} from '../utils/Theme';
 
+interface WithColorProps<T, U> {
+    current: T,
+    viewValue: U,
+    color: (current: T, viewValue: U) => string | string
+}
 
-function getColors(color, theme) {
+function getColors(color:string, theme:Theme) {
   const c = Color(color || theme.cardBackgroundColor);
   const isLightBackground = !!Math.round((c.red() + c.blue() + c.green()) / (255 * 3));
   const {
@@ -21,8 +25,8 @@ function getColors(color, theme) {
   };
 }
 
-export default (WrappedComponent) => {
-  const withColor = (props) => {
+export default <T,U>(WrappedComponent: typeof React.Component) => {
+  return (props: WithColorProps<T,U>) => {
     const {
       color,
       current,
@@ -32,19 +36,10 @@ export default (WrappedComponent) => {
 
     return (
       <ThemeConsumer>
-        {theme => (
+        {(theme:Theme )=> (
           <WrappedComponent {...getColors(calculatedColor, theme)} {...props} />)
         }
       </ThemeConsumer>);
   };
-  withColor.propTypes = {
-    color: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]),
-    current: PropTypes.any,
-    viewValue: PropTypes.any,
-  };
-  return withColor;
 };
 
