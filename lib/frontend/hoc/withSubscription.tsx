@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
 import { subscribe } from '../redux/actions';
-
-export default function withSubscription(WrappedComponent) {
-  function mapStateToProps(state, props) {
+interface WithSubscriptionProps<T, U> {
+    job: string,
+    subscribe:(jobId:string) => null
+}
+export default <T, U>(WrappedComponent: typeof React.Component) => {
+  function mapStateToProps(state:any, props:WithSubscriptionProps<T,U>) {
     return { ...state.jobData[props.job] };
   }
   function mapDispatchToProps(dispatch) {
@@ -14,11 +16,7 @@ export default function withSubscription(WrappedComponent) {
     };
   }
 
-  const WithSubscriptionClass = class extends Component {
-    static propTypes = {
-      job: PropTypes.string.isRequired,
-      subscribe: PropTypes.func.isRequired,
-    }
+  const WithSubscriptionClass = class extends React.Component<WithSubscriptionProps<T,U>,any> {
     componentWillMount() {
       this.props.subscribe(this.props.job);
     }
