@@ -6,7 +6,7 @@ import {playAudio} from '../redux/actions';
 
 
 interface WithAudioProps<T, U> {
-    playAudioWhen: (current: T, viewValue: U) => string | boolean
+    playAudioWhen: (current: T, viewValue: U) => string
     current:T,
     viewValue:U,
     playSound: (audioPath:string) => string | boolean,
