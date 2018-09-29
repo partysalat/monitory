@@ -1,6 +1,5 @@
-import React from 'react';
+import * as React from 'react';
 import { compose } from 'redux';
-import PropTypes from 'prop-types';
 import { css } from 'styled-components';
 import { withReloadableSrc } from '../hoc';
 import Base from '../utils/Base';
@@ -16,7 +15,10 @@ const StyledImg = Content.extend`
   background-position: center;
 `;
 
-const IFrame = props => (
+interface ReloadableImgProps{
+    src:string
+}
+const IFrame = (props:ReloadableImgProps) => (
   <Base {...props} >
     <StyledImg src={props.src} />
   </Base>);
@@ -24,19 +26,19 @@ const IFrame = props => (
 
 export default compose(withReloadableSrc)(IFrame);
 
-IFrame.propTypes = {
-  title: PropTypes.string,
-  showWhen: PropTypes.func,
-  color: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
-  alert: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.bool,
-  ]),
-  cols: PropTypes.number,
-  rows: PropTypes.number,
-
-  src: PropTypes.string.isRequired,
-};
+// IFrame.propTypes = {
+//   title: PropTypes.string,
+//   showWhen: PropTypes.func,
+//   color: PropTypes.oneOfType([
+//     PropTypes.string,
+//     PropTypes.func,
+//   ]),
+//   alert: PropTypes.oneOfType([
+//     PropTypes.func,
+//     PropTypes.bool,
+//   ]),
+//   cols: PropTypes.number,
+//   rows: PropTypes.number,
+//
+//   src: PropTypes.string.isRequired,
+// };

@@ -8,9 +8,15 @@ interface WithReloadableSrcState {
     newSrc:string,
     lastUpdated: Date
 }
-export default WrappedComponent => class extends React.Component<WithReloadableSrcProps,WithReloadableSrcState> {
-    private interval: number;
 
+interface WithReloadableSrcComponent{
+    src:string,
+    lastUpdated:Date
+}
+
+type ReactComponent = (typeof React.Component) | ((props:WithReloadableSrcComponent)=>JSX.Element)
+export default (WrappedComponent: ReactComponent) => class extends React.Component<WithReloadableSrcProps,WithReloadableSrcState> {
+    private interval: number;
     constructor(props) {
       super(props);
       this.state = {
