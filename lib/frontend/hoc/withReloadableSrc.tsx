@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
+interface WithReloadableSrcProps {
+    src:string,
+    interval: number
+}
+interface WithReloadableSrcState {
+    newSrc:string,
+    lastUpdated: Date
+}
+export default WrappedComponent => class extends React.Component<WithReloadableSrcProps,WithReloadableSrcState> {
+    private interval: number;
 
-export default WrappedComponent => class extends Component {
-    static propTypes = {
-      src: PropTypes.string.isRequired,
-      interval: PropTypes.number,
-    }
     constructor(props) {
       super(props);
       this.state = {
         newSrc: props.src,
         lastUpdated: new Date(),
-
       };
     }
 
@@ -20,7 +23,7 @@ export default WrappedComponent => class extends Component {
       if (!this.props.interval) {
         return;
       }
-      this.interval = setInterval(() => {
+      this.interval = window.setInterval(() => {
         this.setState({
           newSrc: `${this.props.src}?r=${new Date().getTime()}`,
           lastUpdated: new Date(),
@@ -30,6 +33,7 @@ export default WrappedComponent => class extends Component {
     componentWillUnmount() {
       clearInterval(this.interval);
     }
+
 
     render() {
       return (<WrappedComponent
