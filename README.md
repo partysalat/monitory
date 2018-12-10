@@ -50,9 +50,9 @@ and let it run with `node index.js`. It can be configured as well, the propertie
 ```javascript 1.8
 monitory.start({
   port: 1337,
-  assetsPort: 1338,
   dashboards: `${__dirname}/dashboards/*`, //glob
   jobs: `${__dirname}/jobs/*`, //glob
+  jsAssetsDir: `${__dirname}/dist`, // path where to serve js assets from
   additionalAssetsDir: `${__dirname}/assets`,
 });
 ``` 
@@ -190,6 +190,7 @@ When you develop locally, consider setting this environment variable:
 export MONITORY_DEBUG=true
 ```
 This will start webpack in debug mode and dramatically decrease compile time and increase development speed. 
+Also webpack watch mode will be enabled, which will recompile your dashboards when you change them.  
 
 ### Dashboard
 
@@ -385,8 +386,10 @@ const {colorRange} = helpers;
 ...
 ```
 Shows red, when the value is below 3000, blue when the view value is between 3000 and 6000 and yellow when it is above 6000.
-
-
+If you want to just show the default color, use `null`, you can also omit the left and/or right boundary, e.g
+```javascript
+<Card job="example3" color={colorRange([ 3000, 'blue', 6000])} />
+```
 
 Used Technologies
 ==========
@@ -398,14 +401,13 @@ Frontend
 * react toastify - for showing errors / warnings
 * Chartist/React Chartist - responsive background charts
 * color - color calculations
-
+* webpack - compile frontend assets
 
 Backend
 -------
 * Hapi ecosystem - HTTP framework, still the best I know for node!
 * Nes - websocket handling 
 * cron - takes care of cron jobs
-* webpack serve - compile frontend assets on the fly
 * glob - file handling
   
 

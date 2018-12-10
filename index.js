@@ -6,9 +6,10 @@ const config = require('./lib/backend/config');
 
 module.exports.start = async function start(options) {
   config.load(options);
-  await assetsServer.compileAssetsAndStartServer(
+  await assetsServer.compileAssets(
     config.get('/dashboards'),
-    config.get('/assetsPort'),
+    config.get('/jsAssetsDir'),
+
   );
   const server = await apiServer.startServer();
 
