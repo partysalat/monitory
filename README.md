@@ -232,10 +232,10 @@ If the path to the sound file changes and you return another sound file path (or
 When you return the first sound file again, the logic starts over.    
 Pro-Tip: You can place the sound file in the assets folder that is reachable under `/assets/<your file>`
 
-**rows (number)**
+**rows (function(data, viewValue):Number|Number)**
 Define the row span of the card
 
-**cols (number)**
+**cols (function(data, viewValue):Number|Number)**
 Define the column span of the card
     
 

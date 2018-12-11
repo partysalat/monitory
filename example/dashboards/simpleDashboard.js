@@ -11,7 +11,7 @@ export default function () {
   return (
     <ThemeProvider value={themes.dark}>
       <Dashboard cols={7} title="MEIN Dashboard">
-        <List job="teamcity" title="Failed Teamcity Jobs" rows={1} cols={2} />
+        <List job="teamcity" title="Failed Teamcity Jobs" rows={(current = []) => Math.round(current.length / 2)} cols={2} />
         <Card
           job="example3"
           title="Fooo"

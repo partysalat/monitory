@@ -35,8 +35,13 @@ IFrame.propTypes = {
     PropTypes.func,
     PropTypes.bool,
   ]),
-  cols: PropTypes.number,
-  rows: PropTypes.number,
-
+  cols: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.func,
+  ]),
+  rows: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.func,
+  ]),
   src: PropTypes.string.isRequired,
 };

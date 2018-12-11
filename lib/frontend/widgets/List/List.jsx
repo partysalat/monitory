@@ -29,7 +29,7 @@ const List = (props) => {
     <Base {...props} >
       <BaselineContent>
         <FailedBuildSteps>
-          {viewValue.map(build => <ListItem key={build} build={build} />)}
+          {viewValue.map(build => <ListItem key={JSON.stringify(build)} build={build} />)}
         </FailedBuildSteps>
       </BaselineContent>
     </Base>);
@@ -53,8 +53,14 @@ List.propTypes = {
     PropTypes.func,
     PropTypes.bool,
   ]),
-  cols: PropTypes.number,
-  rows: PropTypes.number,
+  cols: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.func,
+  ]),
+  rows: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.func,
+  ]),
   value: PropTypes.func,
   playAudioWhen: PropTypes.func,
 };

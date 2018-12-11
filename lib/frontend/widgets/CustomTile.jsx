@@ -39,8 +39,14 @@ Card.propTypes = {
     PropTypes.func,
     PropTypes.bool,
   ]),
-  cols: PropTypes.number,
-  rows: PropTypes.number,
+  cols: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.func,
+  ]),
+  rows: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.func,
+  ]),
   value: PropTypes.func,
 
 };
