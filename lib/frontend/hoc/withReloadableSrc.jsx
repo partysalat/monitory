@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+function parseUrl(url) {
+  return new URL(url);
+}
 
 export default WrappedComponent => class extends Component {
     static propTypes = {
@@ -12,7 +15,6 @@ export default WrappedComponent => class extends Component {
       this.state = {
         newSrc: props.src,
         lastUpdated: new Date(),
-
       };
     }
 
@@ -21,8 +23,10 @@ export default WrappedComponent => class extends Component {
         return;
       }
       this.interval = setInterval(() => {
+        const newSrc = parseUrl(this.props.src);
+        newSrc.searchParams.append('_', new Date().getTime());
         this.setState({
-          newSrc: `${this.props.src}?r=${new Date().getTime()}`,
+          newSrc: newSrc.toString(),
           lastUpdated: new Date(),
         });
       }, this.props.interval);
