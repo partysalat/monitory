@@ -52,8 +52,9 @@ monitory.start({
   port: 1337,
   dashboards: `${__dirname}/dashboards/*`, //glob
   jobs: `${__dirname}/jobs/*`, //glob
+  jobsParallelism: Number.MAX_SAFE_INTEGER, // defines how many jobs are executed in parallel
   jsAssetsDir: `${__dirname}/dist`, // path where to serve js assets from
-  additionalAssetsDir: `${__dirname}/assets`,
+  additionalAssetsDir: `${__dirname}/assets`,// path where to serve additional assets (like soundfiles, icons) from
 });
 ``` 
 
