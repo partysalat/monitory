@@ -60,6 +60,8 @@ monitory.start({
 
 If you want to see a full example, go to the example folder in this project.
 
+For windows users: Please use forward slashes for globs as well. The used library uses this as default and maps to the windows file separator (see https://www.npmjs.com/package/glob#windows)
+
 Jobs
 ------
 Jobs are the main processing unit for your data crawling. A job file just exports a map with following values:
