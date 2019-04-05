@@ -49,6 +49,7 @@
     "joi": "^13.4.0",
     "lodash": "^4.17.10",
     "nes": "^9.0.0",
+    "normalize.css": "^8.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-animations": "^1.0.0",
@@ -63,7 +64,6 @@
     "require-dir": "^1.0.0",
     "styled-components": "^3.3.3",
     "styled-icons": "^2.3.1",
-    "styled-normalize": "^8.0.0",
     "virtual-module-webpack-plugin": "^0.4.0",
     "vision": "^5.3.3",
     "webpack": "^4.12.1"
