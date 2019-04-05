@@ -1,5 +1,5 @@
 import React from 'react';
-import { injectGlobal } from 'styled-components';
+import { injectGlobal, css } from 'styled-components';
 
 export const themes = {
   light: {
@@ -15,6 +15,7 @@ export const themes = {
     listFailedColor: 'red',
     headlineColor: 'black',
     headlineBackground: '#eee',
+    customCss: '',
   },
   dark: {
     background: '#222',
@@ -29,6 +30,7 @@ export const themes = {
     listFailedColor: 'red',
     headlineColor: 'white',
     headlineBackground: '#777',
+    customCss: '',
   },
 };
 const ThemeContext = React.createContext(themes.light);
@@ -44,6 +46,7 @@ class GlobalThemeComponent extends React.Component {
     body{
       background: ${this.props.theme.background};
     }
+    ${css`${this.props.theme.customCss}`}
     `;
   }
 

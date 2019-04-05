@@ -336,6 +336,7 @@ Or you can create your own theme by providing an object with the following prope
     listFailedColor: 'red',
     headlineColor: 'black',
     headlineBackground: '#eee',
+    customCss: {...} // Provide custom global css
   }
 
 ```
