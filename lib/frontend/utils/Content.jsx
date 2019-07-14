@@ -10,4 +10,3 @@ export default styled.div`
   align-items: center;
   position:relative;
 `;
-

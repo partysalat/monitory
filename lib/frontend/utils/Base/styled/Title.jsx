@@ -6,4 +6,3 @@ export default styled.div`
   line-height:40px;
   height: 40px;
 `;
-

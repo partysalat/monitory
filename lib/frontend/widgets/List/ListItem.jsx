@@ -52,16 +52,23 @@ export default (props) => {
   const Icon = assignee ? <StyledInvestigeIcon /> : <StyledErrorIcon />;
   return (
     <StyledLi>
-      <ThemeConsumer>{
+      <ThemeConsumer>
+        {
         ({ listAssigneeColor, listFailedColor }) => (
           <Status style={{ background: assignee ? listAssigneeColor : listFailedColor }}>
             {Icon}
-          </Status>)
+          </Status>
+)
       }
       </ThemeConsumer>
       <Build>
         <div>{name}</div>
-        <Assignee>{assigneeName} assigned</Assignee>
+        <Assignee>
+          {assigneeName}
+          {' '}
+assigned
+        </Assignee>
       </Build>
-    </StyledLi>);
+    </StyledLi>
+);
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import CountUpto from './../utils/CountUpto';
+import CountUpto from '../utils/CountUpto';
 import { withSubscription, withViewValue } from '../hoc';
 import Base from '../utils/Base';
 import Content from '../utils/Content';
@@ -22,7 +22,7 @@ const Card = (props) => {
     viewValue,
   } = props;
   return (
-    <Base {...props} >
+    <Base {...props}>
       <Content>
         <BackgroundChart {...props} />
         <Number>
@@ -30,7 +30,8 @@ const Card = (props) => {
         </Number>
         <Tendency {...props} />
       </Content>
-    </Base>);
+    </Base>
+);
 };
 
 

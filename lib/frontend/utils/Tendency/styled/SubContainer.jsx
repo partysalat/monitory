@@ -5,4 +5,3 @@ export default styled.div`
   font-size: 0.7rem;
   margin-top:5px;
 `;
-

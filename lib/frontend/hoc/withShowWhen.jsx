@@ -28,4 +28,3 @@ export default (WrappedComponent) => {
   };
   return withShowWhen;
 };
-

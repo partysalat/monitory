@@ -17,9 +17,10 @@ const StyledImg = Content.extend`
 `;
 
 const IFrame = props => (
-  <Base {...props} >
+  <Base {...props}>
     <StyledImg src={props.src} />
-  </Base>);
+  </Base>
+);
 
 
 export default compose(withReloadableSrc)(IFrame);

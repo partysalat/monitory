@@ -14,11 +14,12 @@ const Card = (props) => {
     current,
   } = props;
   return (
-    <Base {...props} >
+    <Base {...props}>
       <Content>
         {isFunction(children) ? children(current, viewValue) : children}
       </Content>
-    </Base>);
+    </Base>
+);
 };
 
 

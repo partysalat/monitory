@@ -10,6 +10,7 @@ export default WrappedComponent => class extends Component {
       src: PropTypes.string.isRequired,
       interval: PropTypes.number,
     }
+
     constructor(props) {
       super(props);
       this.state = {
@@ -31,15 +32,18 @@ export default WrappedComponent => class extends Component {
         });
       }, this.props.interval);
     }
+
     componentWillUnmount() {
       clearInterval(this.interval);
     }
 
     render() {
-      return (<WrappedComponent
-        {...this.props}
-        src={this.state.newSrc}
-        lastUpdated={this.state.lastUpdated}
-      />);
+      return (
+        <WrappedComponent
+          {...this.props}
+          src={this.state.newSrc}
+          lastUpdated={this.state.lastUpdated}
+        />
+);
     }
 };

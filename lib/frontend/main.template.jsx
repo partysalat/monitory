@@ -31,4 +31,3 @@ render(
   </Provider>,
   rootElement,
 );
-

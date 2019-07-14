@@ -35,7 +35,8 @@ export default (WrappedComponent) => {
         {theme => (
           <WrappedComponent {...getColors(calculatedColor, theme)} {...props} />)
         }
-      </ThemeConsumer>);
+      </ThemeConsumer>
+);
   };
   withColor.propTypes = {
     color: PropTypes.oneOfType([
@@ -47,4 +48,3 @@ export default (WrappedComponent) => {
   };
   return withColor;
 };
-

@@ -5,6 +5,7 @@ module.exports = {
   clearMocks: true,
   coverageDirectory: 'target/reports/coverage-frontend',
   setupFilesAfterEnv: [`${__dirname}/enzymeSetup.js`],
+  setupFiles: [`${__dirname}/randomData.js`],
   coveragePathIgnorePatterns: [
     '/node_modules/',
   ],

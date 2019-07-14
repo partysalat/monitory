@@ -9,4 +9,3 @@ export default Arrow.extend`
   transform : rotate(${({ rotation }) => css`${rotation}`});
   color: ${({ color }) => css`${color}`}
 `;
-

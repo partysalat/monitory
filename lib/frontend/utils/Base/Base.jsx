@@ -38,10 +38,15 @@ class Base extends Component {
       >
         <Title style={{ color: fontColorLight }}>{title}</Title>
         {children}
-        {lastUpdated && <UpdatedAt style={{ color: fontColorLight }}>
-          Last updated at: {Base.formatDate(lastUpdated)}
-        </UpdatedAt>}
-      </StyledCard>);
+        {lastUpdated && (
+        <UpdatedAt style={{ color: fontColorLight }}>
+          Last updated at:
+          {' '}
+          {Base.formatDate(lastUpdated)}
+        </UpdatedAt>
+)}
+      </StyledCard>
+);
   }
 }
 

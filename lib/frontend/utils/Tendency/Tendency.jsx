@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import isFunction from 'lodash/isFunction';
-import { ThemeConsumer } from './../Theme';
+import { ThemeConsumer } from '../Theme';
 import SubContainer from './styled/SubContainer';
 import StyledArrow from './styled/StyledArrow';
 
@@ -25,9 +25,9 @@ class Tendency extends Component {
     this.setState(({ last, lastViewValue }, { viewValue, current }) => {
       const isTendencyCalculationProvided = isFunction(withTendency);
       return {
-        rotation: isTendencyCalculationProvided ?
-          withTendency(current, viewValue, last, lastViewValue) :
-          Tendency.defaultRotation(viewValue, lastViewValue),
+        rotation: isTendencyCalculationProvided
+          ? withTendency(current, viewValue, last, lastViewValue)
+          : Tendency.defaultRotation(viewValue, lastViewValue),
         last: current,
         lastViewValue: viewValue,
 
@@ -47,7 +47,8 @@ class Tendency extends Component {
             <StyledArrow rotation={this.state.rotation} color={theme.fontColor} />
           </SubContainer>
         )}
-      </ThemeConsumer>);
+      </ThemeConsumer>
+);
   }
 }
 

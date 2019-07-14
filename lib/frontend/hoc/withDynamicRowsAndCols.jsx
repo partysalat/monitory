@@ -32,4 +32,3 @@ export default (WrappedComponent) => {
   };
   return withDynamicRowsAndCols;
 };
-

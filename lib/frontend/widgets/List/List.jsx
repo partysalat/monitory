@@ -26,13 +26,14 @@ const List = (props) => {
   } = props;
 
   return (
-    <Base {...props} >
+    <Base {...props}>
       <BaselineContent>
         <FailedBuildSteps>
           {viewValue.map(build => <ListItem key={JSON.stringify(build)} build={build} />)}
         </FailedBuildSteps>
       </BaselineContent>
-    </Base>);
+    </Base>
+);
 };
 
 

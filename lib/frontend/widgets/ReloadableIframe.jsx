@@ -16,11 +16,12 @@ const StyledIframe = styled.iframe`
 `;
 
 const ReloadableIframe = props => (
-  <Base {...props} >
+  <Base {...props}>
     <Content>
       <StyledIframe src={props.src} border={0} allowfullscreen zoom={props.zoom} />
     </Content>
-  </Base>);
+  </Base>
+);
 
 
 export default compose(withReloadableSrc)(ReloadableIframe);

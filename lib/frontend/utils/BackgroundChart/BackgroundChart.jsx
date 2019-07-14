@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ChartistGraph from 'react-chartist';
 import { merge } from 'lodash';
 import isFunction from 'lodash/isFunction';
-import { ThemeConsumer } from './../Theme';
+import { ThemeConsumer } from '../Theme';
 import AbsoluteContainer from './styled/AbsoluteContainer';
 
 
@@ -48,8 +48,10 @@ const BackgroundChart = (props) => {
       {theme => (
         <AbsoluteContainer graphColor={graphColorValue || theme.graphColor}>
           <ChartistGraph data={series} type="Line" options={merge(defaultOptions, graphOptions)} style={{ height: '100%' }} />
-        </AbsoluteContainer>)}
-    </ThemeConsumer>);
+        </AbsoluteContainer>
+)}
+    </ThemeConsumer>
+);
 };
 
 
