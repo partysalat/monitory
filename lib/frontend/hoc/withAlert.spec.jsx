@@ -1,6 +1,7 @@
 // test file
 import { shallow } from 'enzyme';
 import React from 'react';
+import { random } from 'faker';
 import withAlert from './withAlert';
 
 
@@ -25,11 +26,15 @@ describe('withAlert', () => {
 
     expect(wrapper.find(DummyComponent).props()).toEqual(expect.objectContaining(randomProps));
   });
-  it('calls property method with current and viewValue', () => {
-    const randomProps = createRandomProps();
-    const wrapper = shallow(<DummyComponentWithHoc  />);
 
-    expect(wrapper.find(DummyComponent).props()).toEqual(expect.objectContaining(randomProps));
+  it('calls property method with props current and viewValue', () => {
+    const currentValue = random.alphaNumeric(10);
+    const viewValue = random.alphaNumeric(10);
+    const alertSpy = jest.fn();
+
+    shallow(<DummyComponentWithHoc current={currentValue} viewValue={viewValue} alert={alertSpy} />);
+
+    expect(alertSpy).toHaveBeenCalledWith(currentValue, viewValue);
   });
 
   const testCases = [true, false, undefined];
