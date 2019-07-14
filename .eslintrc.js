@@ -24,13 +24,15 @@ module.exports = {
     "window": true,
     "jest/globals": true
   },
-  rules: {
+  "rules": {
     "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
     "react/forbid-prop-types": [1, {'forbid': []}],
     "react/require-default-props": [0],
     "react/prop-types": [0],
     "react/no-unused-prop-types": [0],
-    "no-use-before-define": [0]
+    "no-use-before-define": [0],
+    "template-curly-spacing" : "off",
+    "indent": "off"
 
   }
 
