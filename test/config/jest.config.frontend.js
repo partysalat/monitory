@@ -3,7 +3,7 @@
 
 module.exports = {
   clearMocks: true,
-  coverageDirectory: 'target/reports/coverage-frontend',
+  coverageDirectory: `${__dirname}/../../target/reports/coverage-frontend`,
   setupFilesAfterEnv: [`${__dirname}/enzymeSetup.js`],
   setupFiles: [`${__dirname}/randomData.js`],
   coveragePathIgnorePatterns: [
@@ -15,10 +15,10 @@ module.exports = {
     '!**/vendor/**',
   ],
   coverageReporters: [
-    // "json",
+    'json',
     'text',
-    // "lcov",
-    // "clover"
+    'lcov',
+    'clover',
   ],
   rootDir: `${__dirname}/../../lib/frontend`,
 
