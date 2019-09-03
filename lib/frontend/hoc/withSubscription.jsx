@@ -18,7 +18,7 @@ export default function withSubscription(WrappedComponent) {
     static propTypes = {
       job: PropTypes.string.isRequired,
       subscribe: PropTypes.func.isRequired,
-    }
+    };
 
     componentWillMount() {
       this.props.subscribe(this.props.job);

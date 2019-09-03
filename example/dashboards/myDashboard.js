@@ -1,7 +1,8 @@
 import React from 'react';
 import { Box, Flex } from 'grid-styled';
-import { Card, Dashboard, List, ReloadableImg, ReloadableIframe } from './../../frontend';
-
+import { Card, Dashboard, List, ReloadableImg, ReloadableIframe, StatusList } from './../../frontend';
+import { Adjust } from 'styled-icons/fa-solid/Adjust';
+import { get, has, map } from 'lodash';
 
 const sharedProps = {
   value: (current = {}) => current.randomNumber,
@@ -14,14 +15,33 @@ const sharedProps = {
     return 'pink';
   },
 };
+const teamCityStatusConfigExtension = {
+  failed: {
+    default: false,
+  },
+  adjusted: {
+    default: true,
+    background: 'grey',
+    icon: Adjust,
+  },
+};
+
+const transformToStatusListData = listData => map(listData, (item) => {
+  const { name } = item;
+  const subtitle = `${get(item, 'assignee', 'Nobody')}  assigned`;
+  const status = (has(item, 'assignee')) ? 'investigated' : 'failed';
+  return { name, subtitle, status };
+});
+
 export default function () {
   return (
     <Flex>
-      <Box width={1 / 2} >
-        <Dashboard cols={3} title="MEIN DASHBOAR">
+      <Box width={1 / 2}>
+        <Dashboard cols={3} title="MEIN DASHBOARD">
           <Card alert job="example1" title="Waidmanns Heil! " {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
-          <List job="teamcity" title="Failed Teamcity Jobs" showWhen={(current = {}) => current.length > 5} rows={2} cols={1} />
+          <StatusList job="teamcity" title="Failed Teamcity Jobs" showWhen={(current = {}) => current.length > 5} rows={2} cols={1} value={transformToStatusListData} />
+          <StatusList job="teamcityStatus" title="Teamcity Jobs" rows={2} cols={1} statusConfigExt={teamCityStatusConfigExtension} />
           <Card job="example2" title="Example2" {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
           <Card job="example2" title="Example2" {...sharedProps} />
@@ -29,7 +49,7 @@ export default function () {
 
         </Dashboard>
       </Box>
-      <Box width={1 / 2} >
+      <Box width={1 / 2}>
         <Dashboard cols={3}>
           <ReloadableImg src="http://thecatapi.com/api/images/get?size=med" title="The Cat API" cols={2} rows={2} interval={60000} />
           <ReloadableIframe src="http://localhost:1337" title="Dashboards (Iframe Example)" cols={1} rows={2} interval={10000} zoom={1.5} />
