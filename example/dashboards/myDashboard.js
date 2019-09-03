@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Flex } from 'grid-styled';
-import { Card, Dashboard, List, ReloadableImg, ReloadableIframe, StatusList } from './../../frontend';
+import { Card, Dashboard, ReloadableImg, ReloadableIframe, StatusList, themes } from './../../frontend';
 import { Adjust } from 'styled-icons/fa-solid/Adjust';
 import { get, has, map } from 'lodash';
 
@@ -15,16 +15,22 @@ const sharedProps = {
     return 'pink';
   },
 };
+
+// extends status config for teamcity status list
 const teamCityStatusConfigExtension = {
   failed: {
     default: false,
   },
   adjusted: {
     default: true,
-    background: 'grey',
+    background: 'statusAdjustedColor',
     icon: Adjust,
   },
 };
+// extends themes with new status colors
+themes.light.statusAdjustedColor = 'grey';
+themes.dark.statusAdjustedColor = 'grey';
+
 
 const transformToStatusListData = listData => map(listData, (item) => {
   const { name } = item;

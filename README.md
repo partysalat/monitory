@@ -328,8 +328,10 @@ There is a special but also simple format to this configuration. The example sho
 to not be the default status anymore and add a new `adjusted` status.
 
 ```
+import { StatusList, themes } from 'monitory/frontend';
 import { Adjust } from 'styled-icons/fa-solid/Adjust';
 
+// extends status config for teamcity status list
 const teamCityStatusConfigExtension = {
   failed: {
     default: false,
@@ -340,6 +342,9 @@ const teamCityStatusConfigExtension = {
     icon: Adjust,
   },
 };
+// extends themes with new status colors
+themes.light.statusAdjustedColor = 'grey';
+themes.dark.statusAdjustedColor = 'grey';
 
 ...
     <StatusList job="teamcityStatus" title="Teamcity Jobs" rows={2} cols={1} statusConfigExt={teamCityStatusConfigExtension} />
@@ -406,8 +411,6 @@ The src for the Img.
 **interval (Number)**
 Define the interval to refresh the img.
 
-
-
 Themeing:
 ---------
 You can choose between two themes: light and dark. 
@@ -424,6 +427,9 @@ Or you can create your own theme by providing an object with the following prope
     graphColor: 'rgba(0,0,0,0.3)',
     listAssigneeColor: '#efd700',
     listFailedColor: 'red',
+    statusFailedColor: 'red',
+    statusCheckColor: 'green',
+    statusInvestigatedColor: '#efd700',
     headlineColor: 'black',
     headlineBackground: '#eee',
     customCss: {...} // Provide custom global css

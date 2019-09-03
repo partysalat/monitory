@@ -7,6 +7,7 @@ import {
 import { Check as CheckIcon } from 'styled-icons/fa-solid/Check';
 import { Bolt as FailedIcon } from 'styled-icons/fa-solid/Bolt';
 import { Search as InvestigatedIcon } from 'styled-icons/fa-solid/Search';
+import { ThemeConsumer } from '../../utils/Theme';
 
 const bounceAnimation = keyframes`${flipInX}`;
 const StyledLi = styled.li`
@@ -34,17 +35,17 @@ const Status = styled.div`
 const defaultStatusConfig = {
   check: {
     default: false,
-    background: 'green',
+    background: 'statusCheckColor',
     icon: CheckIcon,
   },
   failed: {
     default: true,
-    background: 'red',
+    background: 'statusFailedColor',
     icon: FailedIcon,
   },
   investigated: {
     default: false,
-    background: '#efd700',
+    background: 'statusInvestigatedColor',
     icon: InvestigatedIcon,
   },
 };
@@ -74,9 +75,15 @@ export default (props) => {
 
   return (
     <StyledLi>
-      <Status statusColor={config.background}>
-        <Icon />
-      </Status>
+      <ThemeConsumer>
+        {
+          theme => (
+            <Status statusColor={theme[config.background]}>
+              <Icon />
+            </Status>
+          )
+        }
+      </ThemeConsumer>
       <Item>
         <div>{name}</div>
         {subtitle && <Subtitle>{subtitle}</Subtitle>}
