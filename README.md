@@ -335,10 +335,11 @@ import { Adjust } from 'styled-icons/fa-solid/Adjust';
 const teamCityStatusConfigExtension = {
   failed: {
     default: false,
+    background: 'yellow',
   },
   adjusted: {
     default: true,
-    background: 'grey',
+    background: theme => theme.statusAdjustedColor,
     icon: Adjust,
   },
 };

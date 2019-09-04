@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { flipInX } from 'react-animations';
 import {
- get, isObject, isUndefined, find, merge,
+ get, isObject, isUndefined, find, merge, isFunction,
 } from 'lodash';
 import { Check as CheckIcon } from 'styled-icons/fa-solid/Check';
 import { Bolt as FailedIcon } from 'styled-icons/fa-solid/Bolt';
@@ -35,17 +35,17 @@ const Status = styled.div`
 const defaultStatusConfig = {
   check: {
     default: false,
-    background: 'statusCheckColor',
+    background: theme => theme.statusCheckColor,
     icon: CheckIcon,
   },
   failed: {
     default: true,
-    background: 'statusFailedColor',
+    background: theme => theme.statusFailedColor,
     icon: FailedIcon,
   },
   investigated: {
     default: false,
-    background: 'statusInvestigatedColor',
+    background: theme => theme.statusInvestigatedColor,
     icon: InvestigatedIcon,
   },
 };
@@ -61,6 +61,8 @@ const findDefaultStatus = (statusConfig) => {
   const defaultStatus = find(statusConfig, ['default', true]);
   return isUndefined(defaultStatus) ? statusConfig.failed : defaultStatus;
 };
+
+const provideBackgroundColor = (theme, value) => isFunction(value) ? value(theme) : value;
 
 export default (props) => {
   const { item, statusConfigExt } = props;
@@ -78,7 +80,7 @@ export default (props) => {
       <ThemeConsumer>
         {
           theme => (
-            <Status statusColor={theme[config.background]}>
+            <Status statusColor={provideBackgroundColor(theme, config.background)}>
               <Icon />
             </Status>
           )

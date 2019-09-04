@@ -23,7 +23,7 @@ const teamCityStatusConfigExtension = {
   },
   adjusted: {
     default: true,
-    background: 'statusAdjustedColor',
+    background: theme => theme.statusAdjustedColor,
     icon: Adjust,
   },
 };
