@@ -269,7 +269,7 @@ Define a color for the line chart as a function or directly as a string.
 Boolean that indicates if there should be a small arrow shown underneath the value showing the direction compared to the last value.
 If you provide a function, you have to return a css rotation attribute, e.g. `45deg` or `0.567rad`, depending on the data you retrieve.   
 
-### List
+### ~~List~~ (deprecated, please use StatusList instead)
 
 A list widget for failed build jobs. 
 
@@ -291,7 +291,101 @@ or
 ]
 ```
 
+### StatusList
 
+A more general list widget containing items reflecting some status. Examples are failing builds, list of code quality criterias
+or an application instance health list. 
+
+Inherits from `Base`
+
+**job (string)**
+Job name, to which this component should subscribe. 
+
+**value (function(data):Array[String|Number])**
+Function to map the view value from the job data. When the job emits the data, you should here reduce it to the requested format.
+
+#### View value format
+This component can deal with list of objects like:
+```
+{
+    "name": "some name",
+    "subtitle": "some subtitle",
+    "status": "failed"
+}
+```
+whereas `name` and `subtitle` are arbitrary strings.  
+`status` however needs to match one of the configured status (see below).
+
+#### Status configuration
+There is a default status configuration (`defaultStatusConfig`) defined in [ListItem](lib/frontend/widgets/StatusList/Item.jsx) with
+predefined status
+* check
+* failed (default)
+* investigated
+
+but if you want to enhance the configuration or override values in existing status use the property `statusConfigExt`.
+There is a special but also simple format to this configuration. The example shows how to override `failed`
+to not be the default status anymore and add a new `adjusted` status.
+
+```
+import { StatusList, themes } from 'monitory/frontend';
+import { Adjust } from 'styled-icons/fa-solid/Adjust';
+
+// extends status config for teamcity status list
+const teamCityStatusConfigExtension = {
+  failed: {
+    default: false,
+    background: 'yellow',
+  },
+  adjusted: {
+    default: true,
+    background: theme => theme.statusAdjustedColor,
+    icon: Adjust,
+  },
+};
+// extends themes with new status colors
+themes.light.statusAdjustedColor = 'grey';
+themes.dark.statusAdjustedColor = 'grey';
+
+...
+    <StatusList job="teamcityStatus" title="Teamcity Jobs" rows={2} cols={1} statusConfigExt={teamCityStatusConfigExtension} />
+...
+```
+
+#### Migrate from List
+
+In case you only use a list of strings like 
+```javascript
+["TeamcityBuildJob","TeamcityBuildJob2", "TeamcityBuildJob3"]
+```
+you don't need to do anything.
+
+For the other case
+```javascript
+[
+  {name: "TeamcityBuildJob", assignee:"Luke Skywalker"},
+  {name: "TeamcityBuildJob2"},
+  {name: "TeamcityBuildJob3"},
+]
+```
+use a transform function like
+```javascript
+import { get, has, map } from 'lodash';
+const transformToStatusListData = listData => map(listData, (item) => {
+  const { name } = item;
+  const subtitle = `${get(item, 'assignee', 'Nobody')}  assigned`;
+  const status = (has(item, 'assignee')) ? 'investigated' : 'failed';
+  return { name, subtitle, status };
+});
+```
+and migrate from
+```javascript
+<List job="teamcity" title="Failed Teamcity Jobs" rows={2} cols={1} />
+```
+to
+```javascript
+<StatusList job="teamcity" title="Failed Teamcity Jobs" rows={2} cols={1} value={transformToStatusListData} />
+```
 
 ### ReloadableIframe
 Just an Iframe component which reloads itself after an amount of time. 
@@ -318,8 +412,6 @@ The src for the Img.
 **interval (Number)**
 Define the interval to refresh the img.
 
-
-
 Themeing:
 ---------
 You can choose between two themes: light and dark. 
@@ -336,6 +428,9 @@ Or you can create your own theme by providing an object with the following prope
     graphColor: 'rgba(0,0,0,0.3)',
     listAssigneeColor: '#efd700',
     listFailedColor: 'red',
+    statusFailedColor: 'red',
+    statusCheckColor: 'green',
+    statusInvestigatedColor: '#efd700',
     headlineColor: 'black',
     headlineBackground: '#eee',
     customCss: {...} // Provide custom global css
