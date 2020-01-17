@@ -50,11 +50,13 @@ and let it run with `node index.js`. It can be configured as well, the propertie
 ```javascript 1.8
 monitory.start({
   port: 1337,
-  dashboards: `${__dirname}/dashboards/*`, //glob
-  jobs: `${__dirname}/jobs/*`, //glob
+  dashboards: `${__dirname}/dashboards/*`, //glob for dashboard files
+  jobs: `${__dirname}/jobs/*`, //glob for job definition files
   jobsParallelism: Number.MAX_SAFE_INTEGER, // defines how many jobs are executed in parallel
   jsAssetsDir: `${__dirname}/dist`, // path where to serve js assets from
   additionalAssetsDir: `${__dirname}/assets`,// path where to serve additional assets (like soundfiles, icons) from
+  startServer: true, // if the script should start the monitory server
+  compileAssets: true //define if the assets should be compiled 
 });
 ``` 
 

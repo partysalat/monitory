@@ -7,5 +7,6 @@ monitory.start({
   jobsParallelism: 2,
   jsAssetsDir: `${__dirname}/dist`,
   additionalAssetsDir: `${__dirname}/assets`,
+  startServer: true,
+  compileAssets: true,
 });
-
