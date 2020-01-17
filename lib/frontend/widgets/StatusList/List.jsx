@@ -46,7 +46,14 @@ export default compose(
   withSubscription,
   withViewValue,
 )(List);
-
+const ConfigExtPropType = PropTypes.shape({
+  default: PropTypes.bool,
+  background: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+  icon: PropTypes.element,
+});
 List.propTypes = {
   job: PropTypes.string.isRequired,
   title: PropTypes.string,
@@ -69,4 +76,9 @@ List.propTypes = {
   ]),
   value: PropTypes.func,
   playAudioWhen: PropTypes.func,
+  statusConfigExt: PropTypes.shape({
+    failed: ConfigExtPropType,
+    adjusted: ConfigExtPropType,
+    investigated: ConfigExtPropType,
+  }),
 };
