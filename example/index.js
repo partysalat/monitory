@@ -9,4 +9,5 @@ monitory.start({
   additionalAssetsDir: `${__dirname}/assets`,
   startServer: true,
   compileAssets: true,
+  onInit: async () => { },
 });
