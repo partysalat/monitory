@@ -10,8 +10,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --ext .js --ext .jsx lib/",
-    "release-patch": "npm run patch && npm run push-tags",
-    "release-minor": "npm run minor && npm run push-tags",
+    "release-patch": "npm run test && npm run patch && npm run push-tags",
+    "release-minor": "npm run test && npm run minor && npm run push-tags",
     "push-tags": "git push origin --follow-tags && git push origin master",
     "patch": "npm version patch -m \"v%s\"",
     "minor": "npm version minor -m \"v%s\"",

@@ -1,8 +1,8 @@
 // test file
-import { shallow } from 'enzyme';
 import React from 'react';
 import { random } from 'faker';
 import configureStore from 'redux-mock-store';
+import { mount } from 'enzyme';
 import withAudio from './withAudio';
 import { playAudio } from '../redux/actions';
 
@@ -41,19 +41,19 @@ describe('withAudio', () => {
     // given
     const currentValue = random.alphaNumeric(10);
     const viewValue = random.alphaNumeric(10);
-    const spy = jest.fn().mockReturnValue(random.alphaNumeric(10));
+    const playAudioWhenSpy = jest.fn().mockReturnValue(random.alphaNumeric(10));
 
     const wrapper = renderComponent({
       current: currentValue,
       viewValue,
-      playAudioWhen: spy,
+      playAudioWhen: playAudioWhenSpy,
     });
 
     // when
     wrapper.setProps({ current: currentValue });
-
+    wrapper.update();
     // then
-    expect(spy).toHaveBeenCalledWith(currentValue, viewValue);
+    expect(playAudioWhenSpy).toHaveBeenCalledWith(currentValue, viewValue);
   });
 
 
@@ -105,7 +105,7 @@ describe('withAudio', () => {
       expect(store.getActions()).toEqual([playAudio(nextSoundFile)]);
     });
 
-    it('props changes and playAudioWhen returns a string', () => {
+    it('props changes and playAudioWhen returns a string when a soundfile already present', () => {
       const soundFile = random.alphaNumeric(10);
       const nextSoundFile = random.alphaNumeric(10);
       const wrapper = renderComponent({
@@ -124,6 +124,6 @@ describe('withAudio', () => {
 
 
   function renderComponent(props) {
-    return shallow(<DummyComponentWithHoc store={store} {...props} />).dive();
+    return mount(<DummyComponentWithHoc store={store} {...props} />);
   }
 });

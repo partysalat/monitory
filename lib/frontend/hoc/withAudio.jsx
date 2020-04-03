@@ -11,7 +11,7 @@ export default function withAudio(WrappedComponent) {
   }
   function mapDispatchToProps(dispatch) {
     return {
-      playSound: audioPath => dispatch(playAudio(audioPath)),
+      playSound: (audioPath) => dispatch(playAudio(audioPath)),
     };
   }
 
@@ -24,7 +24,7 @@ export default function withAudio(WrappedComponent) {
     }
 
 
-    componentWillReceiveProps(props) {
+    static getDerivedStateFromProps(props, state) {
       const {
         playAudioWhen,
         current,
@@ -34,14 +34,14 @@ export default function withAudio(WrappedComponent) {
 
       const sound = isFunction(playAudioWhen) ? playAudioWhen(current, viewValue) : false;
 
-      if (sound === this.state.lastSound) {
-        return;
+      if (sound === state.lastSound) {
+        return state;
       }
 
       if (isString(sound)) {
         playSound(sound);
       }
-      this.setState({ lastSound: sound });
+      return { lastSound: sound };
     }
 
     render() {

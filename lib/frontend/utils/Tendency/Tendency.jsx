@@ -18,21 +18,19 @@ class Tendency extends Component {
     };
   }
 
-  componentWillReceiveProps({ withTendency }) {
+  static getDerivedStateFromProps({ withTendency, viewValue, current }, prevState) {
     if (!withTendency) {
-      return;
+      return prevState;
     }
-    this.setState(({ last, lastViewValue }, { viewValue, current }) => {
-      const isTendencyCalculationProvided = isFunction(withTendency);
-      return {
-        rotation: isTendencyCalculationProvided
-          ? withTendency(current, viewValue, last, lastViewValue)
-          : Tendency.defaultRotation(viewValue, lastViewValue),
-        last: current,
-        lastViewValue: viewValue,
-
-      };
-    });
+    const { last, lastViewValue } = prevState;
+    const isTendencyCalculationProvided = isFunction(withTendency);
+    return {
+      rotation: isTendencyCalculationProvided
+        ? withTendency(current, viewValue, last, lastViewValue)
+        : Tendency.defaultRotation(viewValue, lastViewValue),
+      last: current,
+      lastViewValue: viewValue,
+    };
   }
 
   render() {
@@ -42,7 +40,7 @@ class Tendency extends Component {
     }
     return (
       <ThemeConsumer>
-        {theme => (
+        {(theme) => (
           <SubContainer>
             <StyledArrow rotation={this.state.rotation} color={theme.fontColor} />
           </SubContainer>
