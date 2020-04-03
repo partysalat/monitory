@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@hapi/basic": "^6.0.0",
+    "bcrypt": "^4.0.1"
+  },
   "devDependencies": {
     "grid-styled": "^4.3.1"
   },
