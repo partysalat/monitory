@@ -47,7 +47,7 @@ const monitory = require('monitory');
 monitory.start();
 ``` 
 and let it run with `node index.js`. It can be configured as well, the properties and default values are:
-```javascript 1.8
+```javascript
 monitory.start({
   port: 1337,
   dashboards: `${__dirname}/dashboards/*`, //glob for dashboard files
@@ -56,7 +56,9 @@ monitory.start({
   jsAssetsDir: `${__dirname}/dist`, // path where to serve js assets from
   additionalAssetsDir: `${__dirname}/assets`,// path where to serve additional assets (like soundfiles, icons) from
   startServer: true, // if the script should start the monitory server
-  compileAssets: true //define if the assets should be compiled 
+  compileAssets: true, //define if the assets should be compiled 
+  onInit: (server) => {}, // called right after the hapi plugins are initialized, is called with the hapi server instance 
+  onBeforeStart: (server) => {}// called right before the hapi server is started, is called with the hapi server instance
 });
 ``` 
 
