@@ -21,3 +21,4 @@ module.exports.start = async function start(options) {
 module.exports.teamcityClient = require('./lib/backend/clients/teamcity.client');
 module.exports.elkClient = require('./lib/backend/clients/elk.client');
 module.exports.graphiteClient = require('./lib/backend/clients/graphite.client');
+module.exports.logger = require('./lib/backend/utils/logger');
