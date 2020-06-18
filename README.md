@@ -78,6 +78,7 @@ Define the interval, at which the job will be executed. (cannot be applied at th
 
 **cron (string)**
 Define a cron job at which the job will be executed (cannot be applied at the same time with `interval`)
+Under the hood it is using https://www.npmjs.com/package/cron where you can find some nice example here https://github.com/kelektiv/node-cron/tree/master/examples
 
 **job (func)**
 A function that defines the job. Do your crawling logic inside here. You can return a value, a promise or even use an async function.
