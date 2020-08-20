@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@hapi/basic": "^6.0.0",
-    "bcrypt": "^4.0.1"
+    "bcrypt": "^5.0.0"
   },
   "devDependencies": {
     "grid-styled": "^4.3.1"
