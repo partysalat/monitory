@@ -7,12 +7,12 @@ import toastCss from 'react-toastify/dist/ReactToastify.css';
 import chartistCss from 'chartist/dist/chartist.min.css';
 import { ToastContainer } from 'react-toastify';
 import Dashboard from '<%PATH_TO_DASHBOARD%>'; // eslint-disable-line
-import getStore from './redux';
+import getStore from '<%PATH_TO_REDUX%>';
 
 /* eslint-disable */
 injectGlobal`
   ${css`${normalizeCss}`}
-  ${toastCss.toString()}
+  ${toastCss}
   ${css`${chartistCss}`}
   body{
     font-family: 'Open Sans', sans-serif;
