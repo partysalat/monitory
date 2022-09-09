@@ -68,9 +68,7 @@
     "regenerator-runtime": "^0.13.5",
     "require-dir": "^1.2.0",
     "styled-components": "^3.3.3",
-    "styled-icons": "^2.3.1",
-    "virtual-module-webpack-plugin": "^0.4.1",
-    "webpack": "^4.42.1"
+    "styled-icons": "^2.3.1"
   },
   "devDependencies": {
     "@babel/highlight": "^7.9.0",
