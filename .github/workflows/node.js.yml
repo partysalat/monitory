@@ -16,7 +16,6 @@ jobs:
 
     strategy:
       matrix:
-#        node-version: [12.x, 14.x, 16.x]
         node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
@@ -29,5 +28,5 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm test
-    - run: echo "//registry.npmjs.org/:_authToken={{ secrets.NPM_TOKEN }}" > ~/repo/.npmrc
+    - run: echo "//registry.npmjs.org/:_authToken={{ secrets.NPM_TOKEN }}" > ~/.npmrc
 #    - run: npm publish
