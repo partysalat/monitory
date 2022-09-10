@@ -29,10 +29,10 @@ const Status = styled.div`
   flex: 0 0 auto;
   margin-right: 5px;  
 `;
-const StyledErrorIcon = ErrorIcon.extend`
+const StyledErrorIcon = styled(ErrorIcon)`
   height: 0.9375rem;
 `;
-const StyledInvestigeIcon = InvestigateIcon.extend`
+const StyledInvestigeIcon = styled(InvestigateIcon)`
   height: 0.9375rem;
 `;
 const Build = styled.div`

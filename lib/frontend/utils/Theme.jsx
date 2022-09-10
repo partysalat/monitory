@@ -1,5 +1,5 @@
 import React from 'react';
-import { injectGlobal, css } from 'styled-components';
+import { css, createGlobalStyle } from 'styled-components';
 
 export const themes = {
   light: {
@@ -44,8 +44,7 @@ const ThemeContext = React.createContext(themes.light);
 
 class GlobalThemeComponent extends React.Component {
   componentDidMount() {
-    /* eslint-disable-next-line */
-    injectGlobal`
+    const GlobalStyle = createGlobalStyle`
     html {
       font-size: ${this.props.theme.fontSize};
     }
@@ -54,19 +53,26 @@ class GlobalThemeComponent extends React.Component {
     }
     ${css`${this.props.theme.customCss}`}
     `;
+    this.setState({ globalStyle: GlobalStyle });
   }
 
 
   render() {
-    return (this.props.children);
+    const GlobalStyle = this.state && this.state.globalStyle;
+    return (
+      <>
+        {GlobalStyle && <GlobalStyle />}
+        {this.props.children}
+      </>
+);
   }
 }
 
 
-export const ThemeProvider = props => (
+export const ThemeProvider = (props) => (
   <ThemeContext.Provider value={props.value}>
     <ThemeContext.Consumer>
-      {theme => <GlobalThemeComponent {...props} theme={theme} />}
+      {(theme) => <GlobalThemeComponent {...props} theme={theme} />}
     </ThemeContext.Consumer>
   </ThemeContext.Provider>
 );

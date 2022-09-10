@@ -15,7 +15,7 @@ const ItemList = styled.ul`
   padding: 0;
   width: 100%;
 `;
-const BaselineContent = Content.extend`
+const BaselineContent = styled(Content)`
   align-items: baseline;
   justify-content: flex-start;
 `;

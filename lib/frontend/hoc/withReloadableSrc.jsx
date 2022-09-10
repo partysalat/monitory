@@ -5,7 +5,7 @@ function parseUrl(url) {
   return new URL(url);
 }
 
-export default WrappedComponent => class extends Component {
+export default WrappedComponent => (class extends Component {
     static propTypes = {
       src: PropTypes.string.isRequired,
       interval: PropTypes.number,
@@ -46,4 +46,4 @@ export default WrappedComponent => class extends Component {
         />
 );
     }
-};
+});

@@ -2,15 +2,14 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import normalizeCss from 'normalize.css/normalize.css';
-import { injectGlobal, css } from 'styled-components';
+import { css, createGlobalStyle } from 'styled-components';
 import toastCss from 'react-toastify/dist/ReactToastify.css';
 import chartistCss from 'chartist/dist/chartist.min.css';
 import { ToastContainer } from 'react-toastify';
 import Dashboard from '<%PATH_TO_DASHBOARD%>'; // eslint-disable-line
 import getStore from '<%PATH_TO_REDUX%>';
 
-/* eslint-disable */
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   ${css`${normalizeCss}`}
   ${toastCss}
   ${css`${chartistCss}`}
@@ -20,6 +19,7 @@ injectGlobal`
   }
   
 `;
+
 /* eslint-enable */
 const rootElement = document.getElementById('root');
 render(
@@ -27,6 +27,7 @@ render(
     <div>
       <Dashboard />
       <ToastContainer />
+      <GlobalStyle />
     </div>
   </Provider>,
   rootElement,

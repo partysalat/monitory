@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import React from 'react';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
@@ -7,7 +8,7 @@ import Base from '../utils/Base';
 import Content from '../utils/Content';
 
 
-const StyledImg = Content.extend`
+const StyledImg = styled(Content)`
   height:100%;
   width:100%;
   background-image: url(${({ src }) => css`${src}`});
