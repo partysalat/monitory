@@ -7,17 +7,17 @@ interface ContainerProps {
   rowHeight: string;
 }
 
-const Container: React.FC<ContainerProps> = styled.div`
+const Container = styled.div`
   margin: 0 10px;
   display: grid;
 
   grid-auto-flow: row dense;
-  grid-auto-rows: ${({ rowHeight }) =>
+  grid-auto-rows: ${({ rowHeight }: ContainerProps) =>
     css`
       ${`${rowHeight}`}
     `};
 
-  grid-template-columns: ${({ cols }) => {
+  grid-template-columns: ${({ cols }: ContainerProps) => {
     const str = `repeat(${cols}, 1fr)`;
     return css`
       ${str}
@@ -28,12 +28,13 @@ interface TitleProps {
   headlineColor: string;
   headlineBackground: string;
 }
-const Title: React.FC<TitleProps> = styled.h3`
-  color: ${({ headlineColor }) =>
+
+const Title = styled.h3`
+  color: ${({ headlineColor }: TitleProps) =>
     css`
       ${headlineColor}
     `};
-  background-color: ${({ headlineBackground }) =>
+  background-color: ${({ headlineBackground }: TitleProps) =>
     css`
       ${headlineBackground}
     `};
