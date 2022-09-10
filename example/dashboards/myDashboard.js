@@ -1,5 +1,5 @@
 import React from 'react';
-import { Adjust } from 'styled-icons/fa-solid/Adjust';
+import { Anchor } from 'styled-icons/fa-solid';
 import { get, has, map } from 'lodash';
 import {
  Card, Dashboard, ReloadableImg, ReloadableIframe, StatusList, themes, ThemeProvider,
@@ -26,7 +26,7 @@ const teamCityStatusConfigExtension = {
   adjusted: {
     default: true,
     background: (theme) => theme.statusAdjustedColor,
-    icon: Adjust,
+    icon: Anchor,
   },
 };
 // extends themes with new status colors

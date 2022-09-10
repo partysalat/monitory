@@ -4,9 +4,8 @@ import { flipInX } from 'react-animations';
 import {
  get, isObject, isUndefined, find, merge, isFunction,
 } from 'lodash';
-import { Check as CheckIcon } from 'styled-icons/fa-solid/Check';
-import { Bolt as FailedIcon } from 'styled-icons/fa-solid/Bolt';
-import { Search as InvestigatedIcon } from 'styled-icons/fa-solid/Search';
+import { Check as CheckIcon, Bolt as FailedIcon, MagnifyingGlass as InvestigatedIcon } from 'styled-icons/fa-solid';
+
 import { ThemeConsumer } from '../../utils/Theme';
 
 const bounceAnimation = keyframes`${flipInX}`;
@@ -29,23 +28,23 @@ const Status = styled.div`
   justify-content:center;
   flex: 0 0 auto;
   margin-right: 5px;
-  background: ${props => props.statusColor};
+  background: ${(props) => props.statusColor};
 `;
 
 const defaultStatusConfig = {
   check: {
     default: false,
-    background: theme => theme.statusCheckColor,
+    background: (theme) => theme.statusCheckColor,
     icon: CheckIcon,
   },
   failed: {
     default: true,
-    background: theme => theme.statusFailedColor,
+    background: (theme) => theme.statusFailedColor,
     icon: FailedIcon,
   },
   investigated: {
     default: false,
-    background: theme => theme.statusInvestigatedColor,
+    background: (theme) => theme.statusInvestigatedColor,
     icon: InvestigatedIcon,
   },
 };
@@ -62,7 +61,7 @@ const findDefaultStatus = (statusConfig) => {
   return isUndefined(defaultStatus) ? statusConfig.failed : defaultStatus;
 };
 
-const provideBackgroundColor = (theme, value) => isFunction(value) ? value(theme) : value;
+const provideBackgroundColor = (theme, value) => (isFunction(value) ? value(theme) : value);
 
 export default (props) => {
   const { item, statusConfigExt } = props;
@@ -79,7 +78,7 @@ export default (props) => {
     <StyledLi>
       <ThemeConsumer>
         {
-          theme => (
+          (theme) => (
             <Status statusColor={provideBackgroundColor(theme, config.background)}>
               <Icon />
             </Status>

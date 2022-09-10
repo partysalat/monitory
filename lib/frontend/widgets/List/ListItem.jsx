@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { flipInX } from 'react-animations';
-import { Bolt as ErrorIcon } from 'styled-icons/fa-solid/Bolt';
-import { Search as InvestigateIcon } from 'styled-icons/fa-solid/Search';
+import { Bolt as ErrorIcon, MagnifyingGlass as InvestigateIcon } from 'styled-icons/fa-solid';
+
 import isObject from 'lodash/isObject';
 import { ThemeConsumer } from '../../utils/Theme';
 
@@ -66,7 +66,7 @@ export default (props) => {
         <Assignee>
           {assigneeName}
           {' '}
-assigned
+          assigned
         </Assignee>
       </Build>
     </StyledLi>

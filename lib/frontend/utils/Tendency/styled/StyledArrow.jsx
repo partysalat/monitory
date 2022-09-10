@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ArrowRightCircle as Arrow } from 'styled-icons/feather/ArrowRightCircle';
+import { ArrowRightCircle as Arrow } from 'styled-icons/feather';
 
 
 export default styled(Arrow)`
