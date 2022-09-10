@@ -8,7 +8,6 @@ class CountUpto extends Component {
     this.lastValue = 0;
   }
 
-
   render() {
     const { value } = this.props;
     const { lastValue } = this;
@@ -20,12 +19,9 @@ class CountUpto extends Component {
     if (!isNumber(lastValue) || !isNumber(value)) {
       return <span>{value}</span>;
     }
-    return (
-      <CountUp start={lastValue} end={value} {...this.props} />
-    );
+    return <CountUp start={lastValue} end={value} {...this.props} />;
   }
 }
-
 
 CountUpto.propTypes = {
   value: PropTypes.any,

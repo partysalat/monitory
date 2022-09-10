@@ -8,46 +8,25 @@ import Base from '../utils/Base';
 import Content from '../utils/Content';
 
 const Card = (props) => {
-  const {
-    children,
-    viewValue,
-    current,
-  } = props;
+  const { children, viewValue, current } = props;
   return (
     <Base {...props}>
       <Content>
         {isFunction(children) ? children(current, viewValue) : children}
       </Content>
     </Base>
-);
+  );
 };
 
-
-export default compose(
-  withSubscription,
-  withViewValue,
-)(Card);
+export default compose(withSubscription, withViewValue)(Card);
 
 Card.propTypes = {
   job: PropTypes.string.isRequired,
   title: PropTypes.string,
   showWhen: PropTypes.func,
-  color: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
-  alert: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.bool,
-  ]),
-  cols: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.func,
-  ]),
-  rows: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.func,
-  ]),
+  color: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  alert: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+  cols: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
   value: PropTypes.func,
-
 };

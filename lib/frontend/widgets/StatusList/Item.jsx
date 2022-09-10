@@ -1,10 +1,12 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { flipInX } from 'react-animations';
+import { get, isObject, isUndefined, find, merge, isFunction } from 'lodash';
 import {
- get, isObject, isUndefined, find, merge, isFunction,
-} from 'lodash';
-import { Check as CheckIcon, Bolt as FailedIcon, MagnifyingGlass as InvestigatedIcon } from 'styled-icons/fa-solid';
+  Check as CheckIcon,
+  Bolt as FailedIcon,
+  MagnifyingGlass as InvestigatedIcon,
+} from 'styled-icons/fa-solid';
 
 import { ThemeConsumer } from '../../utils/Theme';
 
@@ -22,10 +24,10 @@ const Status = styled.div`
   border-radius: 50%;
   height: 1.875rem;
   width: 1.875rem;
-  color:white;
-  display:flex;
+  color: white;
+  display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   flex: 0 0 auto;
   margin-right: 5px;
   background: ${(props) => props.statusColor};
@@ -61,29 +63,32 @@ const findDefaultStatus = (statusConfig) => {
   return isUndefined(defaultStatus) ? statusConfig.failed : defaultStatus;
 };
 
-const provideBackgroundColor = (theme, value) => (isFunction(value) ? value(theme) : value);
+const provideBackgroundColor = (theme, value) =>
+  isFunction(value) ? value(theme) : value;
 
 export default (props) => {
   const { item, statusConfigExt } = props;
   const statusConfig = merge({}, defaultStatusConfig, statusConfigExt);
   const defaultStatus = findDefaultStatus(statusConfig);
-  const { name, status, subtitle } = isObject(item) ? item : { name: item, status: defaultStatus };
+  const { name, status, subtitle } = isObject(item)
+    ? item
+    : { name: item, status: defaultStatus };
 
   const config = get(statusConfig, status, defaultStatus);
   const Icon = styled(config.icon)`
-    height: 0.9375rem
+    height: 0.9375rem;
   `;
 
   return (
     <StyledLi>
       <ThemeConsumer>
-        {
-          (theme) => (
-            <Status statusColor={provideBackgroundColor(theme, config.background)}>
-              <Icon />
-            </Status>
-          )
-        }
+        {(theme) => (
+          <Status
+            statusColor={provideBackgroundColor(theme, config.background)}
+          >
+            <Icon />
+          </Status>
+        )}
       </ThemeConsumer>
       <Item>
         <div>{name}</div>

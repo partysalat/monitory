@@ -1,11 +1,13 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { flipInX } from 'react-animations';
-import { Bolt as ErrorIcon, MagnifyingGlass as InvestigateIcon } from 'styled-icons/fa-solid';
+import {
+  Bolt as ErrorIcon,
+  MagnifyingGlass as InvestigateIcon,
+} from 'styled-icons/fa-solid';
 
 import isObject from 'lodash/isObject';
 import { ThemeConsumer } from '../../utils/Theme';
-
 
 const bounceAnimation = keyframes`${flipInX}`;
 const StyledLi = styled.li`
@@ -15,19 +17,18 @@ const StyledLi = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 `;
 
 const Status = styled.div`
   border-radius: 50%;
   height: 1.875rem;
   width: 1.875rem;
-  color:white;
-  display:flex;
+  color: white;
+  display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   flex: 0 0 auto;
-  margin-right: 5px;  
+  margin-right: 5px;
 `;
 const StyledErrorIcon = styled(ErrorIcon)`
   height: 0.9375rem;
@@ -42,9 +43,7 @@ const Assignee = styled.div`
   font-size: 0.7rem;
 `;
 export default (props) => {
-  let {
-    build,
-  } = props;
+  let { build } = props;
   build = isObject(build) ? build : { name: build };
   const { name, assignee } = build;
 
@@ -53,22 +52,20 @@ export default (props) => {
   return (
     <StyledLi>
       <ThemeConsumer>
-        {
-        ({ listAssigneeColor, listFailedColor }) => (
-          <Status style={{ background: assignee ? listAssigneeColor : listFailedColor }}>
+        {({ listAssigneeColor, listFailedColor }) => (
+          <Status
+            style={{
+              background: assignee ? listAssigneeColor : listFailedColor,
+            }}
+          >
             {Icon}
           </Status>
-)
-      }
+        )}
       </ThemeConsumer>
       <Build>
         <div>{name}</div>
-        <Assignee>
-          {assigneeName}
-          {' '}
-          assigned
-        </Assignee>
+        <Assignee>{assigneeName} assigned</Assignee>
       </Build>
     </StyledLi>
-);
+  );
 };

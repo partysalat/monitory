@@ -7,7 +7,6 @@ import { withColor, withShowWhen, withAlert } from '../../hoc';
 import withAudio from '../../hoc/withAudio';
 import withDynamicRowsAndCols from '../../hoc/withDynamicRowsAndCols';
 
-
 class Base extends Component {
   static formatDate(date) {
     if (!date) {
@@ -39,14 +38,12 @@ class Base extends Component {
         <Title style={{ color: fontColorLight }}>{title}</Title>
         {children}
         {lastUpdated && (
-        <UpdatedAt style={{ color: fontColorLight }}>
-          Last updated at:
-          {' '}
-          {Base.formatDate(lastUpdated)}
-        </UpdatedAt>
-)}
+          <UpdatedAt style={{ color: fontColorLight }}>
+            Last updated at: {Base.formatDate(lastUpdated)}
+          </UpdatedAt>
+        )}
       </StyledCard>
-);
+    );
   }
 }
 
@@ -55,7 +52,7 @@ export default compose(
   withColor,
   withShowWhen,
   withDynamicRowsAndCols,
-  withAlert,
+  withAlert
 )(Base);
 
 Base.defaultProps = {

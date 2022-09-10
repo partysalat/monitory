@@ -6,25 +6,19 @@ import isFunction from 'lodash/isFunction';
 import { ThemeConsumer } from '../Theme';
 import AbsoluteContainer from './styled/AbsoluteContainer';
 
-
 const BackgroundChart = (props) => {
-  const {
-    current,
-    viewValue,
-    graph,
-    graphOptions,
-    graphColor,
-  } = props;
+  const { current, viewValue, graph, graphOptions, graphColor } = props;
   if (!graph || !current) {
     return null;
   }
   // TODO: Move this into HOC or another function
-  const graphColorValue = isFunction(graphColor) ? graphColor(current, viewValue) : graphColor;
+  const graphColorValue = isFunction(graphColor)
+    ? graphColor(current, viewValue)
+    : graphColor;
 
   const data = isFunction(graph) ? graph(current) : current;
   const series = {
     series: [data],
-
   };
   const defaultOptions = {
     fullWidth: true,
@@ -45,28 +39,26 @@ const BackgroundChart = (props) => {
   };
   return (
     <ThemeConsumer>
-      {theme => (
+      {(theme) => (
         <AbsoluteContainer graphColor={graphColorValue || theme.graphColor}>
-          <ChartistGraph data={series} type="Line" options={merge(defaultOptions, graphOptions)} style={{ height: '100%' }} />
+          <ChartistGraph
+            data={series}
+            type="Line"
+            options={merge(defaultOptions, graphOptions)}
+            style={{ height: '100%' }}
+          />
         </AbsoluteContainer>
-)}
+      )}
     </ThemeConsumer>
-);
+  );
 };
-
 
 export default BackgroundChart;
 
 BackgroundChart.propTypes = {
-  graph: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.bool,
-  ]),
+  graph: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   graphOptions: PropTypes.object,
-  graphColor: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.string,
-  ]),
+  graphColor: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   current: PropTypes.any,
 };
 BackgroundChart.defaultProps = {

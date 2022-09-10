@@ -4,12 +4,9 @@ import React from 'react';
 import { random } from 'faker';
 import withAlert from './withAlert';
 
-
 describe('withAlert', () => {
   function DummyComponent() {
-    return (
-      <div>Fooo</div>
-    );
+    return <div>Fooo</div>;
   }
 
   const DummyComponentWithHoc = withAlert(DummyComponent);
@@ -24,7 +21,9 @@ describe('withAlert', () => {
     const randomProps = createRandomProps();
     const wrapper = shallow(<DummyComponentWithHoc {...randomProps} />);
 
-    expect(wrapper.find(DummyComponent).props()).toEqual(expect.objectContaining(randomProps));
+    expect(wrapper.find(DummyComponent).props()).toEqual(
+      expect.objectContaining(randomProps)
+    );
   });
 
   it('calls property method with props current and viewValue', () => {
@@ -32,7 +31,13 @@ describe('withAlert', () => {
     const viewValue = random.alphaNumeric(10);
     const alertSpy = jest.fn();
 
-    shallow(<DummyComponentWithHoc current={currentValue} viewValue={viewValue} alert={alertSpy} />);
+    shallow(
+      <DummyComponentWithHoc
+        current={currentValue}
+        viewValue={viewValue}
+        alert={alertSpy}
+      />
+    );
 
     expect(alertSpy).toHaveBeenCalledWith(currentValue, viewValue);
   });
@@ -41,7 +46,9 @@ describe('withAlert', () => {
   testCases.forEach((isAlertFlag) => {
     describe(`sets alert flag to ${isAlertFlag} when`, () => {
       it(`property alert is function and method returns ${isAlertFlag}`, () => {
-        const wrapper = shallow(<DummyComponentWithHoc alert={() => isAlertFlag} />);
+        const wrapper = shallow(
+          <DummyComponentWithHoc alert={() => isAlertFlag} />
+        );
 
         expect(wrapper.find(DummyComponent).props().isAlert).toBe(isAlertFlag);
       });

@@ -4,7 +4,6 @@ import { ThemeConsumer } from '../Theme';
 import SubContainer from './styled/SubContainer';
 import StyledArrow from './styled/StyledArrow';
 
-
 class Tendency extends Component {
   static defaultRotation(viewValue, last) {
     return viewValue - last > 0 ? '-45deg' : '45deg';
@@ -18,7 +17,10 @@ class Tendency extends Component {
     };
   }
 
-  static getDerivedStateFromProps({ withTendency, viewValue, current }, prevState) {
+  static getDerivedStateFromProps(
+    { withTendency, viewValue, current },
+    prevState
+  ) {
     if (!withTendency) {
       return prevState;
     }
@@ -42,11 +44,14 @@ class Tendency extends Component {
       <ThemeConsumer>
         {(theme) => (
           <SubContainer>
-            <StyledArrow rotation={this.state.rotation} color={theme.fontColor} />
+            <StyledArrow
+              rotation={this.state.rotation}
+              color={theme.fontColor}
+            />
           </SubContainer>
         )}
       </ThemeConsumer>
-);
+    );
   }
 }
 

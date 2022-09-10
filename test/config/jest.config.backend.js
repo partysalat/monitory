@@ -10,7 +10,6 @@ module.exports = {
   collectCoverageFrom: [
     '**/*.{js,jsx}',
     '!**/node_modules/**',
-    '!**/webpack.config.js',
     '!**/vendor/**',
   ],
   coverageReporters: [

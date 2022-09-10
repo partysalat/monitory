@@ -10,7 +10,7 @@ export default function withSubscription(WrappedComponent) {
   }
   function mapDispatchToProps(dispatch) {
     return {
-      subscribe: jobId => dispatch(subscribe(jobId)),
+      subscribe: (jobId) => dispatch(subscribe(jobId)),
     };
   }
 

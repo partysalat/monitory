@@ -41,7 +41,6 @@ export const themes = {
 };
 const ThemeContext = React.createContext(themes.light);
 
-
 class GlobalThemeComponent extends React.Component {
   componentDidMount() {
     const GlobalStyle = createGlobalStyle`
@@ -51,11 +50,12 @@ class GlobalThemeComponent extends React.Component {
     body{
       background: ${this.props.theme.background};
     }
-    ${css`${this.props.theme.customCss}`}
+    ${css`
+      ${this.props.theme.customCss}
+    `}
     `;
     this.setState({ globalStyle: GlobalStyle });
   }
-
 
   render() {
     const GlobalStyle = this.state && this.state.globalStyle;
@@ -64,10 +64,9 @@ class GlobalThemeComponent extends React.Component {
         {GlobalStyle && <GlobalStyle />}
         {this.props.children}
       </>
-);
+    );
   }
 }
-
 
 export const ThemeProvider = (props) => (
   <ThemeContext.Provider value={props.value}>

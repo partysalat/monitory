@@ -1,19 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 export default (WrappedComponent) => {
   const withShowWhen = (props) => {
-    const {
-      showWhen,
-      current,
-      viewValue,
-    } = props;
+    const { showWhen, current, viewValue } = props;
 
     if (!showWhen(current, viewValue)) {
       return null;
     }
-
 
     return <WrappedComponent {...props} />;
   };
@@ -21,7 +15,6 @@ export default (WrappedComponent) => {
     showWhen: PropTypes.func,
     current: PropTypes.any,
     viewValue: PropTypes.any,
-
   };
   withShowWhen.defaultProps = {
     showWhen: () => true,

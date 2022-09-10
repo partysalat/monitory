@@ -6,19 +6,15 @@ import { mount } from 'enzyme';
 import withAudio from './withAudio';
 import { playAudio } from '../redux/actions';
 
-
 describe('withAudio', () => {
   function DummyComponent() {
-    return (
-      <div>Fooo</div>
-    );
+    return <div>Fooo</div>;
   }
 
   const mockStore = configureStore();
   let store;
 
   const DummyComponentWithHoc = withAudio(DummyComponent);
-
 
   beforeEach(() => {
     const initialState = {};
@@ -35,7 +31,9 @@ describe('withAudio', () => {
     const randomProps = global.createRandomProps();
     const wrapper = renderComponent(randomProps);
 
-    expect(wrapper.find(DummyComponent).props()).toEqual(expect.objectContaining(randomProps));
+    expect(wrapper.find(DummyComponent).props()).toEqual(
+      expect.objectContaining(randomProps)
+    );
   });
   it('calls property method with props current and viewValue', () => {
     // given
@@ -55,7 +53,6 @@ describe('withAudio', () => {
     // then
     expect(playAudioWhenSpy).toHaveBeenCalledWith(currentValue, viewValue);
   });
-
 
   describe('does not play a sound when', () => {
     it('is rendered', () => {
@@ -109,7 +106,8 @@ describe('withAudio', () => {
       const soundFile = random.alphaNumeric(10);
       const nextSoundFile = random.alphaNumeric(10);
       const wrapper = renderComponent({
-        playAudioWhen: jest.fn()
+        playAudioWhen: jest
+          .fn()
           .mockReturnValueOnce(soundFile)
           .mockReturnValueOnce(nextSoundFile),
         current: 'bar',
@@ -121,7 +119,6 @@ describe('withAudio', () => {
       expect(store.getActions()[1]).toEqual(playAudio(nextSoundFile));
     });
   });
-
 
   function renderComponent(props) {
     return mount(<DummyComponentWithHoc store={store} {...props} />);

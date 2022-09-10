@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 export default (WrappedComponent) => {
   const withViewValue = (props) => {
     const { value, current } = props;
@@ -12,10 +11,9 @@ export default (WrappedComponent) => {
   withViewValue.propTypes = {
     value: PropTypes.func,
     current: PropTypes.any,
-
   };
   withViewValue.defaultProps = {
-    value: data => data,
+    value: (data) => data,
   };
   return withViewValue;
 };

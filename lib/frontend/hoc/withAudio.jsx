@@ -7,7 +7,7 @@ import { playAudio } from '../redux/actions';
 
 export default function withAudio(WrappedComponent) {
   function mapStateToProps() {
-    return { };
+    return {};
   }
   function mapDispatchToProps(dispatch) {
     return {
@@ -23,16 +23,12 @@ export default function withAudio(WrappedComponent) {
       };
     }
 
-
     static getDerivedStateFromProps(props, state) {
-      const {
-        playAudioWhen,
-        current,
-        viewValue,
-        playSound,
-      } = props;
+      const { playAudioWhen, current, viewValue, playSound } = props;
 
-      const sound = isFunction(playAudioWhen) ? playAudioWhen(current, viewValue) : false;
+      const sound = isFunction(playAudioWhen)
+        ? playAudioWhen(current, viewValue)
+        : false;
 
       if (sound === state.lastSound) {
         return state;

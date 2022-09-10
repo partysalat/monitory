@@ -10,9 +10,13 @@ import Dashboard from '<%PATH_TO_DASHBOARD%>'; // eslint-disable-line
 import getStore from '<%PATH_TO_REDUX%>';
 
 const GlobalStyle = createGlobalStyle`
-  ${css`${normalizeCss}`}
+  ${css`
+    ${normalizeCss}
+  `}
   ${toastCss}
-  ${css`${chartistCss}`}
+  ${css`
+    ${chartistCss}
+  `}
   body{
     font-family: 'Open Sans', sans-serif;
     background: #ccc;
@@ -30,5 +34,5 @@ render(
       <GlobalStyle />
     </div>
   </Provider>,
-  rootElement,
+  rootElement
 );
