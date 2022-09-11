@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { css, createGlobalStyle } from 'styled-components';
+interface Theme {
+  background: string;
+  fontSize: string;
+  cardBackgroundColor: string;
+  cardFontColorBright: string;
+  cardFontColorBrightLight: string;
+  cardFontColorDark: string;
+  cardFontColorLightDark: string;
+  graphColor: string;
+  listAssigneeColor: string;
+  listFailedColor: string;
+  statusFailedColor: string;
+  statusCheckColor: string;
+  statusInvestigatedColor: string;
+  headlineColor: string;
+  headlineBackground: string;
+  customCss: string;
+}
 
-export const themes = {
+export const themes: Record<'light' | 'dark', Theme> = {
   light: {
     background: '#ccc',
     fontSize: '100%',
@@ -41,7 +59,10 @@ export const themes = {
 };
 const ThemeContext = React.createContext(themes.light);
 
-class GlobalThemeComponent extends React.Component {
+class GlobalThemeComponent extends React.Component<
+  PropsWithChildren<{ theme: Theme }>,
+  any
+> {
   componentDidMount() {
     const GlobalStyle = createGlobalStyle`
     html {
@@ -68,7 +89,7 @@ class GlobalThemeComponent extends React.Component {
   }
 }
 
-export const ThemeProvider = (props) => (
+export const ThemeProvider = (props: { value: Theme }) => (
   <ThemeContext.Provider value={props.value}>
     <ThemeContext.Consumer>
       {(theme) => <GlobalThemeComponent {...props} theme={theme} />}
