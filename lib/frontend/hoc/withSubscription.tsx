@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component, useEffect } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { subscribe } from '../redux/actions';
+import { AppState } from '../redux/initialState';
 
 export default function withSubscription(WrappedComponent) {
   function mapStateToProps(state, props) {
@@ -29,4 +30,13 @@ export default function withSubscription(WrappedComponent) {
     }
   };
   return connect(mapStateToProps, mapDispatchToProps)(WithSubscriptionClass);
+}
+
+export function useSubscription(jobId: string) {
+  const dispatch = useDispatch();
+  const state = useSelector<AppState>((state) => state.jobData[jobId]);
+  useEffect(() => {
+    dispatch(subscribe(jobId));
+  }, []);
+  return state;
 }

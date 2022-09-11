@@ -1,6 +1,6 @@
 export const SUBSCRIBE = 'SUBSCRIBE';
 
-export function subscribe(jobId) {
+export function subscribe(jobId: string) {
   return {
     type: SUBSCRIBE,
     payload: { jobId },
@@ -8,7 +8,7 @@ export function subscribe(jobId) {
 }
 
 export const NEW_DATA_RECEIVED = 'NEW_DATA_RECEIVED';
-export function newDataReceived(key, data) {
+export function newDataReceived(key: string, data: any) {
   return {
     type: NEW_DATA_RECEIVED,
     payload: {
@@ -18,7 +18,7 @@ export function newDataReceived(key, data) {
   };
 }
 export const NEW_JOB_SUBSCRIBED = 'NEW_JOB_SUBSCRIBED';
-export function newJobSubscribed(jobId) {
+export function newJobSubscribed(jobId: string) {
   return {
     type: NEW_JOB_SUBSCRIBED,
     payload: {
@@ -28,7 +28,7 @@ export function newJobSubscribed(jobId) {
 }
 
 export const PLAY_AUDIO = 'PLAY_AUDIO';
-export function playAudio(audioPath) {
+export function playAudio(audioPath: string) {
   return {
     type: PLAY_AUDIO,
     payload: {

@@ -17,3 +17,4 @@ export default (WrappedComponent) => {
   };
   return withViewValue;
 };
+export function useViewValue() {}
