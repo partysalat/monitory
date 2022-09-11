@@ -1,40 +1,25 @@
-import React, { Component, useEffect } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { subscribe } from '../redux/actions';
-import { AppState } from '../redux/initialState';
+import { AppState, JobData } from '../redux/initialState';
 
-export default function withSubscription(WrappedComponent) {
-  function mapStateToProps(state, props) {
-    return { ...state.jobData[props.job] };
-  }
-  function mapDispatchToProps(dispatch) {
-    return {
-      subscribe: (jobId) => dispatch(subscribe(jobId)),
-    };
-  }
+type WithSubscriptionProps = { job: string };
 
-  const WithSubscriptionClass = class extends Component {
-    static propTypes = {
-      job: PropTypes.string.isRequired,
-      subscribe: PropTypes.func.isRequired,
-    };
-
-    componentWillMount() {
-      this.props.subscribe(this.props.job);
-    }
-
-    render() {
-      return <WrappedComponent {...this.props} />;
-    }
+export default function withSubscription<T extends JobData>(
+  WrappedComponent: React.FC<T>
+) {
+  return function (props: WithSubscriptionProps & T) {
+    const state = useSubscription(props.job);
+    return <WrappedComponent {...props} {...state} />;
   };
-  return connect(mapStateToProps, mapDispatchToProps)(WithSubscriptionClass);
 }
 
 export function useSubscription(jobId: string) {
   const dispatch = useDispatch();
-  const state = useSelector<AppState>((state) => state.jobData[jobId]);
+  const state = useSelector<AppState, JobData | undefined>(
+    (state) => state.jobData[jobId]
+  );
   useEffect(() => {
     dispatch(subscribe(jobId));
   }, []);
