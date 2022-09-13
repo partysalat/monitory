@@ -2,7 +2,8 @@ import React from 'react';
 import Color from 'color';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
-import { ThemeConsumer } from '../utils/Theme';
+import { ThemeConsumer, useGetTheme } from '../utils/Theme';
+import { ValueFn } from './index';
 
 function getColors(color, theme) {
   const c = Color(color || theme.cardBackgroundColor);
@@ -46,3 +47,13 @@ export default (WrappedComponent) => {
   };
   return withColor;
 };
+export function useColor(
+  current: any,
+  viewValue: number | string,
+  color: ValueFn<string>
+) {
+  const theme = useGetTheme();
+  const calculatedColor = isFunction(color) ? color(current, viewValue) : color;
+
+  return getColors(calculatedColor, theme);
+}

@@ -97,3 +97,6 @@ export const ThemeProvider = (props: { value: Theme }) => (
   </ThemeContext.Provider>
 );
 export const ThemeConsumer = ThemeContext.Consumer;
+export function useGetTheme() {
+  return React.useContext(ThemeContext);
+}

@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { compose } from 'redux';
 import CountUpto from '../utils/CountUpto';
-import { withSubscription, withViewValue } from '../hoc';
+import { ViewValueFn } from '../hoc';
 import Base from '../utils/Base';
 import Content from '../utils/Content';
 import BackgroundChart from '../utils/BackgroundChart';
-import Tendency from '../utils/Tendency';
+import { useViewValue } from '../hoc/withViewValue';
+import { useSubscription } from '../hoc/withSubscription';
+import { BaseProps } from '../utils/Base/Base';
 
 const Number = styled.h3`
   text-align: center;
@@ -15,23 +16,26 @@ const Number = styled.h3`
   z-index: 1;
   flex: 0 0 auto;
 `;
-
-const Card = (props) => {
-  const { viewValue } = props;
+type CardProps = BaseProps & {
+  job: string;
+  value: ViewValueFn<string | number>;
+};
+const Card = (props: CardProps) => {
+  const { value, job } = props;
+  const current = useSubscription(job);
+  const viewValue = useViewValue(current?.current, value);
   return (
-    <Base {...props}>
+    <Base {...props} viewValue={viewValue}>
       <Content>
-        <BackgroundChart {...props} />
+        <BackgroundChart {...props} current={current} viewValue={viewValue} />
         <Number>
           <CountUpto value={viewValue} duration={1} />
         </Number>
-        <Tendency {...props} />
+        {/*<Tendency {...props} />*/}
       </Content>
     </Base>
   );
 };
-
-export default compose(withSubscription, withViewValue)(Card);
 
 Card.propTypes = {
   job: PropTypes.string.isRequired,

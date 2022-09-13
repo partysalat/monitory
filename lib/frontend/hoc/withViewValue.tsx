@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import isFunction from 'lodash/isFunction';
+import { JobData } from '../redux/initialState';
+import { ViewValueFn } from './index';
 
-interface WithViewValueProps {
-  value?: (value: number) => number;
-  current: any;
+interface WithViewValueProps extends JobData {
+  value?: (current: any) => number | string;
 }
-
-export default function withViewValue<T>(WrappedComponent: React.FC<T>) {
+export interface WithViewValueComponentProps {
+  viewValue: number | string;
+}
+export default function withViewValue<T extends WithViewValueComponentProps>(
+  WrappedComponent: React.FC<T>
+) {
   return function (props: WithViewValueProps & T) {
     const { value, current } = props;
     const viewValue = value ? value(current) : current;
     return <WrappedComponent viewValue={viewValue} {...props} />;
   };
+}
+export function useViewValue(
+  current: any,
+  valueFn: ViewValueFn<string | number>
+) {
+  return useMemo(
+    () => (valueFn ? valueFn(current) : current),
+    [current, valueFn]
+  );
 }

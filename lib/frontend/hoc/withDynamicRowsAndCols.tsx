@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
+import { ValueFn } from './index';
 
 function execFuncOrValue(thing, current, viewValue) {
   return isFunction(thing) ? thing(current, viewValue) : thing;
@@ -27,3 +28,23 @@ export default (WrappedComponent) => {
   };
   return withDynamicRowsAndCols;
 };
+
+export function useDynamicRowsAndCols(
+  current: any,
+  viewValue: number | string,
+  rows: ValueFn<string>,
+  cols: ValueFn<string>
+) {
+  const calculatedRows = useMemo(
+    () => execFuncOrValue(rows, current, viewValue),
+    [viewValue, current]
+  );
+  const calculatedCols = useMemo(
+    () => execFuncOrValue(cols, current, viewValue),
+    [viewValue, current]
+  );
+  return {
+    rows: calculatedRows,
+    cols: calculatedCols,
+  };
+}

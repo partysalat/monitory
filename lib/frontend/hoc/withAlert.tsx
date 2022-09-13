@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isFunction from 'lodash/isFunction';
+import { ValueFn } from './index';
 
 export default (WrappedComponent) => {
   const withAlert = (props) => {
@@ -16,3 +17,12 @@ export default (WrappedComponent) => {
   };
   return withAlert;
 };
+
+export function useAlert(
+  current: any,
+  viewValue: number | string,
+  alertFn: ValueFn<boolean>
+) {
+  const isAlert = isFunction(alertFn) ? alertFn(current, viewValue) : alertFn;
+  return isAlert;
+}

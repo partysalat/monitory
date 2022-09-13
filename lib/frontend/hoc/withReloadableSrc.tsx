@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 function parseUrl(url) {
@@ -48,3 +48,21 @@ export default (WrappedComponent) =>
       );
     }
   };
+export function useReloadableSrc(rawSrc: string) {
+  const [src, setSrc] = useState({ src: rawSrc, lastUpdated: new Date() });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newSrc = parseUrl(rawSrc);
+      newSrc.searchParams.append('_', `${new Date().getTime()}`);
+      setSrc({
+        src: newSrc.toString(),
+        lastUpdated: new Date(),
+      });
+    });
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+  return src;
+}
