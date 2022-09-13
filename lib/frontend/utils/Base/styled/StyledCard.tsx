@@ -6,17 +6,21 @@ import {
 
 const normalKeyframe = keyframes`${normalAnimation}`;
 const alertKeyframe = keyframes`${alertAnimation}`;
-
+type StyledCardProps = {
+  cols: string;
+  rows: string;
+  alert: boolean;
+};
 export default styled.div`
-  animation: ${({ alert }) =>
+  animation: ${({ alert }: StyledCardProps) =>
     alert ? css`1s ${alertKeyframe} infinite` : css`1s ${normalKeyframe}`};
   grid-column: span
-    ${({ cols }) =>
+    ${({ cols }: StyledCardProps) =>
       css`
         ${cols}
       `};
   grid-row: span
-    ${({ rows }) =>
+    ${({ rows }: StyledCardProps) =>
       css`
         ${rows}
       `};

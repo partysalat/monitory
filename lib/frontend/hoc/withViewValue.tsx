@@ -18,6 +18,7 @@ export default function withViewValue<T extends WithViewValueComponentProps>(
     return <WrappedComponent viewValue={viewValue} {...props} />;
   };
 }
+
 export function useViewValue(
   current: any,
   valueFn: ViewValueFn<string | number>

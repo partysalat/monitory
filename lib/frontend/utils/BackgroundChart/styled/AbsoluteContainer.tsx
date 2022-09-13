@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-const getGraphColorFromProps = ({ graphColor }) => graphColor;
+const getGraphColorFromProps = ({ graphColor }: { graphColor: string }) =>
+  graphColor;
 export default styled.div`
   position: absolute;
   height: 100%;

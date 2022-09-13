@@ -1,13 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ILineChartOptions } from 'chartist';
 import ChartistGraph from 'react-chartist';
 import { merge } from 'lodash';
 import isFunction from 'lodash/isFunction';
 import { ThemeConsumer } from '../Theme';
 import AbsoluteContainer from './styled/AbsoluteContainer';
+import { ValueFn } from '../../hoc';
 
-const BackgroundChart = (props) => {
-  const { current, viewValue, graph, graphOptions, graphColor } = props;
+export type BackgroundChartProps = {
+  current: any;
+  viewValue: string | number;
+  graph?: boolean | ValueFn<unknown[]>;
+  graphOptions?: ILineChartOptions;
+  graphColor?: ValueFn<string>;
+};
+const BackgroundChart = (props: BackgroundChartProps) => {
+  const {
+    current,
+    viewValue,
+    graph = false,
+    graphOptions = {},
+    graphColor = '',
+  } = props;
   if (!graph || !current) {
     return null;
   }
@@ -16,11 +31,11 @@ const BackgroundChart = (props) => {
     ? graphColor(current, viewValue)
     : graphColor;
 
-  const data = isFunction(graph) ? graph(current) : current;
+  const data = isFunction(graph) ? graph(current, viewValue) : current;
   const series = {
     series: [data],
   };
-  const defaultOptions = {
+  const defaultOptions: ILineChartOptions = {
     fullWidth: true,
     showArea: true,
     showPoint: false,
@@ -54,13 +69,3 @@ const BackgroundChart = (props) => {
 };
 
 export default BackgroundChart;
-
-BackgroundChart.propTypes = {
-  graph: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-  graphOptions: PropTypes.object,
-  graphColor: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  current: PropTypes.any,
-};
-BackgroundChart.defaultProps = {
-  graphOptions: {},
-};
