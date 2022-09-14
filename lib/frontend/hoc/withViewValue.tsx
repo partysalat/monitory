@@ -19,10 +19,7 @@ export default function withViewValue<T extends WithViewValueComponentProps>(
   };
 }
 
-export function useViewValue(
-  current: any,
-  valueFn: ViewValueFn<string | number>
-) {
+export function useViewValue<T, C = any>(current: C, valueFn: ViewValueFn<T>) {
   return useMemo(
     () => (valueFn ? valueFn(current) : current),
     [current, valueFn]

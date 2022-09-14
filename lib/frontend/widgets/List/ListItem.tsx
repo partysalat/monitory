@@ -42,7 +42,11 @@ const Build = styled.div`
 const Assignee = styled.div`
   font-size: 0.7rem;
 `;
-export default (props) => {
+export type ListItemEntry = { name: string; assignee?: string };
+type ListItemProps = {
+  build: ListItemEntry;
+};
+export default (props: ListItemProps) => {
   let { build } = props;
   build = isObject(build) ? build : { name: build };
   const { name, assignee } = build;
