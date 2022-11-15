@@ -14,6 +14,7 @@
     "release-minor": "npm run test && npm run minor && npm run push-tags",
     "push-tags": "git push origin --follow-tags && git push origin master",
     "patch": "npm version patch -m \"v%s\"",
+    "release": "semantic-release",
     "minor": "npm version minor -m \"v%s\"",
     "test:backend": "jest lib/backend --config test/config/jest.config.backend.js",
     "test:backend-coverage": "npm run test:backend -- --coverage",
@@ -69,6 +70,13 @@
     "styled-icons": "^10.46.0"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "6.0.1",
+    "@semantic-release/commit-analyzer": "9.0.2",
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/github": "8.0.6",
+    "@semantic-release/npm": "9.0.1",
+    "@semantic-release/release-notes-generator": "10.0.3",
+    "semantic-release": "19.0.5",
     "@reduxjs/toolkit": "^1.8.5",
     "@types/chartist": "^0.11.1",
     "@types/color": "^3.0.3",
@@ -87,5 +95,35 @@
     "prettier": "2.7.1",
     "redux-mock-store": "^1.5.4",
     "typescript": "^4.8.3"
+  },
+  "release": {
+    "branches": [
+      "master",
+      "next",
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "package-lock.json",
+            "CHANGELOG.md"
+          ],
+          "message": "release: ${nextRelease.version} \n\n${nextRelease.notes}"
+        }
+      ]
+    ]
   }
 }
