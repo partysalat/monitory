@@ -1,14 +1,35 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { flipInX } from 'react-animations';
-import { get, isObject, isUndefined, find, merge, isFunction } from 'lodash';
+import { isFunction, isObject, isUndefined } from 'lodash';
 import {
-  Check as CheckIcon,
   Bolt as FailedIcon,
+  Check as CheckIcon,
   MagnifyingGlass as InvestigatedIcon,
 } from 'styled-icons/fa-solid';
 
-import { ThemeConsumer } from '../../utils/Theme';
+import { Theme, ThemeConsumer } from '../../utils/Theme';
+import { StyledIcon } from '@styled-icons/styled-icon';
+
+export type ConfigExtPropType = {
+  default: boolean;
+  background: string | ((theme: Theme) => string);
+  icon: StyledIcon;
+};
+export type StatusConfigExt = Record<string, ConfigExtPropType>;
+
+export type ItemValueProp =
+  | string
+  | {
+      name: string;
+      status: 'investigated' | 'failure' | 'check';
+      subtitle: string;
+    };
+
+export type ItemProps = {
+  statusConfigExt: StatusConfigExt;
+  item: ItemValueProp;
+};
 
 const bounceAnimation = keyframes`${flipInX}`;
 const StyledLi = styled.li`
@@ -30,10 +51,10 @@ const Status = styled.div`
   justify-content: center;
   flex: 0 0 auto;
   margin-right: 5px;
-  background: ${(props) => props.statusColor};
+  background: ${(props: { statusColor: string }) => props.statusColor};
 `;
 
-const defaultStatusConfig = {
+export const defaultStatusConfig: StatusConfigExt = {
   check: {
     default: false,
     background: (theme) => theme.statusCheckColor,
@@ -58,27 +79,31 @@ const Subtitle = styled.div`
   font-size: 0.7rem;
 `;
 
-const findDefaultStatus = (statusConfig) => {
-  const defaultStatus = find(statusConfig, ['default', true]);
-  return isUndefined(defaultStatus) ? statusConfig.failed : defaultStatus;
+const findDefaultStatus = (statusConfig: StatusConfigExt) => {
+  const [defaultStatus] = Object.entries(statusConfig).find(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    ([_key, value]) => value.default
+  );
+  return isUndefined(defaultStatus) ? 'failed' : defaultStatus;
 };
 
-const provideBackgroundColor = (theme, value) =>
-  isFunction(value) ? value(theme) : value;
+const provideBackgroundColor = (
+  theme: Theme,
+  value: string | ((value: Theme) => string)
+) => (isFunction(value) ? value(theme) : value);
 
-export default (props) => {
+export default (props: ItemProps) => {
   const { item, statusConfigExt } = props;
-  const statusConfig = merge({}, defaultStatusConfig, statusConfigExt);
+  const statusConfig: StatusConfigExt = {
+    ...defaultStatusConfig,
+    ...statusConfigExt,
+  };
   const defaultStatus = findDefaultStatus(statusConfig);
   const { name, status, subtitle } = isObject(item)
     ? item
-    : { name: item, status: defaultStatus };
+    : { name: item, status: defaultStatus, subtitle: undefined };
 
-  const config = get(statusConfig, status, defaultStatus);
-  const Icon = styled(config.icon)`
-    height: 0.9375rem;
-  `;
-
+  const config = statusConfig[status] ?? defaultStatusConfig.failed;
   return (
     <StyledLi>
       <ThemeConsumer>
@@ -86,7 +111,8 @@ export default (props) => {
           <Status
             statusColor={provideBackgroundColor(theme, config.background)}
           >
-            <Icon />
+            {config.icon &&
+              React.createElement(config.icon, { height: '0.9375rem' })}
           </Status>
         )}
       </ThemeConsumer>

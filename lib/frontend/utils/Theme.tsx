@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { css, createGlobalStyle } from 'styled-components';
-interface Theme {
+export interface Theme {
   background: string;
   fontSize: string;
   cardBackgroundColor: string;
