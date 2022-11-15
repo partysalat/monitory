@@ -20,7 +20,6 @@ const validate = async (request, username, password) => {
   return { isValid, credentials };
 };
 
-
 monitory.start({
   port: 1337,
   dashboards: `${__dirname}/dashboards/*`,

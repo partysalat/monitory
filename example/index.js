@@ -8,11 +8,13 @@ monitory.start({
   jsAssetsDir: `${__dirname}/dist`,
   additionalAssetsDir: `${__dirname}/assets`,
   startServer: true,
-  logFormatter: (level, message, ...rest) => [JSON.stringify({
-    date: new Date().toISOString(),
-    message,
-    additionalData: level === 'error' ? rest[0].message : [],
-  })],
+  logFormatter: (level, message, ...rest) => [
+    JSON.stringify({
+      date: new Date().toISOString(),
+      message,
+      additionalData: level === 'error' ? rest[0].message : [],
+    }),
+  ],
   compileAssets: true,
-  onInit: async () => { },
+  onInit: async () => {},
 });
