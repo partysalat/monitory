@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import CountUp from 'react-countup';
 import { isNumber, isObjectLike } from 'lodash';
 
-interface CountUptoProps {
-  value: Record<string, unknown> | string | number;
+interface CountUptoProps<V> {
+  value: V;
   duration: number;
 }
 
-export default function CountUpto({ value, duration }: CountUptoProps) {
-  const [lastValue, setLastValue] = useState<
-    Record<string, unknown> | string | number
-  >(0);
+export default function CountUpto<V>({ value, duration }: CountUptoProps<V>) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const [lastValue, setLastValue] = useState<V>(0);
 
   if (isObjectLike(lastValue) || isObjectLike(value)) {
     return <span>{JSON.stringify(value)}</span>;

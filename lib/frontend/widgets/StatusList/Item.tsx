@@ -14,7 +14,7 @@ import { StyledIcon } from '@styled-icons/styled-icon';
 export type ConfigExtPropType = {
   default: boolean;
   background: string | ((theme: Theme) => string);
-  icon: StyledIcon;
+  icon?: StyledIcon;
 };
 export type StatusConfigExt = Record<string, ConfigExtPropType>;
 
@@ -22,7 +22,7 @@ export type ItemValueProp =
   | string
   | {
       name: string;
-      status: 'investigated' | 'failure' | 'check';
+      status: string;
       subtitle: string;
     };
 

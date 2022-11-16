@@ -2,10 +2,10 @@ import React from 'react';
 import Color from 'color';
 import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
-import { ThemeConsumer, useGetTheme } from '../utils/Theme';
+import { Theme, ThemeConsumer, useGetTheme } from '../utils/Theme';
 import { ValueFn } from './index';
 
-function getColors(color, theme) {
+function getColors(color: string, theme: Theme) {
   const c = Color(color || theme.cardBackgroundColor);
   const isLightBackground = !!Math.round(
     (c.red() + c.blue() + c.green()) / (255 * 3)
@@ -25,32 +25,10 @@ function getColors(color, theme) {
   };
 }
 
-export default (WrappedComponent) => {
-  const withColor = (props) => {
-    const { color, current, viewValue } = props;
-    const calculatedColor = isFunction(color)
-      ? color(current, viewValue)
-      : color;
-
-    return (
-      <ThemeConsumer>
-        {(theme) => (
-          <WrappedComponent {...getColors(calculatedColor, theme)} {...props} />
-        )}
-      </ThemeConsumer>
-    );
-  };
-  withColor.propTypes = {
-    color: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    current: PropTypes.any,
-    viewValue: PropTypes.any,
-  };
-  return withColor;
-};
-export function useColor(
-  current: any,
-  viewValue: number | string,
-  color: ValueFn<string>
+export function useColor<C, V>(
+  current: C,
+  viewValue: V,
+  color: ValueFn<C, V, string>
 ) {
   const theme = useGetTheme();
   const calculatedColor = isFunction(color) ? color(current, viewValue) : color;

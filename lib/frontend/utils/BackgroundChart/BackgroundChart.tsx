@@ -8,14 +8,14 @@ import { ThemeConsumer } from '../Theme';
 import AbsoluteContainer from './styled/AbsoluteContainer';
 import { ValueFn } from '../../hoc';
 
-export type BackgroundChartProps = {
-  current: any;
-  viewValue: string | number;
-  graph?: boolean | ValueFn<unknown[]>;
+export type BackgroundChartProps<C, V> = {
+  current: C;
+  viewValue: V;
+  graph?: ValueFn<C, V, boolean>;
   graphOptions?: ILineChartOptions;
-  graphColor?: ValueFn<string>;
+  graphColor?: ValueFn<C, V, string>;
 };
-const BackgroundChart = (props: BackgroundChartProps) => {
+const BackgroundChart = <C, V>(props: BackgroundChartProps<C, V>) => {
   const {
     current,
     viewValue,

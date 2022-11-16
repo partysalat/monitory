@@ -14,18 +14,18 @@ function formatDate(date: Date) {
   return format(date, 'HH:mm');
 }
 
-export type BaseProps = {
-  current: any;
-  viewValue: string | number;
+export type BaseProps<C, V> = {
+  current: C;
+  viewValue: V;
   lastUpdated: Date;
   title: string;
-  cols: ValueFn<string>;
-  rows: ValueFn<string>;
-  alert: ValueFn<boolean>;
-  color: ValueFn<string>;
-  playAudioWhen: ValueFn<string>;
+  cols?: ValueFn<C, V, string | number>;
+  rows?: ValueFn<C, V, string | number>;
+  alert?: ValueFn<C, V, boolean>;
+  color?: ValueFn<C, V, string>;
+  playAudioWhen?: ValueFn<C, V, string>;
 };
-export default function Base({
+export default function Base<C, V>({
   current,
   viewValue,
   color,
@@ -36,7 +36,7 @@ export default function Base({
   title,
   lastUpdated,
   children,
-}: PropsWithChildren<BaseProps>) {
+}: PropsWithChildren<BaseProps<C, V>>) {
   const { backgroundColor, fontColorLight, fontColor } = useColor(
     current,
     viewValue,

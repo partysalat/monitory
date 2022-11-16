@@ -1,27 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { ReactComponentLike } from 'prop-types';
 import isFunction from 'lodash/isFunction';
 import { ValueFn } from './index';
 
-export default (WrappedComponent) => {
-  const withAlert = (props) => {
-    const { alert, current, viewValue } = props;
-    const isAlert = isFunction(alert) ? alert(current, viewValue) : alert;
-    return <WrappedComponent isAlert={isAlert} {...props} />;
-  };
-
-  withAlert.propTypes = {
-    alert: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-    current: PropTypes.any,
-    viewValue: PropTypes.any,
-  };
-  return withAlert;
-};
-
-export function useAlert(
-  current: any,
-  viewValue: number | string,
-  alertFn: ValueFn<boolean>
+export function useAlert<C, V>(
+  current: C,
+  viewValue: V,
+  alertFn: ValueFn<C, V, boolean>
 ) {
   const isAlert = isFunction(alertFn) ? alertFn(current, viewValue) : alertFn;
   return isAlert;

@@ -6,6 +6,7 @@ import Item, { ItemValueProp, StatusConfigExt } from './Item';
 import { BaseProps } from '../../utils/Base/Base';
 import { useSubscription } from '../../hoc/withSubscription';
 import { useViewValue } from '../../hoc/withViewValue';
+import { ShowWhen, WithShowWhenProps } from '../../hoc/withShowWhen';
 
 const ItemList = styled.ul`
   font-size: 1rem;
@@ -17,15 +18,23 @@ const BaselineContent = styled(Content)`
   align-items: baseline;
   justify-content: flex-start;
 `;
-type ListProps = BaseProps & {
+export interface ListProps
+  extends Omit<
+      BaseProps<ItemValueProp[], ItemValueProp[]>,
+      'current' | 'lastUpdated' | 'viewValue'
+    >,
+    Omit<
+      WithShowWhenProps<ItemValueProp[], ItemValueProp[]>,
+      'current' | 'lastUpdated' | 'viewValue'
+    > {
   job: string;
-  statusConfigExt: StatusConfigExt;
-  value?: (current: any) => ItemValueProp[];
-};
+  statusConfigExt?: StatusConfigExt;
+  value?: (current: ItemValueProp[]) => ItemValueProp[];
+}
 
 export default (props: ListProps) => {
-  const jobData = useSubscription(props.job);
-  const viewValue = useViewValue<ItemValueProp[] | undefined>(
+  const jobData = useSubscription<ItemValueProp[]>(props.job);
+  const viewValue = useViewValue<ItemValueProp[], ItemValueProp[]>(
     jobData?.current,
     props.value
   );
@@ -41,10 +50,12 @@ export default (props: ListProps) => {
   ));
 
   return (
-    <Base {...props}>
-      <BaselineContent>
-        <ItemList>{items}</ItemList>
-      </BaselineContent>
-    </Base>
+    <ShowWhen showWhen={props.showWhen} {...jobData} viewValue={viewValue}>
+      <Base {...props} {...jobData} viewValue={viewValue}>
+        <BaselineContent>
+          <ItemList>{items}</ItemList>
+        </BaselineContent>
+      </Base>
+    </ShowWhen>
   );
 };

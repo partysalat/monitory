@@ -1,39 +1,21 @@
 import React, { useMemo } from 'react';
 import isFunction from 'lodash/isFunction';
-import PropTypes from 'prop-types';
+import PropTypes, { ReactComponentLike } from 'prop-types';
 import { ValueFn } from './index';
 
-function execFuncOrValue(thing, current, viewValue) {
+function execFuncOrValue<C, V>(
+  thing: ValueFn<C, V, string | number>,
+  current: C,
+  viewValue: V
+) {
   return isFunction(thing) ? thing(current, viewValue) : thing;
 }
-export default (WrappedComponent) => {
-  const withDynamicRowsAndCols = (props) => {
-    const { rows, cols, current, viewValue } = props;
-    const calculatedRows = execFuncOrValue(rows, current, viewValue);
-    const calculatedCols = execFuncOrValue(cols, current, viewValue);
 
-    return (
-      <WrappedComponent
-        {...props}
-        rows={calculatedRows}
-        cols={calculatedCols}
-      />
-    );
-  };
-  withDynamicRowsAndCols.propTypes = {
-    rows: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
-    cols: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
-    current: PropTypes.any,
-    viewValue: PropTypes.any,
-  };
-  return withDynamicRowsAndCols;
-};
-
-export function useDynamicRowsAndCols(
-  current: any,
-  viewValue: number | string,
-  rows: ValueFn<string>,
-  cols: ValueFn<string>
+export function useDynamicRowsAndCols<C, V>(
+  current: C,
+  viewValue: V,
+  rows: ValueFn<C, V, string | number>,
+  cols: ValueFn<C, V, string | number>
 ) {
   const calculatedRows = useMemo(
     () => execFuncOrValue(rows, current, viewValue),

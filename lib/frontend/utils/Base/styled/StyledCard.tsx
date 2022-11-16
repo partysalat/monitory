@@ -7,8 +7,8 @@ import {
 const normalKeyframe = keyframes`${normalAnimation}`;
 const alertKeyframe = keyframes`${alertAnimation}`;
 type StyledCardProps = {
-  cols: string;
-  rows: string;
+  cols: string | number;
+  rows: string | number;
   alert: boolean;
 };
 export default styled.div`

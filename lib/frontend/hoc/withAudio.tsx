@@ -6,56 +6,10 @@ import isString from 'lodash/isString';
 import { playAudio } from '../redux/actions';
 import { ValueFn } from './index';
 
-export default function withAudio(WrappedComponent) {
-  function mapStateToProps() {
-    return {};
-  }
-  function mapDispatchToProps(dispatch) {
-    return {
-      playSound: (audioPath) => dispatch(playAudio(audioPath)),
-    };
-  }
-
-  const WithAudio = class extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        lastSound: false,
-      };
-    }
-
-    static getDerivedStateFromProps(props, state) {
-      const { playAudioWhen, current, viewValue, playSound } = props;
-
-      const sound = isFunction(playAudioWhen)
-        ? playAudioWhen(current, viewValue)
-        : false;
-
-      if (sound === state.lastSound) {
-        return state;
-      }
-
-      if (isString(sound)) {
-        playSound(sound);
-      }
-      return { lastSound: sound };
-    }
-
-    render() {
-      return <WrappedComponent {...this.props} />;
-    }
-  };
-
-  WithAudio.propTypes = {
-    playAudioWhen: PropTypes.func,
-  };
-  return connect(mapStateToProps, mapDispatchToProps)(WithAudio);
-}
-
-export function usePlaySound(
-  current: any,
-  viewValue: number | string,
-  playAudioWhen: ValueFn<string>
+export function usePlaySound<C, V>(
+  current: C,
+  viewValue: V,
+  playAudioWhen: ValueFn<C, V, string>
 ): { lastSound: string } {
   const [lastSound, setLastSound] = useState<string>();
   const dispatch = useDispatch();

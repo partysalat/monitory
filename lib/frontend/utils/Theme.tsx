@@ -89,7 +89,7 @@ class GlobalThemeComponent extends React.Component<
   }
 }
 
-export const ThemeProvider = (props: { value: Theme }) => (
+export const ThemeProvider: React.FC<{ value: Theme }> = (props) => (
   <ThemeContext.Provider value={props.value}>
     <ThemeContext.Consumer>
       {(theme) => <GlobalThemeComponent {...props} theme={theme} />}
