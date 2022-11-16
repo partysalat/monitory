@@ -1,9 +1,10 @@
 import sum from 'lodash/sum';
 import { isNumber, last } from 'lodash';
 
-export const movingAverage = <C>(windowSize = 5) => {
+export const movingAverage = (windowSize = 5) => {
   const values: number[] = [];
-  return (current: C, viewValue: number) => {
+  // eslint-disable-next-line prettier/prettier
+  return <C,>(current: C, viewValue: number) => {
     values.unshift(viewValue);
     values.length = values.length > windowSize ? windowSize : values.length;
     const average = sum(values) / values.length;
