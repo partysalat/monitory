@@ -30,7 +30,7 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm test
-    - run: echo "//registry.npmjs.org/:_authToken={{ secrets.NPM_TOKEN }}" > ~/.npmrc
+    - run: echo "//registry.npmjs.org/:_authToken={{ secrets.NPM_TOKEN }}" > /home/runner/.npmrc
       if: github.ref == 'refs/heads/master'
     - run: npm run release
       if: github.ref == 'refs/heads/master'
