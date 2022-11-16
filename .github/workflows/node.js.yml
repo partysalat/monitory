@@ -39,7 +39,7 @@ jobs:
   worker:
     runs-on: ubuntu-latest
     needs: build
-    if: github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'
+    if: ${{github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
     steps:
       - name: automerge
         uses: actions/github-script@v6
