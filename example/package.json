@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@hapi/basic": "^6.0.0",
+    "@hapi/basic": "^7.0.0",
     "bcrypt": "^4.0.1"
   },
   "devDependencies": {
