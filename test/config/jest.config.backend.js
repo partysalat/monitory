@@ -4,20 +4,13 @@
 module.exports = {
   clearMocks: true,
   coverageDirectory: `${__dirname}/../../target/reports/coverage-backend`,
-  coveragePathIgnorePatterns: [
-    '/node_modules/',
-  ],
+  coveragePathIgnorePatterns: ['/node_modules/'],
   collectCoverageFrom: [
     '**/*.{js,jsx}',
     '!**/node_modules/**',
     '!**/vendor/**',
   ],
-  coverageReporters: [
-    'json',
-    'text',
-    'lcov',
-    'clover',
-  ],
+  coverageReporters: ['json', 'text', 'lcov', 'clover'],
 
   rootDir: `${__dirname}/../../lib/backend`,
   testEnvironment: 'node',

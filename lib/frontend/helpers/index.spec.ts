@@ -1,4 +1,4 @@
-const { colorRange } = require('./index');
+import { colorRange } from './index';
 
 describe('helpers', () => {
   describe('colorRange', () => {
