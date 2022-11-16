@@ -1,3 +1,10 @@
+## [0.2.1](https://github.com/partysalat/monitory/compare/v0.2.0...v0.2.1) (2022-11-16)
+
+
+### Bug Fixes
+
+* Move redux toolkit to dependencies ([34c19d0](https://github.com/partysalat/monitory/commit/34c19d0ae82ed2477d4a8ee6679b67d033aa8e5a))
+
 # [0.2.0](https://github.com/partysalat/monitory/compare/v0.1.11...v0.2.0) (2022-11-16)
 
 
