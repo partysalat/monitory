@@ -1,3 +1,10 @@
+## [0.2.3](https://github.com/partysalat/monitory/compare/v0.2.2...v0.2.3) (2022-11-17)
+
+
+### Bug Fixes
+
+* downgrade peer dependencies ([5616796](https://github.com/partysalat/monitory/commit/5616796eea0e1b5f27cf5b1b9516928c68160a09))
+
 ## [0.2.2](https://github.com/partysalat/monitory/compare/v0.2.1...v0.2.2) (2022-11-17)
 
 
