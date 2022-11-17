@@ -22,6 +22,7 @@
     "test:frontend": "jest lib/frontend --config test/config/jest.config.frontend.js",
     "test:frontend-watch": "npm run test:frontend -- --watch",
     "test:frontend-coverage": "npm run test:frontend -- --coverage",
+    "test:e2e": "cd webtests && npx playwright test --config playwright.config.ts",
     "test": "npm run test:backend && npm run test:frontend",
     "lint:fix": "npm run lint -- --fix"
   },
@@ -39,7 +40,6 @@
     "@hapi/h2o2": "^10.0.0",
     "@hapi/hapi": "^21.0.0",
     "@hapi/inert": "^6.0.1",
-    "@reduxjs/toolkit": "^1.8.5",
     "joi": "^17.7.0",
     "@hapi/nes": "^12.0.2",
     "@hapi/vision": "^6.0.0",
@@ -61,12 +61,9 @@
     "lodash": "^4.17.15",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
-    "react": "^17.0.2",
     "react-animations": "^1.0.0",
     "react-chartist": "^0.14.4",
     "react-countup": "^6.3.1",
-    "react-dom": "^17.0.2",
-    "react-redux": "^8.0.2",
     "react-toastify": "^9.0.8",
     "redux": "^4.2.0",
     "redux-saga": "^1.2.1",
@@ -87,6 +84,7 @@
     "@types/lodash": "^4.14.185",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
+    "@reduxjs/toolkit": "^1.8.5",
     "esbuild-jest": "^0.5.0",
     "eslint": "8.22.0",
     "eslint-plugin-import": "^2.26.0",
@@ -99,9 +97,18 @@
     "mockdate": "^3.0.5",
     "prettier": "2.7.1",
     "redux-mock-store": "^1.5.4",
+    "react": "^17.0.2",
+    "react-redux": "^8.0.2",
+    "react-dom": "^17.0.2",
     "semantic-release": "19.0.5",
     "type-fest": "^3.2.0",
     "typescript": "^4.8.3"
+  },
+  "peerDependencies": {
+    "@reduxjs/toolkit": "^1.8.5",
+    "react-redux": "^8.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "release": {
     "branches": [
