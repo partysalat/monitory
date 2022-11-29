@@ -45,7 +45,7 @@
     "@hapi/vision": "^7.0.0",
     "@types/react-animations": "^1.0.0",
     "@types/styled-components": "^5.1.26",
-    "app-root-path": "^2.2.1",
+    "app-root-path": "^3.1.0",
     "axios": "^1.2.0",
     "babel-plugin-styled-components": "^2.0.7",
     "chartist": "0.10.1",
