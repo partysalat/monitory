@@ -52,7 +52,7 @@
     "color": "^4.2.3",
     "confidence": "^5.0.1",
     "cron": "^2.1.0",
-    "css-loader": "^6.7.2",
+    "css-loader": "^6.7.3",
     "date-fns": "^2.11.1",
     "esbuild": "^0.16.1",
     "glob": "^8.0.3",
