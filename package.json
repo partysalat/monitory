@@ -69,7 +69,7 @@
     "redux-saga": "^1.2.2",
     "require-dir": "^1.2.0",
     "styled-components": "^5.3.5",
-    "styled-icons": "^10.46.0"
+    "styled-icons": "^10.47.0"
   },
   "devDependencies": {
     "@semantic-release/changelog": "6.0.2",
