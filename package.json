@@ -63,7 +63,7 @@
     "prop-types": "^15.7.2",
     "react-animations": "^1.0.0",
     "react-chartist": "^0.14.4",
-    "react-countup": "^6.4.0",
+    "react-countup": "^6.4.1",
     "react-toastify": "^9.0.8",
     "redux": "^4.2.0",
     "redux-saga": "^1.2.2",
