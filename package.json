@@ -65,7 +65,7 @@
     "react-chartist": "^0.14.4",
     "react-countup": "^6.4.1",
     "react-toastify": "^9.0.8",
-    "redux": "^4.2.0",
+    "redux": "^4.2.1",
     "redux-saga": "^1.2.2",
     "require-dir": "^1.2.0",
     "styled-components": "^5.3.5",
