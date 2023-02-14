@@ -41,7 +41,7 @@
     "@hapi/hapi": "^21.2.1",
     "@hapi/inert": "^7.0.1",
     "joi": "^17.7.1",
-    "@hapi/nes": "^13.0.0",
+    "@hapi/nes": "^13.0.1",
     "@hapi/vision": "^7.0.0",
     "@types/react-animations": "^1.0.0",
     "@types/styled-components": "^5.1.26",
