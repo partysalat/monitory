@@ -68,7 +68,7 @@
     "redux": "^4.2.1",
     "redux-saga": "^1.2.2",
     "require-dir": "^1.2.0",
-    "styled-components": "^5.3.5",
+    "styled-components": "^5.3.8",
     "styled-icons": "^10.47.0"
   },
   "devDependencies": {
