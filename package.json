@@ -51,7 +51,7 @@
     "chartist": "0.10.1",
     "color": "^4.2.3",
     "confidence": "^5.0.1",
-    "cron": "^2.2.0",
+    "cron": "^2.3.0",
     "css-loader": "^6.7.3",
     "date-fns": "^2.11.1",
     "esbuild": "^0.17.11",
