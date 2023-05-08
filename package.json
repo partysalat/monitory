@@ -53,7 +53,7 @@
     "confidence": "^5.0.1",
     "cron": "^2.3.0",
     "css-loader": "^6.7.3",
-    "date-fns": "^2.11.1",
+    "date-fns": "^2.30.0",
     "esbuild": "^0.17.11",
     "glob": "^8.1.0",
     "handlebars": "^4.7.3",
