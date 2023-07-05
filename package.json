@@ -42,7 +42,7 @@
     "@hapi/inert": "^7.1.0",
     "joi": "^17.9.2",
     "@hapi/nes": "^13.0.1",
-    "@hapi/vision": "^7.0.1",
+    "@hapi/vision": "^7.0.2",
     "@types/react-animations": "^1.0.0",
     "@types/styled-components": "^5.1.26",
     "app-root-path": "^3.1.0",
