@@ -55,7 +55,7 @@
     "css-loader": "^6.7.4",
     "date-fns": "^3.6.0",
     "esbuild": "^0.20.1",
-    "glob": "^8.1.0",
+    "glob": "^10.4.1",
     "handlebars": "^4.7.8",
     "highland": "^2.13.5",
     "lodash": "^4.17.15",
